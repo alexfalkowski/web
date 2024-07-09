@@ -4,21 +4,13 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/alexfalkowski/web.svg)](https://pkg.go.dev/github.com/alexfalkowski/web)
 [![Stability: Active](https://masterminds.github.io/stability/active.svg)](https://masterminds.github.io/stability/active.html)
 
-# Service
+# Web
 
-Make sure you add the name of the service what what it is.
+A website for lean-thoughts.com
 
 ## Background
 
-Add a background.
-
-### Why a service?
-
-Why is it important to have a service.
-
-## Server
-
-Explain the server side of things.
+Try the ideas outlined in https://alejandrofalkowski.substack.com/p/hyperprogress
 
 ## Health
 
@@ -40,11 +32,8 @@ Since we are advocating building microservices, you would normally use a [contai
 
 ## Design
 
-Add anything interesting about the design.
+The design is heavily relieant on https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc
 
-## Other Systems
-
-Describe any other similar systems you took inspiration from.
 
 ## Development
 
