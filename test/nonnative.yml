@@ -1,0 +1,14 @@
+version: 1.0
+processes:
+  -
+    name: server
+    go:
+      output: reports
+      executable: ../go-service-template
+      command: server
+    timeout: 5
+    host: 127.0.0.1
+    port: 12000
+    log: reports/server.log
+    environment:
+      CONFIG_FILE: .config/server.yml
