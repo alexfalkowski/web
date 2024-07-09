@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.5.0](https://github.com/alexfalkowski/web/releases/tag/v0.5.0) - 2024-07-09
+
+- [`09e8794`](https://github.com/alexfalkowski/web/commit/09e8794435cc548ed89b07a4f7cbfff070e0ecdc) feat(http): add home (#5)
+
 ## [v0.4.0](https://github.com/alexfalkowski/web/releases/tag/v0.4.0) - 2024-07-09
 
 - [`74d8104`](https://github.com/alexfalkowski/web/commit/74d8104596ac8dcec00b48ad0e9608461a2ad2f7) feat(server): move to use WEB_CONFIG_FILE (#4)
