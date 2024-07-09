@@ -4,6 +4,10 @@ require 'securerandom'
 require 'yaml'
 require 'base64'
 
+require 'nokogiri'
+
+require 'web/v1/http'
+
 module Web
   class << self
     def observability
@@ -16,5 +20,10 @@ module Web
   end
 
   module V1
+    class << self
+      def server_http
+        @server_http ||= Web::V1::HTTP.new('http://localhost:11000')
+      end
+    end
   end
 end
