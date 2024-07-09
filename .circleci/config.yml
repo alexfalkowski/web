@@ -7,7 +7,7 @@ jobs:
   build-service:
     docker:
       - image: alexfalkowski/go:1.22
-    working_directory: ~/go-service-template
+    working_directory: ~/web
     steps:
       - checkout
       - run: git submodule sync
@@ -15,35 +15,35 @@ jobs:
       - restore_cache:
           name: restore go deps
           keys:
-            - go-service-template-go-cache-{{ checksum "go.sum" }}
-            - go-service-template-go-cache-
+            - web-go-cache-{{ checksum "go.sum" }}
+            - web-go-cache-
       - restore_cache:
           name: restore ruby deps
           keys:
-            - go-service-template-ruby-cache-{{ checksum "test/Gemfile.lock" }}
-            - go-service-template-ruby-cache-
+            - web-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+            - web-ruby-cache-
       - run: make dep
       - save_cache:
           name: save go deps
-          key: go-service-template-go-cache-{{ checksum "go.sum" }}
+          key: web-go-cache-{{ checksum "go.sum" }}
           paths:
             - /home/circleci/go/pkg/mod
       - save_cache:
           name: save ruby deps
-          key: go-service-template-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+          key: web-ruby-cache-{{ checksum "test/Gemfile.lock" }}
           paths:
             - test/vendor
       - restore_cache:
           name: restore go build cache
           keys:
-            - go-service-template-go-build-cache-{{ checksum "go.sum" }}
-            - go-service-template-go-build-cache-
+            - web-go-build-cache-{{ checksum "go.sum" }}
+            - web-go-build-cache-
       - run: make lint
       - run: make sec
       - run: make features
       - save_cache:
           name: save go build cache
-          key: go-service-template-go-build-cache-{{ checksum "go.sum" }}
+          key: web-go-build-cache-{{ checksum "go.sum" }}
           paths:
             - /home/circleci/.cache/go-build
       - run: make coverage
@@ -57,7 +57,7 @@ jobs:
   build-docker:
     docker:
       - image: alexfalkowski/go:1.22
-    working_directory: ~/go-service-template
+    working_directory: ~/web
     steps:
       - checkout
       - run: git submodule sync
@@ -69,7 +69,7 @@ jobs:
   release:
     docker:
       - image: alexfalkowski/release:3.1
-    working_directory: ~/go-service-template
+    working_directory: ~/web
     steps:
       - checkout
       - run: git submodule sync
@@ -79,7 +79,7 @@ jobs:
   push-docker:
     docker:
       - image: alexfalkowski/go:1.22
-    working_directory: ~/go-service-template
+    working_directory: ~/web
     steps:
       - checkout
       - run: git submodule sync
@@ -92,7 +92,7 @@ jobs:
     resource_class: large
 
 workflows:
-  go-service-template:
+  web:
     jobs:
       - build-service
       - build-docker
