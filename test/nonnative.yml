@@ -4,7 +4,7 @@ processes:
     name: server
     go:
       output: reports
-      executable: ../go-service-template
+      executable: ../web
       command: server
     timeout: 5
     host: 127.0.0.1

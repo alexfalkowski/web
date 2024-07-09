@@ -3,9 +3,9 @@ package health
 import (
 	"github.com/alexfalkowski/go-health/checker"
 	"github.com/alexfalkowski/go-health/server"
-	h "github.com/alexfalkowski/go-service-template/health"
 	"github.com/alexfalkowski/go-service/health"
 	"github.com/alexfalkowski/go-service/time"
+	h "github.com/alexfalkowski/web/health"
 	"go.uber.org/fx"
 )
 

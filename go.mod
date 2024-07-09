@@ -1,4 +1,4 @@
-module github.com/alexfalkowski/go-service-template
+module github.com/alexfalkowski/web
 
 go 1.22.5
 
