@@ -11,4 +11,4 @@ processes:
     port: 11000
     log: reports/server.log
     environment:
-      CONFIG_FILE: .config/server.yml
+      WEB_CONFIG_FILE: .config/server.yml
