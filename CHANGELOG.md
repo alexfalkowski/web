@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.4.0](https://github.com/alexfalkowski/web/releases/tag/v0.4.0) - 2024-07-09
+
+- [`74d8104`](https://github.com/alexfalkowski/web/commit/74d8104596ac8dcec00b48ad0e9608461a2ad2f7) feat(server): move to use WEB_CONFIG_FILE (#4)
+
 ## [v0.3.0](https://github.com/alexfalkowski/web/releases/tag/v0.3.0) - 2024-07-09
 
 - [`4b2ed56`](https://github.com/alexfalkowski/web/commit/4b2ed56ccfc2d1f769936b589040da768a78882a) feat(http): add index html (#3)
