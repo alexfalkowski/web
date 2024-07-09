@@ -1,4 +1,4 @@
-environment: development
+environment: production
 health:
   duration: 1s
   timeout: 1s
@@ -8,7 +8,7 @@ limiter:
   interval: 1s
 telemetry:
   logger:
-    level: debug
+    level: info
   metrics:
     kind: prometheus
   tracer:
@@ -22,12 +22,4 @@ transport:
       backoff: 100ms
       timeout: 10s
     timeout: 5s
-    user_agent: "Example-server/1.0 HTTP/1.0"
-  grpc:
-    port: 12000
-    retry:
-      attempts: 3
-      backoff: 100ms
-      timeout: 10s
-    timeout: 5s
-    user_agent: "Example-server/1.0 gRPC/1.0"
+    user_agent: "Web/1.0 HTTP/1.0"
