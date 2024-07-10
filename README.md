@@ -32,8 +32,11 @@ Since we are advocating building microservices, you would normally use a [contai
 
 ## Design
 
-The design is heavily relieant on https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc
+The design is heavily relieant on [mvc](https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc).
 
+### Server
+
+The server code contains health and mvc. To get a better idea take a look at the v1 [layout](server/v1).
 
 ## Development
 

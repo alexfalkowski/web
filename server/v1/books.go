@@ -1,4 +1,4 @@
-package http
+package v1
 
 import (
 	"context"
@@ -20,9 +20,8 @@ type (
 	}
 )
 
-// BookRoute registers routes for books.
-func BooksRoute() {
-	v := mvc.NewView(mvc.ParseTemplate(Views, "books.tmpl.html"), nil)
+func booksRoute() {
+	v := mvc.NewView(mvc.ParseTemplate(fs, "books.html"), nil)
 
 	mvc.Route("GET /books", v, func(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*BookModel, error) {
 		m := &BookModel{
