@@ -20,7 +20,7 @@ type (
 	}
 )
 
-// BookRoute registers routes for home.
+// BookRoute registers routes for books.
 func BooksRoute() {
 	v := mvc.NewView(mvc.ParseTemplate(Views, "books.tmpl.html"), nil)
 
