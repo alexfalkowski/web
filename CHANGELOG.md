@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.7.0](https://github.com/alexfalkowski/web/releases/tag/v0.7.0) - 2024-07-10
+
+- [`7cb2b6a`](https://github.com/alexfalkowski/web/commit/7cb2b6aec7fe3e08d15ffde28c71b87ad17257a5) feat(http): add books (#8)
+
 ## [v0.6.0](https://github.com/alexfalkowski/web/releases/tag/v0.6.0) - 2024-07-10
 
 - [`63f65f9`](https://github.com/alexfalkowski/web/commit/63f65f97111d4a09efa0f5eef49792866d458926) feat(http): simple landing page (#7)
