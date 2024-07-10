@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/htmx.org@2.0.0"
+    integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
+    crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Title}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><strong>{{.Title}}</strong></li>
+      </ul>
+      <ul>
+        <li><a hx-get="/home" hx-target="#main">Home</a></li>
+        <li><a hx-get="/books" hx-target="#main">Books</a></li>
+        <li><a href="https://github.com/Lean-Thoughts" target=”_blank”>Code</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="main">
+    <article>
+      <h2>Welcome</h2>
+      <blockquote>
+        “Perfection is not attainable, but if we chase perfection we can catch excellence.”
+        <footer>
+          <cite>— Vince Lombardi</cite>
+        </footer>
+      </blockquote>
+      <p>
+        Lean Thinking is ultimately a mindset, a way of viewing the world through continuous improvement.
+      </p>
+      <footer>
+        <small>
+          <a href="mailto:af@lean-thoughts.com" target=”_blank”>Reach out</a>
+        </small>
+      </footer>
+    </article>
+  </main>
+  <footer>
+    <small>
+      Copyright © 2024 {{.Title}}. All Rights Reserved.
+    </small>
+  </footer>
+</body>
+
+</html>

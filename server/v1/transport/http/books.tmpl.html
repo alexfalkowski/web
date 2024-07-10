@@ -1,0 +1,29 @@
+<article>
+  <h2>Books</h2>
+  <blockquote>
+    “Today a reader, tomorrow a leader.”
+    <footer>
+      <cite>— Margaret Fuller</cite>
+    </footer>
+  </blockquote>
+  <p>
+    Reading is important because it develops your mind and gives you excessive knowledge and lessons of life.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Books}}
+        <tr>
+          <td>{{.Title}}</td>
+          <td><a href="{{.Link}}" target=”_blank”>{{.Link}}</a></td>
+        </tr>
+      {{end}}
+    </tbody>
+  </table>
+</article>
+
