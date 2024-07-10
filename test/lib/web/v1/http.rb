@@ -3,8 +3,16 @@
 module Web
   module V1
     class HTTP < Nonnative::HTTPClient
-      def home(opts = {})
+      def root(opts = {})
         get('/', opts)
+      end
+
+      def home(opts = {})
+        get('/home', opts)
+      end
+
+      def books(opts = {})
+        get('/books', opts)
       end
     end
   end

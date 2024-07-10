@@ -9,16 +9,20 @@ import (
 
 // HomeModel for HTTP.
 type HomeModel struct {
-	Title string
+	Description string
 }
 
 // HomeRoute registers routes for home.
 func HomeRoute() {
 	v := mvc.NewView(mvc.ParseTemplate(Views, "home.tmpl.html"), nil)
 
-	mvc.Route("GET /", v, func(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*HomeModel, error) {
-		h := &HomeModel{Title: "Lean Thoughts"}
+	mvc.Route("GET /home", v, func(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*HomeModel, error) {
+		m := &HomeModel{
+			Description: `Lean thinking encourages teams to visualize, manage, and continuously optimize their flow. If the goal is to
+						  deliver value to the customer at a sustainably fast pace, then we must have control over how work gets done; we
+						  must manage flow.`,
+		}
 
-		return h, nil
+		return m, nil
 	})
 }

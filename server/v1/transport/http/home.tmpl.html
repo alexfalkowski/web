@@ -1,57 +1,19 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <script src="https://unpkg.com/htmx.org@2.0.0"
-    integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
-    crossorigin="anonymous"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{.Title}}</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
-</head>
-
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><strong>{{.Title}}</strong></li>
-      </ul>
-      <ul>
-        <li><a href="#">Books</a></li>
-        <li><a href="#">Articles</a></li>
-        <li><a href="https://github.com/Lean-Thoughts">Code</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <article>
-      <h2>Lean Thinking</h2>
-      <blockquote>
-        “The most dangerous kind of waste is the waste we do not recognize.”
-        <footer>
-          <cite>— Shigeo Shingo</cite>
-        </footer>
-      </blockquote>
-      <p>
-        Lean thinking encourages teams to visualize, manage, and continuously optimize their flow. If the goal is to
-        deliver value to the customer at a sustainably fast pace, then we must have control over how work gets done; we
-        must manage flow.
-      </p>
-      <footer>
-        <small>
-          <a href="https://www.planview.com/resources/guide/lean-principles-101/lean-thinking-lean-practice/"
-            target=”_blank”>Lean
-            Thinking</a>
-        </small>
-      </footer>
-    </article>
-  </main>
+<article>
+  <h2>Lean Thinking</h2>
+  <blockquote>
+    “The most dangerous kind of waste is the waste we do not recognize.”
+    <footer>
+      <cite>— Shigeo Shingo</cite>
+    </footer>
+  </blockquote>
+  <p>
+    {{.Description}}
+  </p>
   <footer>
     <small>
-      Copyright © 2024 {{.Title}}. All Rights Reserved.
+      <a href="https://www.planview.com/resources/guide/lean-principles-101/lean-thinking-lean-practice/"
+        target=”_blank”>Lean
+        Thinking</a>
     </small>
   </footer>
-</body>
-
-</html>
+</article>

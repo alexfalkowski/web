@@ -7,5 +7,7 @@ import (
 
 // Module for fx.
 var Module = fx.Options(
+	fx.Invoke(v1.RootRoute),
 	fx.Invoke(v1.HomeRoute),
+	fx.Invoke(v1.BooksRoute),
 )
