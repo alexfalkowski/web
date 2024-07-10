@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.6.0](https://github.com/alexfalkowski/web/releases/tag/v0.6.0) - 2024-07-10
+
+- [`63f65f9`](https://github.com/alexfalkowski/web/commit/63f65f97111d4a09efa0f5eef49792866d458926) feat(http): simple landing page (#7)
+- [`5733355`](https://github.com/alexfalkowski/web/commit/57333552fd968bb3d3f42fa4405fecd76c54e8e9) test(deps): bump ruby-lsp from 0.17.4 to 0.17.5 in /test (#6)
+
 ## [v0.5.0](https://github.com/alexfalkowski/web/releases/tag/v0.5.0) - 2024-07-09
 
 - [`09e8794`](https://github.com/alexfalkowski/web/commit/09e8794435cc548ed89b07a4f7cbfff070e0ecdc) feat(http): add home (#5)
