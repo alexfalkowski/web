@@ -8,5 +8,6 @@ func homeRoute() {
 	mvc.Route(
 		"GET /home",
 		mvc.NewSuccessView(mvc.ParseTemplate(fs, "home.html")),
-		mvc.NoController)
+		mvc.NoController,
+	)
 }

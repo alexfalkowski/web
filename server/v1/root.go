@@ -8,5 +8,6 @@ func rootRoute() {
 	mvc.Route(
 		"GET /",
 		mvc.NewSuccessView(mvc.ParseTemplate(fs, "root.html")),
-		mvc.NoController)
+		mvc.NoController,
+	)
 }
