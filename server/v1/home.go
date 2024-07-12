@@ -5,7 +5,8 @@ import (
 )
 
 func homeRoute() {
-	v := mvc.NewView(mvc.ParseTemplate(fs, "home.html"), nil)
-
-	mvc.Route("GET /home", v, mvc.NoController)
+	mvc.Route(
+		"GET /home",
+		mvc.NewSuccessView(mvc.ParseTemplate(fs, "home.html")),
+		mvc.NoController)
 }

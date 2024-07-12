@@ -21,18 +21,19 @@ type (
 )
 
 func booksRoute() {
-	v := mvc.NewView(mvc.ParseTemplate(fs, "books.html"), nil)
-
-	mvc.Route("GET /books", v, func(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*BookModel, error) {
-		m := &BookModel{
-			Books: []*Book{
-				{
-					Title: "Kanban: Successful Evolutionary Change for Your Technology Business",
-					Link:  "https://www.amazon.de/-/en/David-J-Anderson/dp/0984521402",
+	mvc.Route(
+		"GET /books",
+		mvc.NewSuccessView(mvc.ParseTemplate(fs, "books.html")),
+		func(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*BookModel, error) {
+			m := &BookModel{
+				Books: []*Book{
+					{
+						Title: "Kanban: Successful Evolutionary Change for Your Technology Business",
+						Link:  "https://www.amazon.de/-/en/David-J-Anderson/dp/0984521402",
+					},
 				},
-			},
-		}
+			}
 
-		return m, nil
-	})
+			return m, nil
+		})
 }
