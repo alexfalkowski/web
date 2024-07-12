@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.12.0](https://github.com/alexfalkowski/web/releases/tag/v0.12.0) - 2024-07-12
+
+- [`5fb63d0`](https://github.com/alexfalkowski/web/commit/5fb63d0678c40f863386701f150520246ec2b8b7) feat(http): simplify v1 (#16)
+- [`f73e049`](https://github.com/alexfalkowski/web/commit/f73e0490625520ce4def11dacacae41c67566f1b) build(deps): bump bin from `897d5f1` to `44badfa` (#15)
+
 ## [v0.11.0](https://github.com/alexfalkowski/web/releases/tag/v0.11.0) - 2024-07-12
 
 - [`921d111`](https://github.com/alexfalkowski/web/commit/921d111aab30f55be3d3aa9ad989032a1580123e) feat(http): add alpinejs (#14)
