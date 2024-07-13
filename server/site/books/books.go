@@ -3,23 +3,28 @@ package books
 import (
 	"cmp"
 	"context"
+	"embed"
 	"io/fs"
 	"net/http"
 	"slices"
 
 	"github.com/alexfalkowski/go-service/net/http/mvc"
+	"gopkg.in/yaml.v3"
 )
 
+//go:embed db.yaml
+var db embed.FS
+
 type (
-	// BookModel for v1.
-	BookModel struct {
-		Books []*Book
+	// Model for books.
+	Model struct {
+		Books []*Book `yaml:"books,omitempty"`
 	}
 
-	// Book for v1.
+	// Book for books.
 	Book struct {
-		Title string
-		Link  string
+		Title string `yaml:"title,omitempty"`
+		Link  string `yaml:"link,omitempty"`
 	}
 )
 
@@ -34,27 +39,22 @@ func View(fs fs.FS) *mvc.View {
 }
 
 // Controller for books.
-func Controller(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*BookModel, error) {
-	books := []*Book{
-		{
-			Title: "Kanban: Successful Evolutionary Change for Your Technology Business",
-			Link:  "https://www.amazon.de/-/en/David-J-Anderson/dp/0984521402",
-		},
-		{
-			Title: "Team Topologies: Organizing Business and Technology Teams for Fast Flow",
-			Link:  "https://www.amazon.de/-/en/Team-Topologies-Organizing-Business-Technology/dp/1942788819",
-		},
-		{
-			Title: "Modern Software Engineering: Doing What Works to Build Better Software Faster",
-			Link:  "https://www.amazon.de/-/en/Modern-Software-Engineering-Better-Faster/dp/0137314914",
-		},
+func Controller(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*Model, error) {
+	d, err := db.ReadFile("db.yaml")
+	if err != nil {
+		return nil, err
 	}
 
-	slices.SortFunc(books, func(a, b *Book) int {
+	var m Model
+	ptr := &m
+
+	if err := yaml.Unmarshal(d, ptr); err != nil {
+		return nil, err
+	}
+
+	slices.SortFunc(ptr.Books, func(a, b *Book) int {
 		return cmp.Compare(a.Title, b.Title)
 	})
 
-	m := &BookModel{Books: books}
-
-	return m, nil
+	return ptr, nil
 }
