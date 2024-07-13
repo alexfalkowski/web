@@ -1,8 +1,13 @@
-package v1
+package books
 
 import (
 	"cmp"
+	"context"
+	"io/fs"
+	"net/http"
 	"slices"
+
+	"github.com/alexfalkowski/go-service/net/http/mvc"
 )
 
 type (
@@ -18,7 +23,18 @@ type (
 	}
 )
 
-func books() []*Book {
+// Path for books.
+func Path() string {
+	return "GET /books"
+}
+
+// View for books.
+func View(fs fs.FS) *mvc.View {
+	return mvc.NewSuccessView(mvc.ParseTemplate(fs, "books/success.html"))
+}
+
+// Controller for books.
+func Controller(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*BookModel, error) {
 	books := []*Book{
 		{
 			Title: "Kanban: Successful Evolutionary Change for Your Technology Business",
@@ -38,5 +54,7 @@ func books() []*Book {
 		return cmp.Compare(a.Title, b.Title)
 	})
 
-	return books
+	m := &BookModel{Books: books}
+
+	return m, nil
 }
