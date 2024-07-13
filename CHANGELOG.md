@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.13.0](https://github.com/alexfalkowski/web/releases/tag/v0.13.0) - 2024-07-13
+
+- [`05bccdd`](https://github.com/alexfalkowski/web/commit/05bccdd654a79b32f18e2a4e110042869b0b67da) feat(http): move to packages (#17)
+
 ## [v0.12.0](https://github.com/alexfalkowski/web/releases/tag/v0.12.0) - 2024-07-12
 
 - [`5fb63d0`](https://github.com/alexfalkowski/web/commit/5fb63d0678c40f863386701f150520246ec2b8b7) feat(http): simplify v1 (#16)
