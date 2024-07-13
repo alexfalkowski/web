@@ -6,6 +6,7 @@ require (
 	github.com/alexfalkowski/go-health v1.17.2
 	github.com/alexfalkowski/go-service v1.248.0
 	go.uber.org/fx v1.22.1
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -130,5 +131,4 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240701130421-f6361c86f094 // indirect
 	google.golang.org/grpc v1.65.0 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
