@@ -9,6 +9,7 @@ import (
 	"slices"
 
 	"github.com/alexfalkowski/go-service/net/http/mvc"
+	"github.com/alexfalkowski/go-service/runtime"
 	"gopkg.in/yaml.v3"
 )
 
@@ -41,16 +42,13 @@ func View(fs fs.FS) *mvc.View {
 // Controller for books.
 func Controller(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*Model, error) {
 	d, err := db.ReadFile("db.yaml")
-	if err != nil {
-		return nil, err
-	}
+	runtime.Must(err)
 
 	var m Model
 	ptr := &m
 
-	if err := yaml.Unmarshal(d, ptr); err != nil {
-		return nil, err
-	}
+	err = yaml.Unmarshal(d, ptr)
+	runtime.Must(err)
 
 	slices.SortFunc(ptr.Books, func(a, b *Book) int {
 		return cmp.Compare(a.Title, b.Title)
