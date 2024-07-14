@@ -4,7 +4,6 @@ import (
 	"cmp"
 	"context"
 	"embed"
-	"io/fs"
 	"net/http"
 	"slices"
 
@@ -13,7 +12,6 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-//go:embed books.yaml
 var db embed.FS
 
 type (
@@ -29,19 +27,15 @@ type (
 	}
 )
 
-// Path for books.
-func Path() string {
-	return "GET /books"
+// Register books.
+func Register(fs embed.FS) {
+	db = fs
+
+	mvc.Route("GET /books", mvc.NewSuccessView(mvc.ParseTemplate(fs, "books/success.html")), controller)
 }
 
-// View for books.
-func View(views fs.FS) *mvc.View {
-	return mvc.NewSuccessView(mvc.ParseTemplate(views, "books/success.html"))
-}
-
-// Controller for books.
-func Controller(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*Model, error) {
-	d, err := db.ReadFile("books.yaml")
+func controller(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*Model, error) {
+	d, err := db.ReadFile("books/db.yaml")
 	runtime.Must(err)
 
 	var m Model
