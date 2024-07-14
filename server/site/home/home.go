@@ -6,12 +6,7 @@ import (
 	"github.com/alexfalkowski/go-service/net/http/mvc"
 )
 
-// Path for home.
-func Path() string {
-	return "GET /home"
-}
-
-// View for home.
-func View(views fs.FS) *mvc.View {
-	return mvc.NewSuccessView(mvc.ParseTemplate(views, "home/success.html"))
+// Register home.
+func Register(fs fs.FS) {
+	mvc.Route("GET /home", mvc.NewSuccessView(mvc.ParseTemplate(fs, "home/success.html")), mvc.NoController)
 }
