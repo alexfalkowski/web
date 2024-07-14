@@ -12,8 +12,6 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-var db embed.FS
-
 type (
 	// Model for books.
 	Model struct {
@@ -25,17 +23,21 @@ type (
 		Title string `yaml:"title,omitempty"`
 		Link  string `yaml:"link,omitempty"`
 	}
+
+	controller struct {
+		db embed.FS
+	}
 )
 
 // Register books.
 func Register(fs embed.FS) {
-	db = fs
+	c := &controller{db: fs}
 
-	mvc.Route("GET /books", mvc.NewSuccessView(mvc.ParseTemplate(fs, "books/success.html")), controller)
+	mvc.Route("GET /books", mvc.NewSuccessView(mvc.ParseTemplate(fs, "books/success.html")), c.action)
 }
 
-func controller(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*Model, error) {
-	d, err := db.ReadFile("books/db.yaml")
+func (c *controller) action(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*Model, error) {
+	d, err := c.db.ReadFile("books/db.yaml")
 	runtime.Must(err)
 
 	var m Model
