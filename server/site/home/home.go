@@ -12,6 +12,6 @@ func Path() string {
 }
 
 // View for home.
-func View(fs fs.FS) *mvc.View {
-	return mvc.NewSuccessView(mvc.ParseTemplate(fs, "home/success.html"))
+func View(views fs.FS) *mvc.View {
+	return mvc.NewSuccessView(mvc.ParseTemplate(views, "home/success.html"))
 }

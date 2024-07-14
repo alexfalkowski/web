@@ -13,8 +13,8 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-//go:embed db.yaml
-var db embed.FS
+//go:embed books.yaml
+var books embed.FS
 
 type (
 	// Model for books.
@@ -35,13 +35,13 @@ func Path() string {
 }
 
 // View for books.
-func View(fs fs.FS) *mvc.View {
-	return mvc.NewSuccessView(mvc.ParseTemplate(fs, "books/success.html"))
+func View(views fs.FS) *mvc.View {
+	return mvc.NewSuccessView(mvc.ParseTemplate(views, "books/success.html"))
 }
 
 // Controller for books.
 func Controller(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*Model, error) {
-	d, err := db.ReadFile("db.yaml")
+	d, err := books.ReadFile("books.yaml")
 	runtime.Must(err)
 
 	var m Model
