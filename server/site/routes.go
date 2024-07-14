@@ -10,11 +10,11 @@ import (
 )
 
 //go:embed **/*.html
-var fs embed.FS
+var views embed.FS
 
 // Register for site.
 func Register() {
-	mvc.Route(root.Path(), root.View(fs), mvc.NoController)
-	mvc.Route(home.Path(), home.View(fs), mvc.NoController)
-	mvc.Route(books.Path(), books.View(fs), books.Controller)
+	mvc.Route(root.Path(), root.View(views), mvc.NoController)
+	mvc.Route(home.Path(), home.View(views), mvc.NoController)
+	mvc.Route(books.Path(), books.View(views), books.Controller)
 }
