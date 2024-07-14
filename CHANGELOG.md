@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.16.0](https://github.com/alexfalkowski/web/releases/tag/v0.16.0) - 2024-07-14
+
+- [`2f1099c`](https://github.com/alexfalkowski/web/commit/2f1099ca2cad620146240aa534bafe5131878c3b) feat(http): use one embed (#22)
+
 ## [v0.15.1](https://github.com/alexfalkowski/web/releases/tag/v0.15.1) - 2024-07-14
 
 - [`8f80135`](https://github.com/alexfalkowski/web/commit/8f80135a65882468c458262a64db97173d87138c) fix(http): rename embed.FS variables (#21)
