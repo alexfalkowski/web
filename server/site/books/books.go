@@ -5,7 +5,6 @@ import (
 	"context"
 	"embed"
 	"html/template"
-	"net/http"
 	"slices"
 
 	"github.com/alexfalkowski/go-service/net/http/mvc"
@@ -28,7 +27,7 @@ type (
 
 // Register books.
 func Register(fs embed.FS) {
-	mvc.Route("GET /books", func(_ context.Context, _ *http.Request, _ http.ResponseWriter) *mvc.Result {
+	mvc.Route("GET /books", func(_ context.Context) *mvc.Result {
 		d, err := fs.ReadFile("books/db.yaml")
 		runtime.Must(err)
 
