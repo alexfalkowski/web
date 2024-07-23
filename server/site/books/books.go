@@ -4,6 +4,7 @@ import (
 	"cmp"
 	"context"
 	"embed"
+	"html/template"
 	"net/http"
 	"slices"
 
@@ -23,32 +24,27 @@ type (
 		Title string `yaml:"title,omitempty"`
 		Link  string `yaml:"link,omitempty"`
 	}
-
-	controller struct {
-		db embed.FS
-	}
 )
 
 // Register books.
 func Register(fs embed.FS) {
-	c := &controller{db: fs}
+	mvc.Route("GET /books", func(_ context.Context, _ *http.Request, _ http.ResponseWriter) *mvc.Result {
+		d, err := fs.ReadFile("books/db.yaml")
+		runtime.Must(err)
 
-	mvc.Route("GET /books", mvc.NewSuccessView(mvc.ParseTemplate(fs, "books/success.html")), c.action)
-}
+		var m Model
+		ptr := &m
 
-func (c *controller) action(_ context.Context, _ *http.Request, _ http.ResponseWriter) (*Model, error) {
-	d, err := c.db.ReadFile("books/db.yaml")
-	runtime.Must(err)
+		err = yaml.Unmarshal(d, ptr)
+		runtime.Must(err)
 
-	var m Model
-	ptr := &m
+		slices.SortFunc(ptr.Books, func(a, b *Book) int {
+			return cmp.Compare(a.Title, b.Title)
+		})
 
-	err = yaml.Unmarshal(d, ptr)
-	runtime.Must(err)
+		v := template.Must(template.ParseFS(fs, "books/view.html"))
+		r := mvc.NewResult(ptr, v)
 
-	slices.SortFunc(ptr.Books, func(a, b *Book) int {
-		return cmp.Compare(a.Title, b.Title)
+		return r
 	})
-
-	return ptr, nil
 }
