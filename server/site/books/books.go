@@ -4,7 +4,6 @@ import (
 	"cmp"
 	"context"
 	"embed"
-	"html/template"
 	"slices"
 
 	"github.com/alexfalkowski/go-service/net/http/mvc"
@@ -41,7 +40,7 @@ func Register(fs embed.FS) {
 			return cmp.Compare(a.Title, b.Title)
 		})
 
-		v := template.Must(template.ParseFS(fs, "books/view.html"))
+		v := mvc.View(fs, "books/view.html")
 		r := mvc.NewResult(ptr, v)
 
 		return r
