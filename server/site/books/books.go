@@ -4,7 +4,6 @@ import (
 	"cmp"
 	"context"
 	"embed"
-	"html/template"
 	"slices"
 
 	"github.com/alexfalkowski/go-service/net/http/mvc"
@@ -27,7 +26,7 @@ type (
 
 // Register books.
 func Register(fs embed.FS) {
-	mvc.Route("GET /books", func(_ context.Context) (*template.Template, any) {
+	mvc.Route("GET /books", func(_ context.Context) (*mvc.View, mvc.Model) {
 		d, err := fs.ReadFile("books/db.yaml")
 		runtime.Must(err)
 
@@ -41,6 +40,6 @@ func Register(fs embed.FS) {
 			return cmp.Compare(a.Title, b.Title)
 		})
 
-		return mvc.View(fs, "books/view.html"), ptr
+		return mvc.NewView(fs, "books/view.html"), ptr
 	})
 }
