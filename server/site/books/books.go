@@ -25,9 +25,9 @@ type (
 )
 
 // Register books.
-func Register(fs embed.FS) {
-	mvc.Route("GET /books", func(_ context.Context) (*mvc.View, mvc.Model) {
-		d, err := fs.ReadFile("books/db.yaml")
+func Register(router *mvc.Router, fs *embed.FS) {
+	router.Route("GET /books", func(_ context.Context) (mvc.View, mvc.Model) {
+		d, err := fs.ReadFile("books/books.yaml")
 		runtime.Must(err)
 
 		var m Model
@@ -40,6 +40,6 @@ func Register(fs embed.FS) {
 			return cmp.Compare(a.Title, b.Title)
 		})
 
-		return mvc.NewView(fs, "books/view.html"), ptr
+		return mvc.View("books.tmpl"), ptr
 	})
 }
