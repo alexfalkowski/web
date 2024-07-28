@@ -20,7 +20,7 @@ func NewFS() *embed.FS {
 
 // NewPatterns for site.
 func NewPatterns() mvc.Patterns {
-	return mvc.Patterns{"**/*.tmpl", "**/*.yaml"}
+	return mvc.Patterns{"**/*.tmpl"}
 }
 
 // Register for site.
