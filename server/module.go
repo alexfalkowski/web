@@ -7,5 +7,5 @@ import (
 
 // Module for fx.
 var Module = fx.Options(
-	fx.Invoke(site.Register),
+	site.Module,
 )
