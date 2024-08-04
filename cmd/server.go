@@ -7,7 +7,6 @@ import (
 	"github.com/alexfalkowski/go-service/feature"
 	"github.com/alexfalkowski/go-service/runtime"
 	"github.com/alexfalkowski/go-service/telemetry"
-	"github.com/alexfalkowski/go-service/telemetry/metrics"
 	"github.com/alexfalkowski/go-service/transport"
 	"github.com/alexfalkowski/web/config"
 	"github.com/alexfalkowski/web/server"
@@ -19,6 +18,6 @@ import (
 var ServerOptions = []fx.Option{
 	runtime.Module, debug.Module,
 	compress.Module, encoding.Module, feature.Module,
-	telemetry.Module, metrics.Module, transport.Module,
-	config.Module, health.Module, Module, server.Module,
+	telemetry.Module, transport.Module, health.Module,
+	config.Module, Module, server.Module,
 }
