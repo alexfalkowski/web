@@ -3,8 +3,8 @@ module github.com/alexfalkowski/web
 go 1.22.6
 
 require (
-	github.com/alexfalkowski/go-health v1.17.3
-	github.com/alexfalkowski/go-service v1.270.6
+	github.com/alexfalkowski/go-health v1.18.0
+	github.com/alexfalkowski/go-service v1.271.0
 	go.uber.org/fx v1.22.1
 	gopkg.in/yaml.v3 v3.0.1
 )
