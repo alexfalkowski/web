@@ -77,7 +77,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
-    nonnative (1.81.0)
+    nonnative (1.82.0)
       concurrent-ruby (>= 1, < 2)
       config (>= 5, < 6)
       cucumber (>= 7, < 10)
