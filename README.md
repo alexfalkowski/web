@@ -12,31 +12,13 @@ A website for lean-thoughts.com
 
 Try the ideas outlined in https://alejandrofalkowski.substack.com/p/hyperprogress
 
-## Health
-
-The system defines a way to monitor all of it's dependencies.
-
-To configure we just need the have the following configuration:
-
-```yaml
-health:
-  duration: 1s (how often to check)
-  timeout: 1s (when we should timeout the check)
-```
-
-## Deployment
-
-Since we are advocating building microservices, you would normally use a [container orchestration system](https://newrelic.com/blog/best-practices/container-orchestration-explained). Here is what we recommend when using this system:
-- You could have a global migration service or shard these services per [bounded context](https://martinfowler.com/bliki/BoundedContext.html).
-- The client should be used as an [init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
-
 ## Design
 
 The design is heavily relieant on [mvc](https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc).
 
 ### Server
 
-The server code contains health and mvc. To get a better idea take a look at the v1 [layout](server/v1).
+The server code contains health and mvc. To get a better idea take a look at the site [layout](server/site).
 
 ## Development
 
@@ -49,8 +31,8 @@ The project follows the structure in [golang-standards/project-layout](https://g
 ### Dependencies
 
 Please make sure that you have the following installed:
-- [Ruby](.ruby-version)
-- [Golang](go.mod)
+- [Ruby](https://www.ruby-lang.org/en/)
+- [Golang](https://go.dev/)
 
 ### Style
 
