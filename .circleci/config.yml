@@ -94,7 +94,8 @@ workflows:
   web:
     jobs:
       - build-service
-      - build-docker
+      - build-docker:
+          context: gh
       - release:
           context: gh
           requires:
