@@ -6,11 +6,13 @@ import (
 	"github.com/alexfalkowski/go-service/net/http/mvc"
 	"github.com/alexfalkowski/web/server/site/books"
 	"github.com/alexfalkowski/web/server/site/home"
+	"github.com/alexfalkowski/web/server/site/robots"
 	"github.com/alexfalkowski/web/server/site/root"
 )
 
 //go:embed **/*.tmpl
 //go:embed **/*.yaml
+//go:embed **/*.txt
 var fs embed.FS
 
 // NewFS for site.
@@ -28,4 +30,5 @@ func Register(router *mvc.Router, fs *embed.FS) {
 	root.Register(router)
 	home.Register(router)
 	books.Register(router, fs)
+	robots.Register(router)
 }
