@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.99.0](https://github.com/alexfalkowski/web/releases/tag/v0.99.0) - 2024-12-13
+
+- [`1f59a0b`](https://github.com/alexfalkowski/web/commit/1f59a0b8ce6abf3fe21112d9c556aa0d84a4af8b) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.338.0 (#187)
+- [`b0e8fc7`](https://github.com/alexfalkowski/web/commit/b0e8fc78dcd43b1c9f411157790ae58149bf56dc) test(deps): bump nokogiri from 1.17.1 to 1.17.2 in /test (#186)
+
 ## [v0.98.0](https://github.com/alexfalkowski/web/releases/tag/v0.98.0) - 2024-12-12
 
 - [`8e32201`](https://github.com/alexfalkowski/web/commit/8e32201ba389fb471ebc9de4e6578018594863ee) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.337.0 (#185)
