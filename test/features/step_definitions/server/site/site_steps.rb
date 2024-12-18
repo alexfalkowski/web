@@ -6,7 +6,7 @@ When('I visit {string}') do |section|
     read_timeout: 10, open_timeout: 10
   }
 
-  @response = Web::V1.server_http.send(section, opts)
+  @response = Web::V1.http.send(section, opts)
 end
 
 Then('I should see {string}') do |section|
