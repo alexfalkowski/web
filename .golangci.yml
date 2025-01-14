@@ -13,3 +13,5 @@ linters:
     - depguard
     - gochecknoglobals
     - paralleltest
+    - ireturn
+    - wrapcheck
