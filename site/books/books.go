@@ -27,13 +27,13 @@ type (
 // Register books.
 func Register(router *mvc.Router, fs *embed.FS) {
 	router.Route("GET /books", func(_ context.Context) (mvc.View, mvc.Model) {
-		d, err := fs.ReadFile("books/books.yaml")
+		books, err := fs.ReadFile("books/books.yaml")
 		runtime.Must(err)
 
 		var m Model
 		ptr := &m
 
-		err = yaml.Unmarshal(d, ptr)
+		err = yaml.Unmarshal(books, ptr)
 		runtime.Must(err)
 
 		slices.SortFunc(ptr.Books, func(a, b *Book) int {
