@@ -2,7 +2,7 @@ package books
 
 import (
 	"cmp"
-	"embed"
+	"io/fs"
 	"slices"
 
 	"gopkg.in/yaml.v3"
@@ -17,18 +17,18 @@ type (
 
 	// YAMLRepository has books in a file.
 	YAMLRepository struct {
-		fs *embed.FS
+		filesystem fs.FS
 	}
 )
 
 // NewRepository for books.
-func NewRepository(fs *embed.FS) Repository {
-	return &YAMLRepository{fs: fs}
+func NewRepository(filesystem fs.FS) Repository {
+	return &YAMLRepository{filesystem: filesystem}
 }
 
 // GetBooks from a file.
 func (r *YAMLRepository) GetBooks() (*Model, error) {
-	books, err := r.fs.ReadFile("books/books.yaml")
+	books, err := fs.ReadFile(r.filesystem, "books/books.yaml")
 	if err != nil {
 		return nil, err
 	}
