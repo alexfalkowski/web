@@ -14,7 +14,7 @@ var filesystem embed.FS
 
 // NewFS for site.
 func NewFS() fs.FS {
-	return &filesystem
+	return filesystem
 }
 
 // NewPatterns for site.
