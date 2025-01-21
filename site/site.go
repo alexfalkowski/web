@@ -2,6 +2,7 @@ package site
 
 import (
 	"embed"
+	"io/fs"
 
 	"github.com/alexfalkowski/go-service/net/http/mvc"
 )
@@ -9,11 +10,11 @@ import (
 //go:embed **/*.tmpl
 //go:embed **/*.yaml
 //go:embed **/*.txt
-var fs embed.FS
+var filesystem embed.FS
 
 // NewFS for site.
-func NewFS() *embed.FS {
-	return &fs
+func NewFS() fs.FS {
+	return &filesystem
 }
 
 // NewPatterns for site.
