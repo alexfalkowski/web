@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.141.0](https://github.com/alexfalkowski/web/releases/tag/v0.141.0) - 2025-01-23
+
+- [`5596f12`](https://github.com/alexfalkowski/web/commit/5596f123f542bfc53617f02ee4f8ccf98607bbe2) feat(site): these errors should not happen for books (#264)
+
 ## [v0.140.0](https://github.com/alexfalkowski/web/releases/tag/v0.140.0) - 2025-01-23
 
 - [`30f8521`](https://github.com/alexfalkowski/web/commit/30f8521b744d4229d7cd9f7671d4ccd3eedf3a17) feat(site): use service framework (#263)
