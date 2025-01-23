@@ -7,12 +7,13 @@ import (
 	"slices"
 
 	"github.com/alexfalkowski/go-service/encoding/yaml"
+	"github.com/alexfalkowski/go-service/runtime"
 )
 
 // Repository for books.
 type Repository interface {
 	// GetBooks from storage.
-	GetBooks() (*Model, error)
+	GetBooks() *Model
 }
 
 // NewRepository for books.
@@ -27,22 +28,19 @@ type FSRepository struct {
 }
 
 // GetBooks from a file.
-func (r *FSRepository) GetBooks() (*Model, error) {
+func (r *FSRepository) GetBooks() *Model {
 	books, err := fs.ReadFile(r.filesystem, "books/books.yaml")
-	if err != nil {
-		return nil, err
-	}
+	runtime.Must(err)
 
 	var m Model
 	ptr := &m
 
-	if err := r.enc.Decode(bytes.NewBuffer(books), ptr); err != nil {
-		return nil, err
-	}
+	err = r.enc.Decode(bytes.NewBuffer(books), ptr)
+	runtime.Must(err)
 
 	slices.SortFunc(ptr.Books, func(a, b *Book) int {
 		return cmp.Compare(a.Title, b.Title)
 	})
 
-	return ptr, nil
+	return ptr
 }
