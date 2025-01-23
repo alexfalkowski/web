@@ -8,10 +8,7 @@ import (
 
 // Register books.
 func Register(router *mvc.Router, repo Repository) error {
-	model, err := repo.GetBooks()
-	if err != nil {
-		return err
-	}
+	model := repo.GetBooks()
 
 	router.Route("GET /books", func(_ context.Context) (mvc.View, mvc.Model) {
 		return mvc.View("books.tmpl"), model
