@@ -1,33 +1,33 @@
 package books
 
 import (
+	"bytes"
 	"cmp"
 	"io/fs"
 	"slices"
 
-	"gopkg.in/yaml.v3"
+	"github.com/alexfalkowski/go-service/encoding/yaml"
 )
 
-type (
-	// Repository for books.
-	Repository interface {
-		// GetBooks from storage.
-		GetBooks() (*Model, error)
-	}
-
-	// YAMLRepository has books in a file.
-	YAMLRepository struct {
-		filesystem fs.FS
-	}
-)
+// Repository for books.
+type Repository interface {
+	// GetBooks from storage.
+	GetBooks() (*Model, error)
+}
 
 // NewRepository for books.
-func NewRepository(filesystem fs.FS) Repository {
-	return &YAMLRepository{filesystem: filesystem}
+func NewRepository(filesystem fs.FS, enc *yaml.Encoder) Repository {
+	return &FSRepository{filesystem: filesystem, enc: enc}
+}
+
+// FSRepository has books in a file.
+type FSRepository struct {
+	filesystem fs.FS
+	enc        *yaml.Encoder
 }
 
 // GetBooks from a file.
-func (r *YAMLRepository) GetBooks() (*Model, error) {
+func (r *FSRepository) GetBooks() (*Model, error) {
 	books, err := fs.ReadFile(r.filesystem, "books/books.yaml")
 	if err != nil {
 		return nil, err
@@ -36,8 +36,7 @@ func (r *YAMLRepository) GetBooks() (*Model, error) {
 	var m Model
 	ptr := &m
 
-	err = yaml.Unmarshal(books, ptr)
-	if err != nil {
+	if err := r.enc.Decode(bytes.NewBuffer(books), ptr); err != nil {
 		return nil, err
 	}
 
