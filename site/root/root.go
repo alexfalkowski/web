@@ -15,13 +15,13 @@ type Model struct {
 }
 
 // Register root.
-func Register(router *mvc.Router, version env.Version) {
-	router.Route("GET /", func(_ context.Context) (mvc.View, mvc.Model) {
+func Register(version env.Version) {
+	mvc.Route("GET /", func(_ context.Context) (mvc.View, *Model, error) {
 		m := &Model{
 			Year:    time.Now().Year(),
 			Version: version,
 		}
 
-		return mvc.View("root.tmpl"), m
+		return mvc.View("root.tmpl"), m, nil
 	})
 }
