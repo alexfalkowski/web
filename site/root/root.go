@@ -2,10 +2,10 @@ package root
 
 import (
 	"context"
-	"time"
 
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/net/http/mvc"
+	"github.com/alexfalkowski/go-service/time"
 )
 
 // Model for root.
