@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.182.0](https://github.com/alexfalkowski/web/releases/tag/v0.182.0) - 2025-02-12
+
+- [`37c5225`](https://github.com/alexfalkowski/web/commit/37c52250d09c2892246f2a1d3730c7ef3c2a612d) feat(cmd): move to use register (#322)
+
 ## [v0.181.1](https://github.com/alexfalkowski/web/releases/tag/v0.181.1) - 2025-02-12
 
 - [`434e85d`](https://github.com/alexfalkowski/web/commit/434e85da59d558f2b8373a4e96d19816b047f840) fix(container): missing internal (#321)
