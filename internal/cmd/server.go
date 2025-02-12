@@ -6,9 +6,9 @@ import (
 	"github.com/alexfalkowski/go-service/module"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/transport"
-	"github.com/alexfalkowski/web/config"
-	"github.com/alexfalkowski/web/health"
-	"github.com/alexfalkowski/web/site"
+	"github.com/alexfalkowski/web/internal/config"
+	"github.com/alexfalkowski/web/internal/health"
+	"github.com/alexfalkowski/web/internal/site"
 	"go.uber.org/fx"
 )
 
