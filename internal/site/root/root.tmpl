@@ -17,7 +17,7 @@
         <li><strong x-data="{ message: 'Lean Thoughts' }" x-text="message"></strong></li>
       </ul>
       <ul>
-        <li><a hx-get="/home" hx-target="#main">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a hx-get="/books" hx-target="#main">Books</a></li>
         <li><a href="https://github.com/Lean-Thoughts" target=”_blank”>Code</a></li>
       </ul>
@@ -44,7 +44,7 @@
   </main>
   <footer>
     <small>
-      Copyright © {{.Year}} Lean Thoughts ({{.Version}}). All Rights Reserved.
+      Copyright © {{.Year}} Lean Thoughts (v{{.Version}}). All Rights Reserved.
     </small>
   </footer>
 </body>
