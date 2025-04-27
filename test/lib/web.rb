@@ -9,12 +9,6 @@ require 'nokogiri'
 require 'web/v1/http'
 
 module Web
-  class << self
-    def config
-      @config ||= Nonnative.configurations('.config/server.yml')
-    end
-  end
-
   module V1
     class << self
       def http
