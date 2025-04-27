@@ -14,11 +14,11 @@ Try the ideas outlined in https://alejandrofalkowski.substack.com/p/hyperprogres
 
 ## Design
 
-The design is heavily relieant on [mvc](https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc).
+The design is heavily reliant on [mvc](https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc).
 
 ### Server
 
-The server code contains health and mvc. To get a better idea take a look at the site [layout](server/site).
+The server code contains health and mvc. To get a better idea take a look at the site [layout](internal/site).
 
 ## Development
 
