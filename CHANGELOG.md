@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.292.0](https://github.com/alexfalkowski/web/releases/tag/v0.292.0) - 2025-04-27
+
+- [`f82dc96`](https://github.com/alexfalkowski/web/commit/f82dc96269015bd4ad982eb8280cd773378c978b) feat(site): remove home and point to / (#480)
+- [`856efdb`](https://github.com/alexfalkowski/web/commit/856efdbc653073be1f56d2b5df5a37ceba63cbdf) docs(readme): wrong folder (#479)
+- [`2c97e04`](https://github.com/alexfalkowski/web/commit/2c97e0443a0beb2dd753bccda89ec2958daa8608) refactor(site): use sigle line import (#478)
+
 ## [v0.291.0](https://github.com/alexfalkowski/web/releases/tag/v0.291.0) - 2025-04-27
 
 - [`6d921ed`](https://github.com/alexfalkowski/web/commit/6d921ed1fb4cce2066778ac43f56c2349f85fbf4) feat(site): update htmx to v2.0.4 (#477)
