@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.291.0](https://github.com/alexfalkowski/web/releases/tag/v0.291.0) - 2025-04-27
+
+- [`6d921ed`](https://github.com/alexfalkowski/web/commit/6d921ed1fb4cce2066778ac43f56c2349f85fbf4) feat(site): update htmx to v2.0.4 (#477)
+- [`a630dc7`](https://github.com/alexfalkowski/web/commit/a630dc78468a410da4d22552f723d9f4efe10b44) test(site): remove config (#476)
+- [`29ec95c`](https://github.com/alexfalkowski/web/commit/29ec95c9665e95544b263d46826caa839a8da2ee) test(site): remove server folder (#475)
+
 ## [v0.290.0](https://github.com/alexfalkowski/web/releases/tag/v0.290.0) - 2025-04-25
 
 - [`3ec5a40`](https://github.com/alexfalkowski/web/commit/3ec5a4080e5ecfd597e48d921572b25022f14862) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.558.0 (#474)
