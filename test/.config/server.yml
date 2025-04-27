@@ -10,7 +10,7 @@ limiter:
   interval: 1s
 telemetry:
   logger:
-    kind: text
+    kind: tint
     level: info
   metrics:
     kind: prometheus
@@ -25,4 +25,3 @@ transport:
       backoff: 100ms
       timeout: 10s
     timeout: 5s
-    user_agent: "Web/1.0 HTTP/1.0"
