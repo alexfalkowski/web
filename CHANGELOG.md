@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.293.0](https://github.com/alexfalkowski/web/releases/tag/v0.293.0) - 2025-04-27
+
+- [`56e275d`](https://github.com/alexfalkowski/web/commit/56e275d13a0c8bc191abfb5228402fb0d718cc42) feat(site): use hx-push-url (#481)
+
 ## [v0.292.0](https://github.com/alexfalkowski/web/releases/tag/v0.292.0) - 2025-04-27
 
 - [`f82dc96`](https://github.com/alexfalkowski/web/commit/f82dc96269015bd4ad982eb8280cd773378c978b) feat(site): remove home and point to / (#480)
