@@ -20,18 +20,18 @@ type Repository interface {
 
 // NewRepository for books.
 func NewRepository(info *meta.Info, filesystem fs.FS, enc *yaml.Encoder) Repository {
-	return &FSRepository{info: info, filesystem: filesystem, enc: enc}
+	return &FileSystemRepository{info: info, filesystem: filesystem, enc: enc}
 }
 
-// FSRepository has books in a file.
-type FSRepository struct {
+// FileSystemRepository has books in a file.
+type FileSystemRepository struct {
 	info       *meta.Info
 	filesystem fs.FS
 	enc        *yaml.Encoder
 }
 
 // GetBooks from a file.
-func (r *FSRepository) GetBooks() *Model {
+func (r *FileSystemRepository) GetBooks() *Model {
 	books, err := fs.ReadFile(r.filesystem, "books/books.yaml")
 	runtime.Must(err)
 

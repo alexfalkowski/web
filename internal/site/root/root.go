@@ -19,4 +19,10 @@ func Register(info *meta.Info) {
 
 		return mvc.NewView("root/root.tmpl"), m, nil
 	})
+
+	mvc.Route("PUT /", func(_ context.Context) (*mvc.View, *Model, error) {
+		m := &Model{Info: info}
+
+		return mvc.NewPartialView("root/root.tmpl"), m, nil
+	})
 }

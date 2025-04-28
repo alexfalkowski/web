@@ -14,5 +14,9 @@ func Register(repo Repository) error {
 		return mvc.NewView("books/books.tmpl"), model, nil
 	})
 
+	mvc.Route("PUT /books", func(_ context.Context) (*mvc.View, *Model, error) {
+		return mvc.NewPartialView("books/books.tmpl"), model, nil
+	})
+
 	return nil
 }
