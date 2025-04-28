@@ -1,9 +1,12 @@
 package books
 
+import "github.com/alexfalkowski/web/internal/site/meta"
+
 type (
 	// Model for books.
 	Model struct {
-		Books []*Book `yaml:"books,omitempty"`
+		*meta.Info `yaml:"-"`
+		Books      []*Book `yaml:"books,omitempty"`
 	}
 
 	// Book for books.

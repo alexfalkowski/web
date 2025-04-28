@@ -3,25 +3,20 @@ package root
 import (
 	"context"
 
-	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/net/http/mvc"
-	"github.com/alexfalkowski/go-service/time"
+	"github.com/alexfalkowski/web/internal/site/meta"
 )
 
 // Model for root.
 type Model struct {
-	Version env.Version
-	Year    int
+	*meta.Info
 }
 
 // Register root.
-func Register(version env.Version) {
-	mvc.Route("GET /", func(_ context.Context) (mvc.View, *Model, error) {
-		m := &Model{
-			Year:    time.Now().Year(),
-			Version: version,
-		}
+func Register(info *meta.Info) {
+	mvc.Route("GET /", func(_ context.Context) (*mvc.View, *Model, error) {
+		m := &Model{Info: info}
 
-		return mvc.View("root.tmpl"), m, nil
+		return mvc.NewView("root/root.tmpl"), m, nil
 	})
 }

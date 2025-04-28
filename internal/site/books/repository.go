@@ -8,6 +8,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/encoding/yaml"
 	"github.com/alexfalkowski/go-service/runtime"
+	"github.com/alexfalkowski/web/internal/site/meta"
 )
 
 // Repository for books.
@@ -17,12 +18,13 @@ type Repository interface {
 }
 
 // NewRepository for books.
-func NewRepository(filesystem fs.FS, enc *yaml.Encoder) Repository {
-	return &FSRepository{filesystem: filesystem, enc: enc}
+func NewRepository(info *meta.Info, filesystem fs.FS, enc *yaml.Encoder) Repository {
+	return &FSRepository{info: info, filesystem: filesystem, enc: enc}
 }
 
 // FSRepository has books in a file.
 type FSRepository struct {
+	info       *meta.Info
 	filesystem fs.FS
 	enc        *yaml.Encoder
 }
@@ -41,6 +43,8 @@ func (r *FSRepository) GetBooks() *Model {
 	slices.SortFunc(ptr.Books, func(a, b *Book) int {
 		return cmp.Compare(a.Title, b.Title)
 	})
+
+	ptr.Info = r.info
 
 	return ptr
 }
