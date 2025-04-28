@@ -1,52 +1,19 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lean Thoughts</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
-</head>
-
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><strong x-data="{ message: 'Lean Thoughts' }" x-text="message"></strong></li>
-      </ul>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a hx-get="/books" hx-target="#main" hx-push-url="true">Books</a></li>
-        <li><a href="https://github.com/Lean-Thoughts" target=”_blank”>Code</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main id="main">
-    <article>
-      <h2>Welcome</h2>
-      <blockquote>
-        “Perfection is not attainable, but if we chase perfection we can catch excellence.”
-        <footer>
-          <cite>— Vince Lombardi</cite>
-        </footer>
-      </blockquote>
-      <p>
-        Lean Thinking is ultimately a mindset, a way of viewing the world through continuous improvement.
-      </p>
+{{ define "content" }}
+  <article>
+    <h2>Welcome</h2>
+    <blockquote>
+      “Perfection is not attainable, but if we chase perfection we can catch excellence.”
       <footer>
-        <small>
-          <a href="mailto:af@lean-thoughts.com" target=”_blank”>Reach out</a>
-        </small>
+        <cite>— Vince Lombardi</cite>
       </footer>
-    </article>
-  </main>
-  <footer>
-    <small>
-      Copyright © {{.Year}} Lean Thoughts (v{{.Version}}). All Rights Reserved.
-    </small>
-  </footer>
-</body>
-
-</html>
+    </blockquote>
+    <p>
+      Lean Thinking is ultimately a mindset, a way of viewing the world through continuous improvement.
+    </p>
+    <footer>
+      <small>
+        <a href="mailto:af@lean-thoughts.com" target=”_blank”>Reach out</a>
+      </small>
+    </footer>
+  </article>
+{{ end }}

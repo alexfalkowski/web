@@ -12,12 +12,12 @@ import (
 //go:embed **/*.txt
 var filesystem embed.FS
 
-// NewFS for site.
-func NewFS() fs.FS {
+// NewFileSystem for site.
+func NewFileSystem() fs.FS {
 	return filesystem
 }
 
-// NewPatterns for site.
-func NewPatterns() mvc.Patterns {
-	return mvc.Patterns{"**/*.tmpl"}
+// NewLayout for site.
+func NewLayout() mvc.Layout {
+	return mvc.Layout("root/layout.tmpl")
 }
