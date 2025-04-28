@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.301.0](https://github.com/alexfalkowski/web/releases/tag/v0.301.0) - 2025-04-28
+
+- [`c25bba6`](https://github.com/alexfalkowski/web/commit/c25bba60d6912e11bedaf47ae492c18e2c8d85e6) feat(site): use model in func (#489)
+
 ## [v0.300.0](https://github.com/alexfalkowski/web/releases/tag/v0.300.0) - 2025-04-28
 
 - [`2b579cb`](https://github.com/alexfalkowski/web/commit/2b579cb1813b22177ca4f858d5e4eadf67e00d16) feat(site): add htmx (#488)
