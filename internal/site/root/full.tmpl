@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lean Thoughts</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><strong>Lean Thoughts</strong></li>
+        </ul>
+        <ul>
+          <li><a hx-put="/" hx-target="#main" hx-push-url="true">Home</a></li>
+          <li><a hx-put="/books" hx-target="#main" hx-push-url="true">Books</a></li>
+          <li><a href="https://github.com/Lean-Thoughts" target=”_blank”>Code</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      {{ block "content" . }}{{ end }}
+    </main>
+    <footer>
+      <small>
+        Copyright © {{.Year}} Lean Thoughts (v{{.Version}}). All Rights Reserved.
+      </small>
+    </footer>
+  </body>
+</html>
