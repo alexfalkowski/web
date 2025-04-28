@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.300.0](https://github.com/alexfalkowski/web/releases/tag/v0.300.0) - 2025-04-28
+
+- [`2b579cb`](https://github.com/alexfalkowski/web/commit/2b579cb1813b22177ca4f858d5e4eadf67e00d16) feat(site): add htmx (#488)
+
 ## [v0.299.0](https://github.com/alexfalkowski/web/releases/tag/v0.299.0) - 2025-04-28
 
 - [`d82f45f`](https://github.com/alexfalkowski/web/commit/d82f45f779e8a442cf92764a8ebe88ccd8cf5577) feat(books): use ptr package (#487)
