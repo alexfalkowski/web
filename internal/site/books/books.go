@@ -8,13 +8,13 @@ import (
 
 // Register books.
 func Register(repo Repository) error {
-	mvc.Route("GET /books", func(_ context.Context) (*mvc.View, *Model, error) {
+	mvc.Get("/books", func(_ context.Context) (*mvc.View, *Model, error) {
 		model := repo.GetBooks()
 
 		return mvc.NewView("books/books.tmpl"), model, nil
 	})
 
-	mvc.Route("PUT /books", func(_ context.Context) (*mvc.View, *Model, error) {
+	mvc.Put("/books", func(_ context.Context) (*mvc.View, *Model, error) {
 		model := repo.GetBooks()
 
 		return mvc.NewPartialView("books/books.tmpl"), model, nil
