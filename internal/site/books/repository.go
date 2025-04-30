@@ -15,7 +15,7 @@ import (
 // Repository for books.
 type Repository interface {
 	// GetBooks from storage.
-	GetBooks() *Model
+	GetBooks() *Books
 }
 
 // NewRepository for books.
@@ -31,20 +31,20 @@ type FileSystemRepository struct {
 }
 
 // GetBooks from a file.
-func (r *FileSystemRepository) GetBooks() *Model {
-	books, err := fs.ReadFile(r.filesystem, "books/books.yaml")
+func (r *FileSystemRepository) GetBooks() *Books {
+	db, err := fs.ReadFile(r.filesystem, "books/books.yaml")
 	runtime.Must(err)
 
-	model := ptr.Zero[Model]()
+	books := ptr.Zero[Books]()
 
-	err = r.enc.Decode(bytes.NewBuffer(books), model)
+	err = r.enc.Decode(bytes.NewBuffer(db), books)
 	runtime.Must(err)
 
-	slices.SortFunc(model.Books, func(a, b *Book) int {
+	slices.SortFunc(books.Books, func(a, b *Book) int {
 		return cmp.Compare(a.Title, b.Title)
 	})
 
-	model.Info = r.info
+	books.Info = r.info
 
-	return model
+	return books
 }
