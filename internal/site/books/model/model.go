@@ -1,4 +1,4 @@
-package books
+package model
 
 import "github.com/alexfalkowski/web/internal/site/meta"
 
