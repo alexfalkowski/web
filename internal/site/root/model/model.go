@@ -2,7 +2,7 @@ package model
 
 import "github.com/alexfalkowski/web/internal/site/meta"
 
-// Root for root.
+// Root model.
 type Root struct {
 	*meta.Info
 }
