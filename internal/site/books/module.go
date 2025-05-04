@@ -1,9 +1,13 @@
 package books
 
-import "go.uber.org/fx"
+import (
+	"github.com/alexfalkowski/web/internal/site/books/repository"
+	"github.com/alexfalkowski/web/internal/site/books/route"
+	"go.uber.org/fx"
+)
 
 // Module for fx.
 var Module = fx.Options(
-	fx.Provide(NewRepository),
-	fx.Invoke(Register),
+	repository.Module,
+	route.Module,
 )

@@ -7,9 +7,10 @@ import (
 	"github.com/alexfalkowski/go-service/net/http/mvc"
 )
 
-//go:embed **/*.tmpl
-//go:embed **/*.yaml
-//go:embed **/*.txt
+//go:embed root/layout/*.tmpl
+//go:embed root/view/*.tmpl
+//go:embed books/view/*.tmpl
+//go:embed books/repository/*.yaml
 var filesystem embed.FS
 
 // NewFileSystem for site.
@@ -19,5 +20,5 @@ func NewFileSystem() fs.FS {
 
 // NewLayout for site.
 func NewLayout() *mvc.Layout {
-	return mvc.NewLayout("root/full.tmpl", "root/partial.tmpl")
+	return mvc.NewLayout("root/layout/full.tmpl", "root/layout/partial.tmpl")
 }
