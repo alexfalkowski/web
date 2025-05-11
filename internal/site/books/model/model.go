@@ -5,8 +5,8 @@ import "github.com/alexfalkowski/web/internal/site/meta"
 type (
 	// Books for site.
 	Books struct {
-		*meta.Info `yaml:"-"`
-		Books      []*Book `yaml:"books,omitempty"`
+		Info  *meta.Info `yaml:"-"`
+		Books []*Book    `yaml:"books,omitempty"`
 	}
 
 	// Book for site.
