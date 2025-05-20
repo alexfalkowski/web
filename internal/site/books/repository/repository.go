@@ -6,9 +6,9 @@ import (
 	"io/fs"
 	"slices"
 
-	"github.com/alexfalkowski/go-service/encoding/yaml"
-	"github.com/alexfalkowski/go-service/runtime"
-	"github.com/alexfalkowski/go-service/types/ptr"
+	"github.com/alexfalkowski/go-service/v2/encoding/yaml"
+	"github.com/alexfalkowski/go-service/v2/runtime"
+	"github.com/alexfalkowski/go-service/v2/types/ptr"
 	"github.com/alexfalkowski/web/internal/site/books/model"
 	"github.com/alexfalkowski/web/internal/site/meta"
 )
