@@ -3,7 +3,7 @@ package meta
 import (
 	"time"
 
-	"github.com/alexfalkowski/go-service/env"
+	"github.com/alexfalkowski/go-service/v2/env"
 )
 
 // NewYear for meta.
