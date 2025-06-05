@@ -1,4 +1,4 @@
-environment: development
+\environment: development
 health:
   duration: 1s
   timeout: 1s
@@ -17,8 +17,6 @@ telemetry:
   tracer:
     kind: otlp
     url: http://localhost:4318/v1/traces
-token:
-  kind: none
 transport:
   http:
     address: :11000
