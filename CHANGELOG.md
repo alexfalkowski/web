@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.133.0](https://github.com/alexfalkowski/web/releases/tag/v1.133.0) - 2025-07-31
+
+- [`40ac84c`](https://github.com/alexfalkowski/web/commit/40ac84cea11d9368a19ca2358c17e3a27eb7e886) feat(deps): upgraded github.com/alexfalkowski/go-service/v2 to v2.109.0 (#688)
+- [`a065f7f`](https://github.com/alexfalkowski/web/commit/a065f7f7b824d61d3e077d9be33370b3a96dd11f) build(ci): use latest published images (#687)
+- [`bdb4fe7`](https://github.com/alexfalkowski/web/commit/bdb4fe73573801c85b265b657a095cb94ee38726) build(deps): upgraded github.com/alexfalkowski/bin (#686)
+- [`716e53b`](https://github.com/alexfalkowski/web/commit/716e53b15d2d9ea158a8ab54cbe90e1d8b92fae1) build(ci): use proper working_directory for deploy (#685)
+- [`936b81b`](https://github.com/alexfalkowski/web/commit/936b81b59b2e83bf948f8f7faf4a2cd55c140e23) build(ci): use latest published images (#684)
+
 ## [v1.132.0](https://github.com/alexfalkowski/web/releases/tag/v1.132.0) - 2025-07-26
 
 - [`9a0fddf`](https://github.com/alexfalkowski/web/commit/9a0fddf00b3b0ae0862ef53903419c2dbb2a896e) feat(deps): upgraded github.com/alexfalkowski/go-service/v2 to v2.107.0 (#683)
