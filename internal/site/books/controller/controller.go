@@ -7,7 +7,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/books/repository"
 )
 
-// NewRoot controller.
+// NewBooks controller.
 func NewBooks(repo repository.Repository, view *mvc.View) mvc.Controller[model.Books] {
 	return func(_ context.Context) (*mvc.View, *model.Books, error) {
 		model := repo.GetBooks()
