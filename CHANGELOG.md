@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.183.0](https://github.com/alexfalkowski/web/releases/tag/v1.183.0) - 2025-10-13
+
+- [`db5d0a7`](https://github.com/alexfalkowski/web/commit/db5d0a7bc86636d6d31eafd87e0892e7bbca48ca) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.170.0 to 2.171.0 (#785)
+- [`9502c61`](https://github.com/alexfalkowski/web/commit/9502c6157b01f2dff7c404e5643759ca35a2b02d) test(deps): bump sinatra from 4.1.1 to 4.2.0 in /test (#783)
+- [`ea8ef2c`](https://github.com/alexfalkowski/web/commit/ea8ef2cd742af2a2d2f392ecb19d8f237a9c033c) test(deps): bump rack from 3.2.2 to 3.2.3 in /test (#784)
+- [`fdef95d`](https://github.com/alexfalkowski/web/commit/fdef95d7c963fdd0daed256b53484580ffff9296) build(ci): use latest published images (#782)
+- [`e7be0d1`](https://github.com/alexfalkowski/web/commit/e7be0d108d81cc0c505963adddbf8a15913dec81) build(ci): use latest published images (#781)
+
 ## [v1.182.0](https://github.com/alexfalkowski/web/releases/tag/v1.182.0) - 2025-10-09
 
 - [`755de37`](https://github.com/alexfalkowski/web/commit/755de377a154cd6df10849c5e7d2552e6053ee45) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.169.0 to 2.170.0 (#780)
