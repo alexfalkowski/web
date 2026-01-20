@@ -6,7 +6,7 @@
 
 # Web
 
-A website for lean-thoughts.com
+A website for <https://web.lean-thoughts.com/>
 
 ## Background
 
