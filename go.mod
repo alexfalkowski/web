@@ -3,7 +3,7 @@ module github.com/alexfalkowski/web
 go 1.25.0
 
 require (
-	github.com/alexfalkowski/go-health/v2 v2.9.0
+	github.com/alexfalkowski/go-health/v2 v2.12.0
 	github.com/alexfalkowski/go-service/v2 v2.265.0
 )
 
