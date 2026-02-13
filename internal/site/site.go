@@ -13,12 +13,20 @@ import (
 //go:embed books/repository/*.yaml
 var filesystem embed.FS
 
-// NewFileSystem for site.
+// NewFileSystem returns an `fs.FS` backed by the site's embedded assets.
+//
+// The returned filesystem contains the templates and data files embedded via the
+// `go:embed` directives in this package. It is intended to be injected into
+// downstream components (for example repositories) that need access to those
+// assets at runtime.
 func NewFileSystem() fs.FS {
 	return filesystem
 }
 
-// NewLayout for site.
+// NewLayout constructs the site's MVC layout.
+//
+// It returns a layout configured with the full-page and partial template roots
+// used by the site, enabling both full renders and fragment/partial renders.
 func NewLayout() *mvc.Layout {
 	return mvc.NewLayout("root/layout/full.tmpl", "root/layout/partial.tmpl")
 }
