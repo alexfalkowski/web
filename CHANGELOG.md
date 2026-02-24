@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.259.0](https://github.com/alexfalkowski/web/releases/tag/v1.259.0) - 2026-02-24
+
+- [`a31577d`](https://github.com/alexfalkowski/web/commit/a31577dec405822a5e8e4141cfdcd2b51d31b6de) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.287.0 to 2.288.0 (#954)
+- [`a6cc4e6`](https://github.com/alexfalkowski/web/commit/a6cc4e6e679cf57c21e4ee07d98eb86acd1f37cf) build(ci): use latest published images (#953)
+- [`25a4786`](https://github.com/alexfalkowski/web/commit/25a4786dd2ce61c055f56a9727fd6ef1d94db260) build(ci): use latest published images (#952)
+- [`536cffe`](https://github.com/alexfalkowski/web/commit/536cffe7ae342ebe8930bceb59cc70c43c95b251) build(ci): use latest published images (#951)
+- [`0757780`](https://github.com/alexfalkowski/web/commit/0757780fba27400e9e7de2ced341067f819540cf) build(deps): upgraded github.com/alexfalkowski/bin (#950)
+- [`f35c70a`](https://github.com/alexfalkowski/web/commit/f35c70ac1dbf3340e05af9baaf1169af654d4ee7) build(deps): upgraded github.com/alexfalkowski/bin (#949)
+
 ## [v1.258.0](https://github.com/alexfalkowski/web/releases/tag/v1.258.0) - 2026-02-20
 
 - [`b81ce52`](https://github.com/alexfalkowski/web/commit/b81ce522b00aa471c1ab291877c00244b5deb6a8) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.286.0 to 2.287.0 (#948)
