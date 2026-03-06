@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.266.0](https://github.com/alexfalkowski/web/releases/tag/v1.266.0) - 2026-03-06
+
+- [`b36840b`](https://github.com/alexfalkowski/web/commit/b36840b83f8c91758710d9a223d4de060fb8ac89) feat(deps): upgraded github.com/alexfalkowski/bin (#969)
+- [`0e9765d`](https://github.com/alexfalkowski/web/commit/0e9765d09af5530d15ecf6b2951615af83819c10) build(ci): use latest published images (#968)
+- [`016b580`](https://github.com/alexfalkowski/web/commit/016b5804daa730739e364f1c92327e3585550195) test(deps): bump rubocop from 1.85.0 to 1.85.1 in /test (#967)
+- [`95babb8`](https://github.com/alexfalkowski/web/commit/95babb8407153386536583693dd62707f73e7e09) build(deps): upgraded github.com/alexfalkowski/bin (#966)
+- [`ffe7f96`](https://github.com/alexfalkowski/web/commit/ffe7f9692590b67f936313aef578485e501bbbcb) build(ci): use latest published images (#965)
+
 ## [v1.265.0](https://github.com/alexfalkowski/web/releases/tag/v1.265.0) - 2026-03-05
 
 - [`32eb9b2`](https://github.com/alexfalkowski/web/commit/32eb9b230beb59c2e2d6fbc0f0cf338e4d51870a) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.293.0 to 2.295.0 (#964)
