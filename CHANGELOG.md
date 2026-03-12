@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.268.0](https://github.com/alexfalkowski/web/releases/tag/v1.268.0) - 2026-03-12
+
+- [`ab2cf98`](https://github.com/alexfalkowski/web/commit/ab2cf98ff37eb08c6a0295da51970bd89f793e7d) feat(root): update script and css (#985)
+- [`70a95ad`](https://github.com/alexfalkowski/web/commit/70a95ad733ab038bdc36ad356879792525e13e9a) build(ci): use latest published images (#984)
+- [`be8cd65`](https://github.com/alexfalkowski/web/commit/be8cd6510f833a5d2918a113d0d54dac51d36162) test(deps): bump ruby-lsp from 0.26.7 to 0.26.8 in /test (#983)
+- [`3512fdf`](https://github.com/alexfalkowski/web/commit/3512fdfe3aa187b918effcc7dc02c14047f2fef4) build(deps): upgraded github.com/alexfalkowski/bin (#982)
+- [`aa93aa1`](https://github.com/alexfalkowski/web/commit/aa93aa1c8b52333acde34420317bb474a500eb2a) build(ci): use alexfalkowski/release:5.58 (#981)
+- [`9ff782e`](https://github.com/alexfalkowski/web/commit/9ff782eb8c969505d1193f085878001e81eadd8a) test(deps): upgraded bundler to 4.0.8 (#980)
+- [`8549163`](https://github.com/alexfalkowski/web/commit/8549163c172fefb7bad31b87198a4aad017d3588) build(ci): use latest published images (#979)
+- [`52c59de`](https://github.com/alexfalkowski/web/commit/52c59de703012a4a34dabbded7533ab3538b3e82) build(deps): upgraded github.com/alexfalkowski/bin (#978)
+- [`512a2b4`](https://github.com/alexfalkowski/web/commit/512a2b4845bddfb1f03379a47e0933223c486491) build(deps): upgraded github.com/alexfalkowski/bin (#977)
+- [`819a0a5`](https://github.com/alexfalkowski/web/commit/819a0a5df1336c4068658a2a1743f97078f0977a) build(deps): upgraded github.com/alexfalkowski/bin (#976)
+- [`d01d301`](https://github.com/alexfalkowski/web/commit/d01d301c8cab57ff58084a3302e1aae11339c433) build(ci): add wait-all (#975)
+- [`53567e1`](https://github.com/alexfalkowski/web/commit/53567e1b4ac6f3b401792848312c477f44bf656d) build(ci): use latest published images (#974)
+- [`d0352f6`](https://github.com/alexfalkowski/web/commit/d0352f6b3344320444bd59f30a11a8dfaa608885) build(ci): use latest published images (#973)
+- [`5c9eedf`](https://github.com/alexfalkowski/web/commit/5c9eedf9c217e7928ba4e3919f6dcb6009392909) build(ci): use latest published images (#972)
+
 ## [v1.267.0](https://github.com/alexfalkowski/web/releases/tag/v1.267.0) - 2026-03-09
 
 - [`5a66807`](https://github.com/alexfalkowski/web/commit/5a6680728fe279ddb9433a8baa25956221a599c6) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.295.0 to 2.298.0 (#971)
