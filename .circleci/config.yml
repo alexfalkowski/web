@@ -69,7 +69,7 @@ jobs:
     resource_class: arm.large
   sync:
     docker:
-      - image: alexfalkowski/release:5.59
+      - image: alexfalkowski/release:6.1
     working_directory: ~/web
     steps:
       - checkout:
@@ -80,7 +80,7 @@ jobs:
     resource_class: arm.large
   version:
     docker:
-      - image: alexfalkowski/release:6.0
+      - image: alexfalkowski/release:6.1
     working_directory: ~/web
     steps:
       - checkout:
@@ -196,13 +196,15 @@ jobs:
     resource_class: arm.large
   deploy:
     docker:
-      - image: alexfalkowski/release:5.59
+      - image: alexfalkowski/release:6.1
     working_directory: ~/web
     steps:
       - checkout:
           method: blobless
       - run: git submodule sync
       - run: git submodule update --init
+      - attach_workspace:
+          at: /tmp/workspace
       - run: deploy
     resource_class: arm.large
 
