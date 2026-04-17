@@ -2,6 +2,13 @@
 
 This repository is a small Go HTTP service that serves a website (templates + content embedded into a single binary) and includes a Ruby acceptance test harness.
 
+## Shared skill
+
+Use the shared `coding-standards` skill from `./bin/skills/coding-standards`
+for cross-repository coding, review, testing, documentation, and PR
+conventions. Treat this `AGENTS.md` as the repo-specific companion to that
+skill.
+
 ## Quick start
 
 ### 1) Ensure the `bin/` submodule is present
