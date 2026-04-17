@@ -8,7 +8,7 @@
 
 A small Go service that serves the website at:
 
-- https://web.lean-thoughts.com/
+- <https://web.lean-thoughts.com/>
 
 The service is built on top of the [`mvc`](https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc) package from `go-service` and ships as a single binary with templates and content embedded.
 
@@ -16,7 +16,7 @@ The service is built on top of the [`mvc`](https://github.com/alexfalkowski/go-s
 
 This project is an implementation playground for the ideas outlined in:
 
-- https://alejandrofalkowski.substack.com/p/hyperprogress
+- <https://alejandrofalkowski.substack.com/p/hyperprogress>
 
 ## What it does
 
@@ -35,7 +35,7 @@ The HTML templates and the books YAML data are embedded into the binary using `g
 
 This repo follows the structure described in:
 
-- https://github.com/golang-standards/project-layout
+- <https://github.com/golang-standards/project-layout>
 
 Key directories:
 
@@ -130,8 +130,10 @@ make format
 # Run Go tests
 go test ./...
 
-# Run Ruby specs / acceptance tests (if you are working on the test harness)
+# Run the repo-defined Go specs wrapper
 make specs
+
+# Run Cucumber acceptance tests
 make features
 ```
 
@@ -160,7 +162,7 @@ make build
 Then run it:
 
 ```sh
-./tmp/web server
+./web server
 ```
 
 > The CLI command is `server`. It is registered in `internal/cmd` and starts the HTTP server using the DI module graph.
@@ -169,27 +171,30 @@ Then run it:
 
 Once the server is running, you can verify key endpoints.
 
+If you started the service with `make dev` (or with `-i file:test/.config/server.yml`),
+the HTTP server listens on `localhost:11000`.
+
 Pages:
 
 ```sh
-curl -i http://localhost:8080/
-curl -i http://localhost:8080/books
-curl -i http://localhost:8080/robots.txt
+curl -i http://localhost:11000/
+curl -i http://localhost:11000/books
+curl -i http://localhost:11000/robots.txt
 ```
 
 Partial renders (PUT):
 
 ```sh
-curl -i -X PUT http://localhost:8080/
-curl -i -X PUT http://localhost:8080/books
+curl -i -X PUT http://localhost:11000/
+curl -i -X PUT http://localhost:11000/books
 ```
 
 Health:
 
 ```sh
-curl -i http://localhost:8080/healthz
-curl -i http://localhost:8080/livez
-curl -i http://localhost:8080/readyz
+curl -i http://localhost:11000/healthz
+curl -i http://localhost:11000/livez
+curl -i http://localhost:11000/readyz
 ```
 
 > Ports, TLS, and other server settings are controlled by configuration. If your local environment differs, inspect the config used by `make dev` / CI.
@@ -235,7 +240,7 @@ It provides a small wrapper around HTTP calls used by the acceptance tests.
 
 Go code generally follows:
 
-- https://github.com/uber-go/guide/blob/master/style.md
+- <https://github.com/uber-go/guide/blob/master/style.md>
 
 ## Changes / releases
 

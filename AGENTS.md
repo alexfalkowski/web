@@ -1,212 +1,123 @@
 # AGENTS.md
 
-This repository is a small Go HTTP service that serves a website (templates + content embedded into a single binary) and includes a Ruby acceptance test harness.
+Repo-specific guidance for this repository.
 
 ## Shared skill
 
 Use the shared `coding-standards` skill from `./bin/skills/coding-standards`
-for cross-repository coding, review, testing, documentation, and PR
-conventions. Treat this `AGENTS.md` as the repo-specific companion to that
-skill.
+for cross-repository workflow, review, testing, documentation, and PR
+conventions. This file only captures what is specific to this repo.
 
-## Quick start
+## What this repo is
 
-### 1) Ensure the `bin/` submodule is present
+- Small Go HTTP service serving a website from embedded templates and content.
+- Ruby acceptance test harness under `test/`.
+- Build/test automation comes from the `bin/` submodule and root `Makefile`.
 
-This repo uses a git submodule at `bin/` (see `.gitmodules`). Many `make` targets rely on scripts/make includes from that submodule.
+## First steps
+
+1. Ensure the `bin/` submodule is present:
 
 ```sh
 make submodule
 ```
 
-### 2) Install deps
-
-The top-level Make targets install both Go and Ruby deps (Ruby deps live under `test/`).
+2. Install dependencies:
 
 ```sh
 make dep
 ```
 
-### 3) Run tests
-
-Go unit/spec tests:
-
-```sh
-go test ./...
-# or
-make specs
-```
-
-Ruby acceptance tests (Cucumber):
-
-```sh
-make features
-```
-
-## Essential commands
-
-All commands are driven through `make` (see `Makefile` and `bin/build/make/*.mak`). List everything available:
+3. Prefer repo-defined commands:
 
 ```sh
 make help
 ```
 
-Common workflows observed in this repo:
+## Commands that matter
 
-### Dependency management
+- `make dep` installs Go deps and Ruby gems.
+- `make lint` runs Go lint plus Ruby lint.
+- `make build` builds the binary as `./web`.
+- `make dev` runs the service with `file:test/.config/server.yml`.
+- `make features` runs the primary Cucumber acceptance suite.
+- `make benchmarks` runs the `@benchmark` Cucumber scenarios.
+- `make sec` runs security checks.
+- `make coverage` generates coverage artifacts under `test/reports/`.
 
-- `make dep` — download/tidy/vendor Go modules + install Ruby gems under `test/`
-- `make clean` — clean downloaded deps via `bin/build/go/clean`
-- `make clean-dep` — clear Go caches + `bundler clean`
-
-### Build / run
-
-- `make build` — build release binary (outputs `./web`)
-- `make dev` — run in dev mode using `air` and config `file:test/.config/server.yml`
-
-If you built with `make build`, run the server command:
+If you build locally, start the service with:
 
 ```sh
 ./web server
 ```
 
-### Lint / format
+## Testing policy
 
-- `make lint` — Go lint (field alignment + golangci-lint with `--build-tags features`) + Ruby lint (Rubocop in `test/`)
-- `make fix-lint` — auto-fix lint where possible
-- `make format` — `go fmt ./...` + Rubocop auto-format in `test/`
+- The intentional product test strategy is the Ruby/Cucumber suite in
+  `test/features/`.
+- Treat `make features` and `make benchmarks` as the authoritative behavioral
+  checks.
+- `go test ./...` and `make specs` exist for tooling/build support, but they are
+  not the primary product test signal in this repo.
 
-### Tests
+## Architecture
 
-- `make specs` — Go tests via `gotestsum` with race + coverage (uses vendored modules: `-mod vendor`)
-- `make features` — builds a test binary (`make build-test`) then runs Cucumber in `test/`
-- `make benchmarks` — runs Cucumber benchmarks (`@benchmark`-tagged)
+- CLI entrypoint: `main.go`
+- Server wiring: `internal/cmd`
+- Config wrapper: `internal/config`
+- Health registrations and observers: `internal/health`
+- Site feature composition: `internal/site`
 
-### Security / scanning
+The service is assembled with `go-service/v2/di`.
 
-- `make sec` — `govulncheck -test ./...`
-- `make trivy-repo` — repository scan (invoked in CI)
+Common pattern:
 
-### Coverage
+- Each feature exposes `var Module = di.Module(...)`.
+- Constructors use `di.Constructor(...)`.
+- Route registration usually uses `di.Register(Register)`.
 
-- `make coverage` — generates HTML + func coverage (merges/sanitizes coverage under `test/reports/`)
+Routing uses `go-service/v2/net/http/mvc`.
 
-## Project layout
-
-Observed structure (matches the `golang-standards/project-layout` layout referenced in `README.md`):
-
-- `main.go` — CLI entrypoint; registers the `server` command (`internal/cmd.RegisterServer`)
-- `internal/` — application code (DI modules + MVC features)
-  - `internal/cmd/` — assembles the server module graph (see `internal/cmd/module.go`)
-  - `internal/config/` — service config wrapper around `go-service` base config (`internal/config/config.go`)
-  - `internal/health/` — health check registrations and observers
-  - `internal/site/` — website features (templates/assets embedded via `go:embed`)
-- `test/` — Ruby acceptance tests (Cucumber) + a small Ruby HTTP client library
-- `bin/` — git submodule providing build tooling and helper scripts
-
-## Architecture & code patterns
-
-### Dependency injection via `go-service/v2/di`
-
-The server is assembled via DI modules:
-
-- Top-level module: `internal/cmd.Module` (`internal/cmd/module.go`)
-- Site features are composed in `internal/site.Module` (`internal/site/module.go`)
-
-Pattern used throughout:
-
-- Feature package exposes `var Module = di.Module(...)`.
-- Constructors are registered via `di.Constructor(...)`.
-- Route registration is commonly wired via `di.Register(Register)` where `Register(...)` calls into the MVC router.
-
-### MVC routing + controllers
-
-Routing is done via `go-service/v2/net/http/mvc`.
-
-Typical route packages register both full and partial renders:
-
-- Root (`/`): `internal/site/root/route/route.go`
-- Books (`/books`): `internal/site/books/route/route.go`
-
-Pattern:
+Common route pattern:
 
 - `mvc.Get("/path", controller.NewX(..., fullView))`
 - `mvc.Put("/path", controller.NewX(..., partialView))`
 
-Controllers typically return `mvc.Controller[T]` functions of the form:
+Embedded assets live in `internal/site/site.go` and include:
 
-```go
-func(_ context.Context) (*mvc.View, *T, error)
-```
+- layout templates
+- page templates
+- `internal/site/books/repository/books.yaml`
 
-Views are usually created in `view` packages via `mvc.NewViewPair("...tmpl")`.
+`robots.txt` is served from `internal/site/robots`.
 
-### Embedded assets (templates + YAML)
+## Config and local runtime
 
-`internal/site/site.go` embeds templates and YAML data with `go:embed`:
+- Dev config: `test/.config/server.yml`
+- Dev/test HTTP address: `tcp://:11000`
+- `make dev` runs with `-i file:test/.config/server.yml`
 
-- Layout templates: `internal/site/root/layout/*.tmpl`
-- Page templates: `internal/site/root/view/*.tmpl`, `internal/site/books/view/*.tmpl`
-- Books data: `internal/site/books/repository/books.yaml`
-
-`site.NewLayout()` configures full vs partial layout roots (`root/layout/full.tmpl` and `root/layout/partial.tmpl`).
-
-### Static assets
-
-`robots.txt` is served via MVC static file support:
-
-- `internal/site/robots/robots.go` registers `mvc.StaticFile("/robots.txt", "robots/robots.txt")`
-
-## Testing
-
-### Go
-
-- `go test ./...` runs standard Go tests.
-- `make specs` uses `gotestsum` with `-race` and produces coverage artifacts under `test/reports/`.
-
-Note: there is a build tag used for feature tests (`//go:build features` in `main_test.go`). The tooling in this repo frequently runs with `--build-tags features` (for example, golangci-lint in `bin/build/make/http.mak`).
-
-### Ruby acceptance tests
-
-Acceptance tests live under `test/features/` and are run with Cucumber.
-
-The test harness uses a small Ruby client (`test/lib/web.rb`, `test/lib/web/v1/http.rb`) and a Nonnative process config (`test/nonnative.yml`) which starts the built Go binary with:
+The acceptance harness uses `test/nonnative.yml` and starts:
 
 - command: `server`
 - parameters: `-i file:.config/server.yml`
 - base URL: `http://localhost:11000`
 
-To work on the acceptance tests directly:
+## CI truth
 
-```sh
-make -C test dep
-make -C test features
-```
-
-## Configuration
-
-Local/dev configuration for `make dev` is read from:
-
-- `test/.config/server.yml`
-
-It binds HTTP to `tcp://:11000` (see `transport.http.address` in that file) and configures health + telemetry settings.
-
-The CLI supports passing config inputs (for example `-i file:test/.config/server.yml` as used by `make dev`).
-
-## CI notes (CircleCI)
-
-CircleCI runs (see `.circleci/config.yml`):
+CircleCI is the source of truth for required checks. The main pipeline runs:
 
 - `make clean && make dep`
 - `make lint`
-- `make sec` and `make trivy-repo`
-- `make features` and `make benchmarks`
-- `make analyse` and `make coverage`
+- `make sec`
+- `make features`
+- `make benchmarks`
+- `make analyse`
+- `make coverage`
 
-If an agent changes Go dependencies (`go.sum`), there is a helper script `bin/build/go/clean` that triggers cache clean + `make dep clean-dep clean-lint` when `go.sum` differs from `master`.
+## Gotchas
 
-## Gotchas / non-obvious details
-
-- **`bin/` is a submodule**: missing or stale submodule checkout will break `make` includes and helper scripts.
-- **Tooling expects external binaries**: `make dev` uses `air`; Go lint uses `golangci-lint` (wrapper script only runs it if installed); security uses `govulncheck`; Ruby tasks use `bundler`, `rubocop`, `cucumber`.
-- **Field alignment scope**: `.gofa` contains `internal`, and `bin/build/go/fa` uses it to decide which packages `fieldalignment` runs against.
+- `bin/` is a required submodule; stale or missing checkout breaks many targets.
+- Tooling expects external binaries such as `air`, `golangci-lint`,
+  `govulncheck`, `bundler`, `rubocop`, and `cucumber`.
+- Field alignment only targets packages listed in `.gofa` (`internal` here).
