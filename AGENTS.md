@@ -4,9 +4,7 @@ Repo-specific guidance for this repository.
 
 ## Shared skill
 
-Use the shared `coding-standards` skill from `./bin/skills/coding-standards`
-for cross-repository workflow, review, testing, documentation, and PR
-conventions. This file only captures what is specific to this repo.
+Use the shared `coding-standards` skill from `bin/skills/coding-standards` for code changes, bug fixes, refactors, reviews, tests, linting, documentation, PR summaries, commits, Makefile changes, CI validation, and verification.
 
 ## What this repo is
 
