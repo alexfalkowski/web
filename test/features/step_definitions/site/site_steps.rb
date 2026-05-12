@@ -16,7 +16,7 @@ end
 
 Then('I should see {string}') do |section|
   expect(@response.code).to eq(200)
-  expect(@response.headers[:content_type]).to eq('text/html; charset=utf-8')
+  expect(@response.headers[:content_type]).to eq('text/html')
 
   expected = {
     'root' => 'Vince Lombardi',
