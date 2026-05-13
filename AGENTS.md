@@ -2,11 +2,11 @@
 
 Repo-specific guidance for this repository.
 
-## Shared skill
+## Shared skills
 
-Use the shared `coding-standards` skill from `./bin/skills/coding-standards`
-for cross-repository workflow, review, testing, documentation, and PR
-conventions. This file only captures what is specific to this repo.
+This repository uses the shared skills from `bin/skills/`. Read
+`bin/AGENTS.md` for the canonical shared skill list and use the smallest
+matching skill for the task.
 
 ## What this repo is
 
