@@ -9,6 +9,7 @@ import (
 
 //go:embed root/layout/*.tmpl
 //go:embed root/view/*.tmpl
+//go:embed errors/view/*.tmpl
 //go:embed books/view/*.tmpl
 //go:embed books/repository/*.yaml
 var filesystem embed.FS

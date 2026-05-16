@@ -12,6 +12,11 @@ Feature: Web
       | partial | root    |
       | partial | books   |
 
-  Scenario: Missing section
-    When I visit a missing section
-    Then I should see the page is missing
+  Scenario Outline: Missing section
+    When I visit a missing section with layout "<layout>"
+    Then I should see the page is missing with layout "<layout>"
+
+    Examples:
+      | layout  |
+      | full    |
+      | partial |
