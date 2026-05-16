@@ -11,6 +11,6 @@ import (
 func Register(info *meta.Info) {
 	view, partialView := view.NewRoot()
 
-	mvc.Get("/", controller.NewRoot(info, view))
-	mvc.Put("/", controller.NewRoot(info, partialView))
+	mvc.Get("/{$}", controller.NewRoot(info, view))
+	mvc.Put("/{$}", controller.NewRoot(info, partialView))
 }
