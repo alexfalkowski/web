@@ -12,6 +12,10 @@ Feature: Web
       | partial | root    |
       | partial | books   |
 
+  Scenario: Visit robots
+    When I visit the robots file
+    Then I should see the robots file
+
   Scenario Outline: Missing section
     When I visit a missing section with layout "<layout>"
     Then I should see the page is missing with layout "<layout>"
