@@ -35,7 +35,7 @@ module Web
       # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#put}
       # @return [Object] the response returned by the underlying HTTP client
       def put_root(opts = {})
-        put('/', opts)
+        put('/', nil, opts)
       end
 
       # GET the books page.
@@ -51,7 +51,7 @@ module Web
       # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#put}
       # @return [Object] the response returned by the underlying HTTP client
       def put_books(opts = {})
-        put('/books', opts)
+        put('/books', nil, opts)
       end
 
       # GET a route that should not be handled by the site.
@@ -60,6 +60,14 @@ module Web
       # @return [Object] the response returned by the underlying HTTP client
       def get_missing(opts = {})
         get('/not-a-real-page', opts)
+      end
+
+      # PUT a route that should not be handled by the site.
+      #
+      # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#put}
+      # @return [Object] the response returned by the underlying HTTP client
+      def put_missing(opts = {})
+        put('/not-a-real-page', nil, opts)
       end
     end
   end
