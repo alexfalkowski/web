@@ -27,6 +27,21 @@ Then('I should see {string}') do |section|
   expect(html.text).to include(expected[section])
 end
 
+When('I visit the robots file') do
+  opts = {
+    headers: { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0' },
+    read_timeout: 10, open_timeout: 10
+  }
+
+  @response = Web::V1.http.get_robots(opts)
+end
+
+Then('I should see the robots file') do
+  expect(@response.code).to eq(200)
+  expect(@response.headers[:content_type]).to eq('text/plain; charset=utf-8')
+  expect(@response.body).to include('User-agent: *')
+end
+
 When('I visit a missing section with layout {string}') do |layout|
   headers = { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0' }
   layout_headers = {

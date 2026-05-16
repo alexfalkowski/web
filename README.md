@@ -162,7 +162,7 @@ make build
 Then run it:
 
 ```sh
-./web server
+./web server -i file:test/.config/server.yml
 ```
 
 > The CLI command is `server`. It is registered in `internal/cmd` and starts the HTTP server using the DI module graph.

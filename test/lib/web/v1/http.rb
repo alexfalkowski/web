@@ -46,6 +46,14 @@ module Web
         get('/books', opts)
       end
 
+      # GET the robots.txt file.
+      #
+      # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#get}
+      # @return [Object] the response returned by the underlying HTTP client
+      def get_robots(opts = {})
+        get('/robots.txt', opts)
+      end
+
       # PUT the books page, typically used to request a partial/fragment render.
       #
       # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#put}
