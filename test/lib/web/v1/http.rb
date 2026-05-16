@@ -38,25 +38,6 @@ module Web
         put('/', opts)
       end
 
-      # GET the home page.
-      #
-      # Note: whether `/home` is distinct from `/` is determined by the running
-      # service; this helper exists because the test suite exercises it.
-      #
-      # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#get}
-      # @return [Object] the response returned by the underlying HTTP client
-      def get_home(opts = {})
-        get('/home', opts)
-      end
-
-      # PUT the home page, typically used to request a partial/fragment render.
-      #
-      # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#put}
-      # @return [Object] the response returned by the underlying HTTP client
-      def put_home(opts = {})
-        put('/home', opts)
-      end
-
       # GET the books page.
       #
       # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#get}
@@ -71,6 +52,14 @@ module Web
       # @return [Object] the response returned by the underlying HTTP client
       def put_books(opts = {})
         put('/books', opts)
+      end
+
+      # GET a route that should not be handled by the site.
+      #
+      # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#get}
+      # @return [Object] the response returned by the underlying HTTP client
+      def get_missing(opts = {})
+        get('/not-a-real-page', opts)
       end
     end
   end

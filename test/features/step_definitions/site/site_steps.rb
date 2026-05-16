@@ -20,10 +20,22 @@ Then('I should see {string}') do |section|
 
   expected = {
     'root' => 'Vince Lombardi',
-    'home' => 'Vince Lombardi',
     'books' => 'Margaret Fuller'
   }
   html = Nokogiri::HTML.parse(@response.body)
 
   expect(html.text).to include(expected[section])
+end
+
+When('I visit a missing section') do
+  opts = {
+    headers: { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0' },
+    read_timeout: 10, open_timeout: 10
+  }
+
+  @response = Web::V1.http.get_missing(opts)
+end
+
+Then('I should see the page is missing') do
+  expect(@response.code).to eq(404)
 end

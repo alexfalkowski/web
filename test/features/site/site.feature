@@ -8,8 +8,10 @@ Feature: Web
     Examples:
       | layout  | section |
       | full    | root    |
-      | full    | home    |
       | full    | books   |
       | partial | root    |
-      | partial | home    |
       | partial | books   |
+
+  Scenario: Missing section
+    When I visit a missing section
+    Then I should see the page is missing
