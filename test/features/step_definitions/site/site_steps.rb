@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 When('I visit {string} with layout {string}') do |section, layout|
+  @layout = layout
   opts = {
     headers: { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0', accept: 'text/html' },
     read_timeout: 10, open_timeout: 10
@@ -25,6 +26,11 @@ Then('I should see {string}') do |section|
   html = Nokogiri::HTML.parse(@response.body)
 
   expect(html.text).to include(expected[section])
+
+  if @layout == 'full'
+    expect(html.at_css('a[href="/"][hx-put="/"]').text).to eq('Home')
+    expect(html.at_css('a[href="/books"][hx-put="/books"]').text).to eq('Books')
+  end
 end
 
 When('I visit the robots file') do
