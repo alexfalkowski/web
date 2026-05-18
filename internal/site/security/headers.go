@@ -4,8 +4,7 @@ import "github.com/alexfalkowski/go-service/v2/net/http"
 
 const contentSecurityPolicy = "default-src 'self'; " +
 	"script-src 'self' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; " +
-	"style-src 'self' https://cdn.jsdelivr.net; " +
-	"style-src-attr 'unsafe-inline'; " +
+	"style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; " +
 	"img-src 'self'; " +
 	"connect-src 'self' https://cloudflareinsights.com; " +
 	"font-src 'self'; " +
