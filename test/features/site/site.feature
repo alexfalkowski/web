@@ -16,6 +16,10 @@ Feature: Web
     When I visit the robots file
     Then I should see the robots file
 
+  Scenario: Visit favicon
+    When I visit the favicon
+    Then I should see the favicon
+
   Scenario Outline: Missing section
     When I visit a missing section with layout "<layout>"
     Then I should see the page is missing with layout "<layout>"

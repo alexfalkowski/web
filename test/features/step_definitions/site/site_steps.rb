@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 SECURITY_HEADERS = {
-  content_security_policy: "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; " \
-                           "style-src 'self' https://cdn.jsdelivr.net; img-src 'self'; connect-src 'self'; " \
+  content_security_policy: "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net " \
+                           "https://static.cloudflareinsights.com; style-src 'self' https://cdn.jsdelivr.net; " \
+                           "style-src-attr 'unsafe-inline'; img-src 'self'; " \
+                           "connect-src 'self' https://cloudflareinsights.com; " \
                            "font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
   x_content_type_options: 'nosniff',
   referrer_policy: 'strict-origin-when-cross-origin',
@@ -53,11 +55,27 @@ When('I visit the robots file') do
   @response = Web::V1.http.get_robots(opts)
 end
 
+When('I visit the favicon') do
+  opts = {
+    headers: { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0' },
+    read_timeout: 10, open_timeout: 10
+  }
+
+  @response = Web::V1.http.get_favicon(opts)
+end
+
 Then('I should see the robots file') do
   expect(@response.code).to eq(200)
   expect(@response.headers[:content_type]).to eq('text/plain; charset=utf-8')
   expect_security_headers(@response)
   expect(@response.body).to include('User-agent: *')
+end
+
+Then('I should see the favicon') do
+  expect(@response.code).to eq(200)
+  expect(@response.headers[:content_type]).to eq('image/png')
+  expect_security_headers(@response)
+  expect(@response.body.bytes.first(8)).to eq([137, 80, 78, 71, 13, 10, 26, 10])
 end
 
 When('I visit a missing section with layout {string}') do |layout|
