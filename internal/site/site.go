@@ -12,6 +12,7 @@ import (
 //go:embed errors/view/*.tmpl
 //go:embed books/view/*.tmpl
 //go:embed books/repository/*.yaml
+//go:embed favicon/*.png
 //go:embed robots/*.txt
 var filesystem embed.FS
 

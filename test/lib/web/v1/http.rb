@@ -54,6 +54,14 @@ module Web
         get('/robots.txt', opts)
       end
 
+      # GET the browser favicon.
+      #
+      # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#get}
+      # @return [Object] the response returned by the underlying HTTP client
+      def get_favicon(opts = {})
+        get('/favicon.ico', opts)
+      end
+
       # PUT the books page, typically used to request a partial/fragment render.
       #
       # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#put}
