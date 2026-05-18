@@ -7,6 +7,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/meta"
 	"github.com/alexfalkowski/web/internal/site/robots"
 	"github.com/alexfalkowski/web/internal/site/root"
+	"github.com/alexfalkowski/web/internal/site/security"
 )
 
 // Module for fx.
@@ -16,6 +17,7 @@ var Module = di.Module(
 	errors.Module,
 	robots.Module,
 	root.Module,
+	security.Module,
 	di.Constructor(NewFileSystem),
 	di.Constructor(NewLayout),
 )

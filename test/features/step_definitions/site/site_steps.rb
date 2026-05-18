@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+SECURITY_HEADERS = {
+  content_security_policy: "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; " \
+                           "style-src 'self' https://cdn.jsdelivr.net; img-src 'self'; connect-src 'self'; " \
+                           "font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+  x_content_type_options: 'nosniff',
+  referrer_policy: 'strict-origin-when-cross-origin',
+  x_frame_options: 'DENY',
+  permissions_policy: 'camera=(), geolocation=(), microphone=()'
+}.freeze
+
 When('I visit {string} with layout {string}') do |section, layout|
   @layout = layout
   opts = {
@@ -18,6 +28,7 @@ end
 Then('I should see {string}') do |section|
   expect(@response.code).to eq(200)
   expect(@response.headers[:content_type]).to eq('text/html; charset=utf-8')
+  expect_security_headers(@response)
 
   expected = {
     'root' => 'Vince Lombardi',
@@ -45,6 +56,7 @@ end
 Then('I should see the robots file') do
   expect(@response.code).to eq(200)
   expect(@response.headers[:content_type]).to eq('text/plain; charset=utf-8')
+  expect_security_headers(@response)
   expect(@response.body).to include('User-agent: *')
 end
 
@@ -70,9 +82,16 @@ end
 Then('I should see the page is missing with layout {string}') do |layout|
   expect(@response.code).to eq(404)
   expect(@response.headers[:content_type]).to eq('text/html; charset=utf-8')
+  expect_security_headers(@response)
 
   html = Nokogiri::HTML.parse(@response.body)
 
   expect(html.text).to include('Page not found')
   expect(html.text.include?('Copyright')).to eq(layout == 'full')
+end
+
+def expect_security_headers(response)
+  SECURITY_HEADERS.each do |header, value|
+    expect(response.headers[header]).to eq(value)
+  end
 end
