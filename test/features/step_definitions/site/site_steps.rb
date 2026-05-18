@@ -2,8 +2,8 @@
 
 SECURITY_HEADERS = {
   content_security_policy: "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net " \
-                           "https://static.cloudflareinsights.com; style-src 'self' https://cdn.jsdelivr.net; " \
-                           "style-src-attr 'unsafe-inline'; img-src 'self'; " \
+                           "https://static.cloudflareinsights.com; style-src 'self' https://cdn.jsdelivr.net " \
+                           "'unsafe-inline'; img-src 'self'; " \
                            "connect-src 'self' https://cloudflareinsights.com; " \
                            "font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
   x_content_type_options: 'nosniff',
