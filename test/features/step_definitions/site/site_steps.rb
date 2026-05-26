@@ -9,7 +9,8 @@ SECURITY_HEADERS = {
   x_content_type_options: 'nosniff',
   referrer_policy: 'strict-origin-when-cross-origin',
   x_frame_options: 'DENY',
-  permissions_policy: 'camera=(), geolocation=(), microphone=()'
+  permissions_policy: 'camera=(), geolocation=(), microphone=()',
+  strict_transport_security: 'max-age=86400'
 }.freeze
 
 When('I visit {string} with layout {string}') do |section, layout|
