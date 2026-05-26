@@ -115,6 +115,17 @@ CircleCI is the source of truth for required checks. The main pipeline runs:
 - `make analyse`
 - `make coverage`
 
+## Intentional design choices
+
+- The `/healthz` observer intentionally uses `go-health/v2`'s default
+  `server.NewOnlineRegistration` connectivity check. That check reaches public
+  connectivity URLs by default; do not flag the lack of configurable online
+  health URLs as an issue unless the task is explicitly about changing health
+  check semantics.
+- Site metadata such as the footer year is intentionally computed at startup
+  and shared through DI. Do not flag year rollover staleness unless the task is
+  explicitly about changing metadata freshness.
+
 ## Gotchas
 
 - `bin/` is a required submodule; stale or missing checkout breaks many targets.

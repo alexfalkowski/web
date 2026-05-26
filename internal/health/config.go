@@ -11,8 +11,8 @@ import "github.com/alexfalkowski/go-service/v2/time"
 // Timeout is reserved for probe/check timeout configuration.
 type Config struct {
 	// Duration is the health check evaluation interval (for example "5s").
-	Duration time.Duration `yaml:"duration,omitempty" json:"duration,omitempty" toml:"duration,omitempty"`
+	Duration time.Duration `yaml:"duration,omitempty" json:"duration,omitempty" toml:"duration,omitempty" validate:"gt=0"`
 
 	// Timeout is the maximum time allowed for a health check/probe (for example "2s").
-	Timeout time.Duration `yaml:"timeout,omitempty" json:"timeout,omitempty" toml:"timeout,omitempty"`
+	Timeout time.Duration `yaml:"timeout,omitempty" json:"timeout,omitempty" toml:"timeout,omitempty" validate:"gte=0"`
 }

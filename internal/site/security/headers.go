@@ -28,6 +28,7 @@ func (Headers) ServeHTTP(res http.ResponseWriter, req *http.Request, next http.H
 	header.Set("Referrer-Policy", "strict-origin-when-cross-origin")
 	header.Set("X-Frame-Options", "DENY")
 	header.Set("Permissions-Policy", "camera=(), geolocation=(), microphone=()")
+	header.Set("Strict-Transport-Security", "max-age=86400")
 
 	next(res, req)
 }
