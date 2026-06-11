@@ -110,7 +110,7 @@ jobs:
     steps:
       - run: echo "all applicable jobs finished"
     resource_class: arm.large
-  build-docker-amd64:
+  test-docker-amd64:
     docker:
       - image: alexfalkowski/go:4.17
     working_directory: ~/web
@@ -121,10 +121,9 @@ jobs:
       - run: git submodule update --init
       - setup_remote_docker:
           docker_layer_caching: true
-      - run: make platform=amd64 build-docker
-      - run: make platform=amd64 trivy-image
+      - run: make platform=amd64 test-docker
     resource_class: large
-  build-docker-arm64:
+  test-docker-arm64:
     docker:
       - image: alexfalkowski/go:4.17
     working_directory: ~/web
@@ -135,10 +134,9 @@ jobs:
       - run: git submodule update --init
       - setup_remote_docker:
           docker_layer_caching: true
-      - run: make platform=arm64 build-docker
-      - run: make platform=arm64 trivy-image
+      - run: make platform=arm64 test-docker
     resource_class: arm.large
-  push-docker-amd64:
+  release-docker-amd64:
     docker:
       - image: alexfalkowski/go:4.17
     working_directory: ~/web
@@ -154,9 +152,9 @@ jobs:
       - run:
           name: make login
           command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-      - run: make platform=amd64 push-docker
+      - run: make platform=amd64 release-docker
     resource_class: large
-  push-docker-arm64:
+  release-docker-arm64:
     docker:
       - image: alexfalkowski/go:4.17
     working_directory: ~/web
@@ -172,7 +170,7 @@ jobs:
       - run:
           name: make login
           command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-      - run: make platform=arm64 push-docker
+      - run: make platform=arm64 release-docker
     resource_class: arm.large
   manifest-docker:
     docker:
@@ -210,19 +208,19 @@ workflows:
   web:
     jobs:
       - build-service
-      - build-docker-amd64:
+      - test-docker-amd64:
           filters:
             branches:
               ignore: master
-      - build-docker-arm64:
+      - test-docker-arm64:
           filters:
             branches:
               ignore: master
       - sync:
           requires:
             - build-service
-            - build-docker-amd64
-            - build-docker-arm64
+            - test-docker-amd64
+            - test-docker-arm64
           filters:
             branches:
               ignore: master
@@ -234,14 +232,14 @@ workflows:
           filters:
             branches:
               only: master
-      - push-docker-amd64:
+      - release-docker-amd64:
           context: docker
           requires:
             - version
           filters:
             branches:
               only: master
-      - push-docker-arm64:
+      - release-docker-arm64:
           context: docker
           requires:
             - version
@@ -251,8 +249,8 @@ workflows:
       - manifest-docker:
           context: docker
           requires:
-            - push-docker-amd64
-            - push-docker-arm64
+            - release-docker-amd64
+            - release-docker-arm64
           filters:
             branches:
               only: master
@@ -267,10 +265,10 @@ workflows:
           requires:
             - build-service
             - sync
-            - build-docker-amd64
-            - build-docker-arm64
+            - test-docker-amd64
+            - test-docker-arm64
             - version
-            - push-docker-amd64
-            - push-docker-arm64
+            - release-docker-amd64
+            - release-docker-arm64
             - manifest-docker
             - deploy

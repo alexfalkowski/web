@@ -125,12 +125,6 @@ CircleCI is the source of truth for required checks. The main pipeline runs:
 - Site metadata such as the footer year is intentionally computed at startup
   and shared through DI. Do not flag year rollover staleness unless the task is
   explicitly about changing metadata freshness.
-- Docker image scanning is intentionally performed on branch builds before
-  merge by building `test.<platform>` images and running `trivy-image`. The
-  master release path rebuilds and publishes versioned images; do not flag the
-  absence of an additional master image scan as a reliability gap unless the
-  task is explicitly about changing release artifact promotion, base-image
-  pinning, or image scan semantics.
 
 ## Gotchas
 
