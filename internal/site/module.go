@@ -11,7 +11,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/security"
 )
 
-// Module for fx.
+// Module wires this package into the dependency graph.
 var Module = di.Module(
 	meta.Module,
 	books.Module,

@@ -7,7 +7,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/books/view"
 )
 
-// Register root.
+// Register installs the books routes.
 func Register(repo repository.Repository) {
 	view, partialView := view.NewBooks()
 

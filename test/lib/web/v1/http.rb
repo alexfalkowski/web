@@ -11,7 +11,7 @@ module Web
     # and forwards an optional options hash to the base client.
     #
     # @example Fetch the root page
-    #   client = Web::V1::HTTP.new("http://localhost:8080")
+    #   client = Web::V1::HTTP.new("http://localhost:11000")
     #   response = client.get_root
     #
     # @example Request the partial version of a page (PUT)

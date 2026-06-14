@@ -10,7 +10,7 @@ A small Go service that serves the website at:
 
 - <https://web.lean-thoughts.com/>
 
-The service is built on top of the [`mvc`](https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc) package from `go-service` and ships as a single binary with templates, content, the favicon, and static site assets embedded.
+The service is built on top of the [`mvc`](https://github.com/alexfalkowski/go-service/tree/master/net/http/mvc) package from `go-service` and ships as a single binary with server-side templates, content, the favicon, and static site assets embedded.
 
 ## 🧭 Background
 
@@ -30,7 +30,7 @@ At a high level the service:
 - adds browser security headers to site responses
 - exposes health, liveness/readiness, and metrics endpoints
 
-The HTML templates, error templates, books YAML data, favicon image, and robots file are embedded into the binary using `go:embed`.
+The HTML templates, error templates, books YAML data, favicon image, and robots file are embedded into the binary using `go:embed`. Full-page browser rendering also loads HTMX and Pico CSS from jsDelivr, with those origins allowed by the response CSP.
 
 ## 🏗️ Architecture overview
 
@@ -105,6 +105,8 @@ The service registers health checks and exposes standard probe endpoints:
 
 Health timings are configured via the service config under the `health` section.
 
+`/healthz` uses the default `go-health/v2` online registration, so it can depend on public connectivity. `/livez` and `/readyz` use noop checks.
+
 ### 🛡️ Response headers
 
 Site responses include browser security headers such as `Content-Security-Policy`, `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`, and `Strict-Transport-Security`.
@@ -122,15 +124,27 @@ Install:
 - [Ruby](https://www.ruby-lang.org/en/)
 - Bundler for the Ruby test harness
 
-Then initialize the shared `bin/` submodule and install dependencies:
+If you are cloning the repo, initialize submodules before relying on Make targets:
 
 ```sh
-make submodule
+git clone --recurse-submodules git@github.com:alexfalkowski/web.git
+```
+
+For an existing checkout where `bin/` may be absent or stale:
+
+```sh
+git submodule sync
+git submodule update --init
+```
+
+Then install dependencies:
+
+```sh
 make dep
 ```
 
 > [!IMPORTANT]
-> Run `make submodule` before relying on Make targets. The root `Makefile` includes shared build fragments from `bin/`, so a missing or stale submodule breaks the normal workflow.
+> The root `Makefile` includes shared build fragments from `bin/`, so a missing submodule can prevent `make` from parsing at all. Once `bin/` is present, `make submodule` can refresh it through the normal repo target.
 
 > [!WARNING]
 > Some targets require external tools in addition to Go and Ruby. For example, `make dev` uses `air`, Go checks may use `gotestsum`, `golangci-lint`, and `govulncheck`, and security checks may use Trivy.
@@ -280,7 +294,7 @@ make features
 make benchmarks
 ```
 
-CI also runs:
+The main CircleCI service build also runs:
 
 ```sh
 make lint
@@ -288,6 +302,15 @@ make sec
 make analyse
 make coverage
 ```
+
+The full CircleCI workflow additionally runs Docker image checks on non-`master` branches:
+
+```sh
+make platform=amd64 test-docker
+make platform=arm64 test-docker
+```
+
+On `master`, CircleCI also runs versioning, Docker release/manifest, and deploy jobs.
 
 Go support checks are still available:
 
