@@ -2,7 +2,7 @@ package model
 
 import "github.com/alexfalkowski/web/internal/site/meta"
 
-// NotFound model.
+// NotFound is the view model rendered by the not-found page and fragment.
 type NotFound struct {
 	Info *meta.Info
 }

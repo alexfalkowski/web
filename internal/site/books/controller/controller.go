@@ -7,7 +7,8 @@ import (
 	"github.com/alexfalkowski/web/internal/site/books/repository"
 )
 
-// NewBooks controller.
+// NewBooks returns an MVC controller that loads the books model from the
+// repository and renders it with the provided view.
 func NewBooks(repo repository.Repository, view *mvc.View) mvc.Controller[model.Books] {
 	return func(_ context.Context) (*mvc.View, *model.Books, error) {
 		model := repo.GetBooks()

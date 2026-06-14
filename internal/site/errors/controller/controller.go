@@ -9,7 +9,8 @@ import (
 	site "github.com/alexfalkowski/web/internal/site/meta"
 )
 
-// NewNotFound controller.
+// NewNotFound returns an MVC not-found controller that renders the full page for
+// normal requests and the partial fragment for PUT requests.
 func NewNotFound(info *site.Info, view *mvc.View, partialView *mvc.View) mvc.NotFoundController[model.NotFound] {
 	return func(ctx context.Context) (*mvc.View, *model.NotFound) {
 		notFound := &model.NotFound{Info: info}

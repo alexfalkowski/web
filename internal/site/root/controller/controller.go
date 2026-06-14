@@ -7,7 +7,8 @@ import (
 	"github.com/alexfalkowski/web/internal/site/root/model"
 )
 
-// NewRoot controller.
+// NewRoot returns an MVC controller that renders the root model with shared site
+// metadata.
 func NewRoot(info *meta.Info, view *mvc.View) mvc.Controller[model.Root] {
 	return func(_ context.Context) (*mvc.View, *model.Root, error) {
 		root := &model.Root{Info: info}

@@ -8,7 +8,7 @@ import "github.com/alexfalkowski/go-service/v2/time"
 // parsed as Go durations.
 //
 // Duration controls how often health registrations are evaluated/updated.
-// Timeout is reserved for probe/check timeout configuration.
+// Timeout controls the default online health check timeout.
 type Config struct {
 	// Duration is the health check evaluation interval (for example "5s").
 	Duration time.Duration `yaml:"duration,omitempty" json:"duration,omitempty" toml:"duration,omitempty" validate:"gt=0"`

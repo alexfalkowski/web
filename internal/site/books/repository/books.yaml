@@ -1,3 +1,4 @@
+# Books are rendered alphabetically by title; file order is not display order.
 books:
   -
     title: "Kanban: Successful Evolutionary Change for Your Technology Business"

@@ -19,6 +19,9 @@ import (
 // meta information) suitable for rendering by the MVC layer.
 type Repository interface {
 	// GetBooks returns the books view model loaded from the underlying storage.
+	//
+	// The default filesystem-backed implementation panics if the embedded books
+	// YAML file cannot be read or decoded.
 	GetBooks() *model.Books
 }
 

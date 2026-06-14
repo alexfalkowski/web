@@ -1,7 +1,9 @@
 Feature: Web
   Web is a website for lean-thoughts.com
+  Site rendering scenarios assert successful HTML responses, security headers,
+  expected page content, and the requested full or partial layout.
 
-  Scenario Outline: Visit sections
+  Scenario Outline: Render sections with expected layout and headers
     When I visit "<section>" with layout "<layout>"
     Then I should see "<section>"
 
