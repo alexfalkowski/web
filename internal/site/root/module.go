@@ -5,7 +5,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/root/route"
 )
 
-// Module for fx.
+// Module wires this package into the dependency graph.
 var Module = di.Module(
 	route.Module,
 )

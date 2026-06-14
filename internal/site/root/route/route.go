@@ -7,7 +7,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/root/view"
 )
 
-// Register root.
+// Register installs the root routes.
 func Register(info *meta.Info) {
 	view, partialView := view.NewRoot()
 

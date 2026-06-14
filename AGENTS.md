@@ -16,10 +16,11 @@ matching skill for the task.
 
 ## First steps
 
-1. Ensure the `bin/` submodule is present:
+1. Ensure the `bin/` submodule is present before using Make targets:
 
 ```sh
-make submodule
+git submodule sync
+git submodule update --init
 ```
 
 2. Install dependencies:
@@ -48,7 +49,7 @@ make help
 If you build locally, start the service with:
 
 ```sh
-./web server
+./web server -config file:test/.config/server.yml
 ```
 
 ## Testing policy
@@ -95,17 +96,17 @@ Embedded assets live in `internal/site/site.go` and include:
 
 - Dev config: `test/.config/server.yml`
 - Dev/test HTTP address: `tcp://:11000`
-- `make dev` runs with `-i file:test/.config/server.yml`
+- `make dev` runs with `-config file:test/.config/server.yml`
 
 The acceptance harness uses `test/nonnative.yml` and starts:
 
 - command: `server`
-- parameters: `-i file:.config/server.yml`
+- parameters: `-config file:.config/server.yml`
 - base URL: `http://localhost:11000`
 
 ## CI truth
 
-CircleCI is the source of truth for required checks. The main pipeline runs:
+CircleCI is the source of truth for required checks. The main service build job runs:
 
 - `make clean && make dep`
 - `make lint`
@@ -114,6 +115,14 @@ CircleCI is the source of truth for required checks. The main pipeline runs:
 - `make benchmarks`
 - `make analyse`
 - `make coverage`
+
+The non-`master` workflow also runs:
+
+- `make platform=amd64 test-docker`
+- `make platform=arm64 test-docker`
+
+The `master` workflow also runs versioning, Docker release/manifest, and deploy
+jobs.
 
 ## Intentional design choices
 
