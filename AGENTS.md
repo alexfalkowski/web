@@ -115,11 +115,16 @@ CircleCI is the source of truth for required checks. The main service build job 
 - `make benchmarks`
 - `make analyse`
 - `make coverage`
+- `make codecov-upload`
+
+`make codecov-upload` is CI upload behavior, not a read-only local validation
+step.
 
 The non-`master` workflow also runs:
 
 - `make platform=amd64 test-docker`
 - `make platform=arm64 test-docker`
+- `make sync push`
 
 The `master` workflow also runs versioning, Docker release/manifest, and deploy
 jobs.

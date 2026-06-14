@@ -111,6 +111,8 @@ Health timings are configured via the service config under the `health` section.
 
 Site responses include browser security headers such as `Content-Security-Policy`, `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`, and `Strict-Transport-Security`.
 
+The CSP intentionally permits jsDelivr for HTMX and Pico CSS, plus Cloudflare Insights script and beacon origins (`static.cloudflareinsights.com` and `cloudflareinsights.com`) for production browser analytics.
+
 > [!NOTE]
 > The acceptance suite verifies these headers for the page, robots, favicon, and not-found responses.
 
@@ -294,6 +296,12 @@ make features
 make benchmarks
 ```
 
+These targets run the acceptance harness from `test/`. Nonnative loads
+`test/nonnative.yml`, starts `../web server -config file:.config/server.yml` on
+`localhost:11000`, and writes Nonnative, server, and Cucumber output under
+`test/reports/`. Stop any local service already using `11000` before running the
+acceptance suites.
+
 The main CircleCI service build also runs:
 
 ```sh
@@ -301,13 +309,19 @@ make lint
 make sec
 make analyse
 make coverage
+make codecov-upload
 ```
 
-The full CircleCI workflow additionally runs Docker image checks on non-`master` branches:
+`make codecov-upload` is CI upload behavior, not a read-only local validation
+step.
+
+The full CircleCI workflow additionally runs Docker image checks and the
+submodule sync/push job on non-`master` branches:
 
 ```sh
 make platform=amd64 test-docker
 make platform=arm64 test-docker
+make sync push
 ```
 
 On `master`, CircleCI also runs versioning, Docker release/manifest, and deploy jobs.
