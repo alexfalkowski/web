@@ -9,6 +9,9 @@
 //
 // # Public API
 //
-// The only public type in this package is Config, which represents the root of
-// the service configuration file.
+// The public surface is:
+//   - Config, which represents the root of the service configuration file.
+//   - Module, which loads Config through the shared go-service configuration
+//     constructor and exposes the embedded base config plus health config to the
+//     DI graph.
 package config

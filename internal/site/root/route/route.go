@@ -7,7 +7,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/root/view"
 )
 
-// Register installs the root routes.
+// Register installs the GET and PUT root routes on the global MVC router.
 func Register(info *meta.Info) {
 	view, partialView := view.NewRoot()
 

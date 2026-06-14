@@ -12,12 +12,14 @@ const contentSecurityPolicy = "default-src 'self'; " +
 	"base-uri 'self'; " +
 	"frame-ancestors 'none'"
 
-// NewHandlers returns the HTTP middleware handlers used by the site.
+// NewHandlers returns the HTTP middleware handlers that enforce the site's
+// browser security header policy.
 func NewHandlers() []http.ChainedHandler {
 	return []http.ChainedHandler{Headers{}}
 }
 
-// Headers adds browser security headers to HTTP responses.
+// Headers adds the site's CSP, content type, referrer, frame, permissions, and
+// HSTS headers to HTTP responses before passing control to the next handler.
 type Headers struct{}
 
 // ServeHTTP implements negroni.Handler.

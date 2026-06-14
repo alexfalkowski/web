@@ -2,7 +2,7 @@ package favicon
 
 import "github.com/alexfalkowski/go-service/v2/net/http/mvc"
 
-// Register favicon.
+// Register installs the static favicon route on the global MVC router.
 func Register() {
 	mvc.StaticFile("/favicon.ico", "favicon/favicon.png")
 }

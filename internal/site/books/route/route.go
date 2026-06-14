@@ -7,7 +7,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/books/view"
 )
 
-// Register installs the books routes.
+// Register installs the GET and PUT /books routes on the global MVC router.
 func Register(repo repository.Repository) {
 	view, partialView := view.NewBooks()
 

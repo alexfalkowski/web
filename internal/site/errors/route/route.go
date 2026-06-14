@@ -7,7 +7,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/meta"
 )
 
-// Register not found.
+// Register installs the global not-found handler on the MVC router.
 func Register(info *meta.Info) {
 	view, partialView := view.NewNotFound()
 
