@@ -12,7 +12,10 @@ import (
 //
 // The struct tags allow it to be loaded from YAML, JSON, or TOML.
 type Config struct {
-	Health         *health.Config `yaml:"health,omitempty" json:"health,omitempty" toml:"health,omitempty" validate:"required"`
+	// Health is the required service-specific health probe configuration.
+	Health *health.Config `yaml:"health,omitempty" json:"health,omitempty" toml:"health,omitempty" validate:"required"`
+
+	// Config is the required shared go-service base configuration.
 	*config.Config `yaml:",inline" json:",inline" toml:",inline" validate:"required"`
 }
 

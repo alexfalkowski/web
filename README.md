@@ -122,14 +122,14 @@ The CSP intentionally permits jsDelivr for HTMX and Pico CSS, plus Cloudflare In
 
 Install:
 
-- [Go](https://go.dev/)
+- [Go](https://go.dev/) (see `go.mod`; check locally with `go version`)
 - [Ruby](https://www.ruby-lang.org/en/)
 - Bundler for the Ruby test harness
 
 If you are cloning the repo, initialize submodules before relying on Make targets:
 
 ```sh
-git clone --recurse-submodules git@github.com:alexfalkowski/web.git
+git clone --recurse-submodules https://github.com/alexfalkowski/web.git
 ```
 
 For an existing checkout where `bin/` may be absent or stale:
@@ -273,7 +273,8 @@ The canonical local example is:
 
 - `test/.config/server.yml`
 
-The local development config includes:
+The local development config in `test/.config/server.yml` includes this
+first-use excerpt:
 
 ```yaml
 health:
@@ -284,8 +285,13 @@ transport:
     address: tcp://:11000
 ```
 
+The service-specific `health` section is required. `health.duration` must be a
+positive Go duration and controls how often health registrations are evaluated;
+`health.timeout` may be zero or greater and controls the online health check
+timeout.
+
 > [!NOTE]
-> The full configuration shape also includes shared `go-service` sections such as environment, telemetry, transport, and version metadata.
+> The full local config also sets the environment, UUID generation, tint logging, Prometheus metrics, an OTLP tracer endpoint, HTTP limiter tokens/interval, and HTTP timeout. The wider configuration shape comes from shared `go-service` sections such as environment, telemetry, transport, and version metadata.
 
 ## 🧪 Testing
 
@@ -301,6 +307,15 @@ These targets run the acceptance harness from `test/`. Nonnative loads
 `localhost:11000`, and writes Nonnative, server, and Cucumber output under
 `test/reports/`. Stop any local service already using `11000` before running the
 acceptance suites.
+
+To run a narrower acceptance scope while iterating, pass feature paths relative
+to `test/`:
+
+```sh
+make features feature=features/site/site.feature
+make features feature=features/health/observability.feature
+make benchmarks feature=features/site/benchmark.feature
+```
 
 The main CircleCI service build also runs:
 
