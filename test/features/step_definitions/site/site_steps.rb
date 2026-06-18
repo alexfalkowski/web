@@ -47,10 +47,7 @@ FULL_LAYOUT_MARKERS = [
 
 When('I visit {string} with layout {string}') do |section, layout|
   @layout = layout
-  opts = {
-    headers: { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0', accept: 'text/html' },
-    read_timeout: 10, open_timeout: 10
-  }
+  opts = Web.http_options(headers: { user_agent: 'Web-client/1.0 HTTP/1.0', accept: 'text/html' })
   methods = {
     'full' => 'get',
     'partial' => 'put'
@@ -73,19 +70,13 @@ Then('I should see {string}') do |section|
 end
 
 When('I visit the robots file') do
-  opts = {
-    headers: { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0' },
-    read_timeout: 10, open_timeout: 10
-  }
+  opts = Web.http_options(headers: { user_agent: 'Web-client/1.0 HTTP/1.0' })
 
   @response = Web::V1.http.get_robots(opts)
 end
 
 When('I visit the favicon') do
-  opts = {
-    headers: { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0' },
-    read_timeout: 10, open_timeout: 10
-  }
+  opts = Web.http_options(headers: { user_agent: 'Web-client/1.0 HTTP/1.0' })
 
   @response = Web::V1.http.get_favicon(opts)
 end
@@ -105,15 +96,12 @@ Then('I should see the favicon') do
 end
 
 When('I visit a missing section with layout {string}') do |layout|
-  headers = { request_id: SecureRandom.uuid, user_agent: 'Web-client/1.0 HTTP/1.0' }
+  headers = { user_agent: 'Web-client/1.0 HTTP/1.0' }
   layout_headers = {
     'full' => { accept: 'text/html' },
     'partial' => { hx_request: 'true' }
   }
-  opts = {
-    headers: headers.merge(layout_headers[layout]),
-    read_timeout: 10, open_timeout: 10
-  }
+  opts = Web.http_options(headers: headers.merge(layout_headers[layout]))
   methods = {
     'full' => 'get',
     'partial' => 'put'

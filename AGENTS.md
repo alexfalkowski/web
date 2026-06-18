@@ -139,6 +139,17 @@ jobs.
 - Site metadata such as the footer year is intentionally computed at startup
   and shared through DI. Do not flag year rollover staleness unless the task is
   explicitly about changing metadata freshness.
+- This repository consumes shared Make targets from the `bin/` submodule. If a
+  one-command local CI preflight target is needed, it should be added to the
+  shared `bin` Make fragments rather than as a service-local target here. Do not
+  flag the lack of a root `verify`/`ci-checks` target as a feature gap by
+  default.
+- The Ruby code under `test/` is a local feature-test harness, not production
+  service code. Fixed localhost endpoints in `test/lib/**`, `test/nonnative.yml`,
+  and related feature helpers are intentional local harness assumptions unless
+  there is concrete evidence of current workflow breakage. Do not flag the lack
+  of environment-configurable HTTP or observability endpoints as a feature gap by
+  default.
 
 ## Gotchas
 
