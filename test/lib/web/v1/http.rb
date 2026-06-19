@@ -54,6 +54,14 @@ module Web
         get('/robots.txt', opts)
       end
 
+      # GET the sitemap.xml file.
+      #
+      # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#get}
+      # @return [Object] the response returned by the underlying HTTP client
+      def get_sitemap(opts = {})
+        get('/sitemap.xml', opts)
+      end
+
       # GET the browser favicon.
       #
       # @param opts [Hash] request options forwarded to {Nonnative::HTTPClient#get}

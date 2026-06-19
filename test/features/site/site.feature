@@ -18,6 +18,10 @@ Feature: Web
     When I visit the robots file
     Then I should see the robots file
 
+  Scenario: Visit sitemap
+    When I visit the sitemap file
+    Then I should see the sitemap file
+
   Scenario: Visit favicon
     When I visit the favicon
     Then I should see the favicon

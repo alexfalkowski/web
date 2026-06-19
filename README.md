@@ -25,12 +25,13 @@ At a high level the service:
 - serves the home page (`/`)
 - serves a books page (`/books`)
 - serves `robots.txt` (`/robots.txt`)
+- serves `sitemap.xml` (`/sitemap.xml`)
 - serves the favicon (`/favicon.ico`)
 - renders a custom not-found page for missing routes
 - adds browser security headers to site responses
 - exposes health, liveness/readiness, and metrics endpoints
 
-The HTML templates, error templates, books YAML data, favicon image, and robots file are embedded into the binary using `go:embed`. Full-page browser rendering also loads HTMX and Pico CSS from jsDelivr, with those origins allowed by the response CSP.
+The HTML templates, error templates, books YAML data, favicon image, robots file, and sitemap are embedded into the binary using `go:embed`. Full-page browser rendering also loads HTMX and Pico CSS from jsDelivr, with those origins allowed by the response CSP.
 
 ## 🏗️ Architecture overview
 
@@ -61,7 +62,7 @@ Routing and rendering are handled using:
 
 - `go-service/v2/net/http/mvc`
 
-Feature modules (e.g. books/root/robots) register their routes during DI wiring.
+Feature modules (e.g. books/root/robots/sitemap) register their routes during DI wiring.
 
 ### 📦 Embedded assets
 
@@ -71,6 +72,7 @@ The site package embeds:
 - the books YAML file used to render the books page
 - the favicon PNG
 - `robots.txt`
+- `sitemap.xml`
 
 See:
 
@@ -85,6 +87,7 @@ See:
 - `GET /books` renders the books page
 - `PUT /books` renders a partial/fragment version of the books page
 - `GET /robots.txt` serves the robots file as a static asset
+- `GET /sitemap.xml` serves the sitemap file as a static asset
 - `GET /favicon.ico` serves the browser favicon
 - missing routes render a `404` not-found page
 
@@ -114,7 +117,7 @@ Site responses include browser security headers such as `Content-Security-Policy
 The CSP intentionally permits jsDelivr for HTMX and Pico CSS, plus Cloudflare Insights script and beacon origins (`static.cloudflareinsights.com` and `cloudflareinsights.com`) for production browser analytics.
 
 > [!NOTE]
-> The acceptance suite verifies these headers for the page, robots, favicon, and not-found responses.
+> The acceptance suite verifies these headers for the page, robots, sitemap, favicon, and not-found responses.
 
 ## 🧰 Development
 
@@ -233,6 +236,7 @@ Pages:
 curl -i http://localhost:11000/
 curl -i http://localhost:11000/books
 curl -i http://localhost:11000/robots.txt
+curl -i http://localhost:11000/sitemap.xml
 curl -i http://localhost:11000/favicon.ico
 ```
 

@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://web.lean-thoughts.com/sitemap.xml
