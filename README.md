@@ -116,6 +116,8 @@ Site responses include browser security headers such as `Content-Security-Policy
 
 The CSP intentionally permits jsDelivr for HTMX and Pico CSS, plus Cloudflare Insights script and beacon origins (`static.cloudflareinsights.com` and `cloudflareinsights.com`) for production browser analytics.
 
+Embedded static assets also include `Cache-Control` and `ETag` headers, and matching `If-None-Match` requests return `304 Not Modified`.
+
 > [!NOTE]
 > The acceptance suite verifies these headers for the page, robots, sitemap, favicon, and not-found responses.
 

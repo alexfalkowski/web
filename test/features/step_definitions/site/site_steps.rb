@@ -125,6 +125,7 @@ Then('I should see the robots file') do
   expect(@response.code).to eq(200)
   expect(@response.headers[:content_type]).to eq('text/plain; charset=utf-8')
   expect_security_headers(@response)
+  expect_static_cache { |opts| Web::V1.http.get_robots(opts) }
   expect(@response.body).to include('User-agent: *')
   expect(@response.body).to include("Sitemap: #{SITEMAP_URL}")
 end
@@ -133,6 +134,7 @@ Then('I should see the sitemap file') do
   expect(@response.code).to eq(200)
   expect(@response.headers[:content_type]).to eq('text/xml; charset=utf-8')
   expect_security_headers(@response)
+  expect_static_cache { |opts| Web::V1.http.get_sitemap(opts) }
 
   xml = Nokogiri::XML.parse(@response.body)
   urls = xml.css('url loc').map(&:text)
@@ -144,6 +146,7 @@ Then('I should see the favicon') do
   expect(@response.code).to eq(200)
   expect(@response.headers[:content_type]).to eq('image/png')
   expect_security_headers(@response)
+  expect_static_cache { |opts| Web::V1.http.get_favicon(opts) }
   expect(@response.body.bytes.first(8)).to eq([137, 80, 78, 71, 13, 10, 26, 10])
 end
 
@@ -179,6 +182,32 @@ def expect_security_headers(response)
   SECURITY_HEADERS.each do |header, value|
     expect(response.headers[header]).to eq(value)
   end
+end
+
+def expect_static_cache(&)
+  etag = expect_static_cache_headers(@response)
+
+  expect_static_cache_revalidation(etag, &)
+end
+
+def expect_static_cache_headers(response)
+  etag = response.headers[:etag]
+
+  expect(response.headers[:cache_control]).to eq('public, max-age=3600')
+  expect(etag).not_to be_nil
+
+  etag
+end
+
+def expect_static_cache_revalidation(etag)
+  opts = Web.http_options(headers: {
+                            user_agent: 'Web-client/1.0 HTTP/1.0',
+                            if_none_match: etag
+                          })
+  response = yield(opts)
+
+  expect(response.code).to eq(304)
+  expect(response.body).to be_empty
 end
 
 def expect_page_text(section, html)
