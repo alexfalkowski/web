@@ -16,17 +16,28 @@ SECURITY_HEADERS = {
 EXPECTED_BOOKS = [
   {
     title: 'Kanban: Successful Evolutionary Change for Your Technology Business',
+    author: 'David J. Anderson',
+    topics: 'Kanban, evolutionary change, flow',
+    note: 'A practical introduction to improving delivery with visual work management and evolutionary change.',
     link: 'https://www.amazon.de/-/en/David-J-Anderson/dp/0984521402'
   },
   {
     title: 'Modern Software Engineering: Doing What Works to Build Better Software Faster',
+    author: 'David Farley',
+    topics: 'software engineering, continuous delivery, quality',
+    note: 'Connects engineering discipline with fast feedback, learning, and reliable software delivery.',
     link: 'https://www.amazon.de/-/en/Modern-Software-Engineering-Better-Faster/dp/0137314914'
   },
   {
     title: 'Team Topologies: Organizing Business and Technology Teams for Fast Flow',
+    author: 'Matthew Skelton and Manuel Pais',
+    topics: 'team design, cognitive load, flow',
+    note: 'Explains how team structures and interaction modes shape software delivery outcomes.',
     link: 'https://www.amazon.de/-/en/Team-Topologies-Organizing-Business-Technology/dp/1942788819'
   }
 ].freeze
+
+EXPECTED_BOOK_HEADERS = %w[Title Author Topics Why Link].freeze
 
 EXPECTED_PAGE_TEXT = {
   'root' => 'Vince Lombardi',
@@ -197,7 +208,12 @@ def expect_page_description(html, metadata, layout)
 end
 
 def expect_books(html)
+  expect(book_headers(html)).to eq(EXPECTED_BOOK_HEADERS)
   expect(book_rows(html)).to eq(EXPECTED_BOOKS)
+end
+
+def book_headers(html)
+  html.css('thead th').map(&:text)
 end
 
 def book_rows(html)
@@ -206,9 +222,15 @@ end
 
 def book_row(row)
   cells = row.css('td')
-  link = cells[1].at_css('a')
+  link = cells[4].at_css('a')
 
-  { title: cells[0].text, link: link[:href] }
+  {
+    title: cells[0].text,
+    author: cells[1].text,
+    topics: cells[2].text,
+    note: cells[3].text,
+    link: link[:href]
+  }
 end
 
 def expect_layout(html)
