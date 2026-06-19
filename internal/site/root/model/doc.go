@@ -2,8 +2,8 @@
 //
 // The types in this package represent the view model rendered by the root page
 // templates. They are populated by the root controllers and are intentionally
-// small: the root page primarily needs shared site metadata (see the meta
-// package) to render things like the running version and current year.
+// small: the root page primarily needs shared site metadata and page document
+// metadata (see the meta package).
 //
 // # Public API
 //

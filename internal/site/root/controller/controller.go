@@ -11,7 +11,13 @@ import (
 // metadata.
 func NewRoot(info *meta.Info, view *mvc.View) mvc.Controller[model.Root] {
 	return func(_ context.Context) (*mvc.View, *model.Root, error) {
-		root := &model.Root{Info: info}
+		root := &model.Root{
+			Info: info,
+			Page: meta.Page{
+				Title:       "Lean Thoughts",
+				Description: "Lean Thoughts shares ideas about lean thinking and continuous improvement.",
+			},
+		}
 
 		return view, root, nil
 	}

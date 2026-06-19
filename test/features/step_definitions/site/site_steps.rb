@@ -33,6 +33,21 @@ EXPECTED_PAGE_TEXT = {
   'books' => 'Margaret Fuller'
 }.freeze
 
+EXPECTED_PAGE_METADATA = {
+  'root' => {
+    title: 'Lean Thoughts',
+    description: 'Lean Thoughts shares ideas about lean thinking and continuous improvement.'
+  },
+  'books' => {
+    title: 'Books | Lean Thoughts',
+    description: 'Recommended books about lean thinking, software delivery, and team flow.'
+  },
+  'missing' => {
+    title: 'Page not found | Lean Thoughts',
+    description: 'The requested Lean Thoughts page could not be found.'
+  }
+}.freeze
+
 EXPECTED_NAV_LINKS = [
   { selector: 'a[href="/"][hx-put="/"]', text: 'Home' },
   { selector: 'a[href="/books"][hx-put="/books"]', text: 'Books' }
@@ -65,6 +80,7 @@ Then('I should see {string}') do |section|
   html = Nokogiri::HTML.parse(@response.body)
 
   expect_page_text(section, html)
+  expect_page_metadata(section, html, @layout)
   expect_books(html) if section == 'books'
   expect_layout(html)
 end
@@ -119,6 +135,7 @@ Then('I should see the page is missing with layout {string}') do |layout|
   html = Nokogiri::HTML.parse(@response.body)
 
   expect(html.text).to include('Page not found')
+  expect_page_metadata('missing', html, layout)
   expect(html.text.include?('Copyright')).to eq(layout == 'full')
 end
 
@@ -130,6 +147,28 @@ end
 
 def expect_page_text(section, html)
   expect(html.text).to include(EXPECTED_PAGE_TEXT.fetch(section))
+end
+
+def expect_page_metadata(section, html, layout)
+  metadata = EXPECTED_PAGE_METADATA.fetch(section)
+
+  expect_page_title(html, metadata)
+  expect_page_description(html, metadata, layout)
+end
+
+def expect_page_title(html, metadata)
+  title = html.at_css('title')
+
+  expect(title).not_to be_nil
+  expect(title.text).to eq(metadata.fetch(:title))
+end
+
+def expect_page_description(html, metadata, layout)
+  description = html.at_css('meta[name="description"]')
+
+  expect(description).not_to be_nil
+  expect(description[:content]).to eq(metadata.fetch(:description))
+  expect(description[:'hx-swap-oob']).to eq('true') if layout == 'partial'
 end
 
 def expect_books(html)

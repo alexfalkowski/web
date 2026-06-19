@@ -67,6 +67,10 @@ func (r *FileSystemRepository) GetBooks() *model.Books {
 	})
 
 	books.Info = r.info
+	books.Page = meta.Page{
+		Title:       "Books | Lean Thoughts",
+		Description: "Recommended books about lean thinking, software delivery, and team flow.",
+	}
 
 	return books
 }

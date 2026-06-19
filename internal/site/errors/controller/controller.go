@@ -13,7 +13,13 @@ import (
 // normal requests and the partial fragment for PUT requests.
 func NewNotFound(info *site.Info, view *mvc.View, partialView *mvc.View) mvc.NotFoundController[model.NotFound] {
 	return func(ctx context.Context) (*mvc.View, *model.NotFound) {
-		notFound := &model.NotFound{Info: info}
+		notFound := &model.NotFound{
+			Info: info,
+			Page: site.Page{
+				Title:       "Page not found | Lean Thoughts",
+				Description: "The requested Lean Thoughts page could not be found.",
+			},
+		}
 		req := meta.Request(ctx)
 
 		switch req.Method {

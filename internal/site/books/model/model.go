@@ -6,6 +6,7 @@ type (
 	// Books is the view model rendered by the books page.
 	Books struct {
 		Info  *meta.Info `yaml:"-"`
+		Page  meta.Page  `yaml:"-"`
 		Books []*Book    `yaml:"books,omitempty"`
 	}
 

@@ -20,6 +20,15 @@ func NewYear() Year {
 // It is used as display metadata in templates (for example in a footer).
 type Year int
 
+// Page contains document metadata for a specific rendered page.
+type Page struct {
+	// Title is rendered as the page's HTML document title.
+	Title string
+
+	// Description is rendered as the page's HTML meta description.
+	Description string
+}
+
 // NewInfo constructs an Info value from the service version and year.
 //
 // The returned value is intended to be shared across multiple page models so
