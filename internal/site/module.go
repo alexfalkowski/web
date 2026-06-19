@@ -9,6 +9,7 @@ import (
 	"github.com/alexfalkowski/web/internal/site/robots"
 	"github.com/alexfalkowski/web/internal/site/root"
 	"github.com/alexfalkowski/web/internal/site/security"
+	"github.com/alexfalkowski/web/internal/site/sitemap"
 )
 
 // Module wires this package into the dependency graph.
@@ -20,6 +21,7 @@ var Module = di.Module(
 	robots.Module,
 	root.Module,
 	security.Module,
+	sitemap.Module,
 	di.Constructor(NewFileSystem),
 	di.Constructor(NewLayout),
 )

@@ -14,6 +14,7 @@ import (
 //go:embed books/repository/*.yaml
 //go:embed favicon/*.png
 //go:embed robots/*.txt
+//go:embed sitemap/*.xml
 var filesystem embed.FS
 
 // NewFileSystem returns an `fs.FS` backed by the site's embedded assets.

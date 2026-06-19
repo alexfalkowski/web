@@ -48,6 +48,13 @@ EXPECTED_PAGE_METADATA = {
   }
 }.freeze
 
+EXPECTED_SITEMAP_URLS = [
+  'https://web.lean-thoughts.com/',
+  'https://web.lean-thoughts.com/books'
+].freeze
+
+SITEMAP_URL = 'https://web.lean-thoughts.com/sitemap.xml'
+
 EXPECTED_NAV_LINKS = [
   { selector: 'a[href="/"][hx-put="/"]', text: 'Home' },
   { selector: 'a[href="/books"][hx-put="/books"]', text: 'Books' }
@@ -91,6 +98,12 @@ When('I visit the robots file') do
   @response = Web::V1.http.get_robots(opts)
 end
 
+When('I visit the sitemap file') do
+  opts = Web.http_options(headers: { user_agent: 'Web-client/1.0 HTTP/1.0' })
+
+  @response = Web::V1.http.get_sitemap(opts)
+end
+
 When('I visit the favicon') do
   opts = Web.http_options(headers: { user_agent: 'Web-client/1.0 HTTP/1.0' })
 
@@ -102,6 +115,18 @@ Then('I should see the robots file') do
   expect(@response.headers[:content_type]).to eq('text/plain; charset=utf-8')
   expect_security_headers(@response)
   expect(@response.body).to include('User-agent: *')
+  expect(@response.body).to include("Sitemap: #{SITEMAP_URL}")
+end
+
+Then('I should see the sitemap file') do
+  expect(@response.code).to eq(200)
+  expect(@response.headers[:content_type]).to eq('text/xml; charset=utf-8')
+  expect_security_headers(@response)
+
+  xml = Nokogiri::XML.parse(@response.body)
+  urls = xml.css('url loc').map(&:text)
+
+  expect(urls).to eq(EXPECTED_SITEMAP_URLS)
 end
 
 Then('I should see the favicon') do
