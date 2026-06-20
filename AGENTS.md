@@ -14,12 +14,9 @@ Use `bin/AGENTS.md` for shared skills and cross-repository defaults.
 
 ## First steps
 
-1. Ensure the `bin/` submodule is present before using Make targets:
-
-```sh
-git submodule sync
-git submodule update --init
-```
+1. Ensure the `bin/` submodule is present before using Make targets. Use
+   `make submodule` once the shared checkout is present; see `bin/AGENTS.md`
+   for fresh-clone bootstrap details.
 
 2. Install dependencies:
 
@@ -44,11 +41,7 @@ make help
 - `make sec` runs security checks.
 - `make coverage` generates coverage artifacts under `test/reports/`.
 
-If you build locally, start the service with:
-
-```sh
-./web server -config file:test/.config/server.yml
-```
+Use `make dev` for local runtime work through the repository command surface.
 
 ## Testing policy
 
@@ -56,8 +49,8 @@ If you build locally, start the service with:
   `test/features/`.
 - Treat `make features` and `make benchmarks` as the authoritative behavioral
   checks.
-- `go test ./...` and `make specs` exist for tooling/build support, but they are
-  not the primary product test signal in this repo.
+- `make specs` exists for tooling/build support, but it is not the primary
+  product test signal in this repo.
 
 ## Architecture
 
@@ -136,6 +129,6 @@ jobs.
 ## Gotchas
 
 - `bin/` is a required submodule; stale or missing checkout breaks many targets.
-- Tooling expects external binaries such as `air`, `golangci-lint`,
-  `govulncheck`, `bundler`, `rubocop`, and `cucumber`.
+- Some Make targets expect external tools on `PATH`; run them through the
+  repository targets instead of invoking those tools directly.
 - Field alignment only targets packages listed in `.gofa` (`internal` here).
