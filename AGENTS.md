@@ -144,6 +144,21 @@ jobs.
   shared `bin` Make fragments rather than as a service-local target here. Do not
   flag the lack of a root `verify`/`ci-checks` target as a feature gap by
   default.
+- The root `Makefile` is intentionally a thin include wrapper around `bin/`.
+  It is not expected to work as a no-submodule bootstrap shim when
+  `bin/build/make/*.mak` files are absent.
+- If a checkout has not populated the `bin` submodule files yet, run the raw
+  bootstrap command directly:
+
+  ```sh
+  git submodule sync && git submodule update --init
+  ```
+
+- Do not flag the lack of a root-owned `make submodule` fallback as a project
+  workflow gap.
+- The SSH submodule URL is intentional for this repository. Read-only users may
+  override it in local Git configuration, but reviewers should not flag the SSH
+  default as a setup or project workflow gap.
 - CircleCI's `version` job runs the external `package` command from the
   `alexfalkowski/release` image. That release image owns GoReleaser config
   validation before release packaging. Do not flag the absence of a separate
@@ -151,6 +166,15 @@ jobs.
   unless there is concrete evidence that the release image no longer validates
   `.goreleaser.yml`, or that this repository has explicitly decided to own a
   pre-release GoReleaser check locally.
+- The `deploy` job intentionally does not have its own CircleCI `serial-group`.
+  Deployment ordering and desired state are owned by the downstream infraops app
+  configuration under `alexfalkowski/infraops/area/apps`, so do not flag
+  deploy-job serialization as a project workflow gap in this repository.
+- Docker image validation jobs intentionally run on non-master branches and are
+  not required again before the master `version`/`package` release step. The
+  service is deployed often through the downstream infraops app flow, so do not
+  flag the lack of master-branch `test-docker-*` gating before release writes
+  as a project workflow gap by default.
 - The Ruby code under `test/` is a local feature-test harness, not production
   service code. Ruby runtime selection for this harness is owned by the shared
   repository tooling and CI images. Do not flag the absence of a
@@ -165,6 +189,10 @@ jobs.
   there is concrete evidence of current workflow breakage. Do not flag the lack
   of environment-configurable HTTP or observability endpoints as a feature gap by
   default.
+- Feature and benchmark Cucumber runs intentionally share the configured HTML
+  report path in `test/.config/cucumber.yml`. Treat the JUnit XML reports and
+  coverage files as the durable CI artifacts; do not flag the lack of separate
+  feature and benchmark HTML report paths as a project workflow gap by default.
 
 ## Gotchas
 
