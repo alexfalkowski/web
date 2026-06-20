@@ -2,11 +2,9 @@
 
 Repo-specific guidance for this repository.
 
-## Shared skills
+## Shared guidance
 
-This repository uses the shared skills from `bin/skills/`. Read
-`bin/AGENTS.md` for the canonical shared skill list and use the smallest
-matching skill for the task.
+Use `bin/AGENTS.md` for shared skills and cross-repository defaults.
 
 ## What this repo is
 
@@ -131,68 +129,9 @@ jobs.
 
 ## Intentional design choices
 
-- The `/healthz` observer intentionally uses `go-health/v2`'s default
-  `server.NewOnlineRegistration` connectivity check. That check reaches public
-  connectivity URLs by default; do not flag the lack of configurable online
-  health URLs as an issue unless the task is explicitly about changing health
-  check semantics.
 - Site metadata such as the footer year is intentionally computed at startup
   and shared through DI. Do not flag year rollover staleness unless the task is
   explicitly about changing metadata freshness.
-- This repository consumes shared Make targets from the `bin/` submodule. If a
-  one-command local CI preflight target is needed, it should be added to the
-  shared `bin` Make fragments rather than as a service-local target here. Do not
-  flag the lack of a root `verify`/`ci-checks` target as a feature gap by
-  default.
-- The root `Makefile` is intentionally a thin include wrapper around `bin/`.
-  It is not expected to work as a no-submodule bootstrap shim when
-  `bin/build/make/*.mak` files are absent.
-- If a checkout has not populated the `bin` submodule files yet, run the raw
-  bootstrap command directly:
-
-  ```sh
-  git submodule sync && git submodule update --init
-  ```
-
-- Do not flag the lack of a root-owned `make submodule` fallback as a project
-  workflow gap.
-- The SSH submodule URL is intentional for this repository. Read-only users may
-  override it in local Git configuration, but reviewers should not flag the SSH
-  default as a setup or project workflow gap.
-- CircleCI's `version` job runs the external `package` command from the
-  `alexfalkowski/release` image. That release image owns GoReleaser config
-  validation before release packaging. Do not flag the absence of a separate
-  repository-local GoReleaser config validation job as a project gap by default
-  unless there is concrete evidence that the release image no longer validates
-  `.goreleaser.yml`, or that this repository has explicitly decided to own a
-  pre-release GoReleaser check locally.
-- The `deploy` job intentionally does not have its own CircleCI `serial-group`.
-  Deployment ordering and desired state are owned by the downstream infraops app
-  configuration under `alexfalkowski/infraops/area/apps`, so do not flag
-  deploy-job serialization as a project workflow gap in this repository.
-- Docker image validation jobs intentionally run on non-master branches and are
-  not required again before the master `version`/`package` release step. The
-  service is deployed often through the downstream infraops app flow, so do not
-  flag the lack of master-branch `test-docker-*` gating before release writes
-  as a project workflow gap by default.
-- The Ruby code under `test/` is a local feature-test harness, not production
-  service code. Ruby runtime selection for this harness is owned by the shared
-  repository tooling and CI images. Do not flag the absence of a
-  repository-local `.ruby-version`, `.tool-versions`, `mise.toml`, or Gemfile
-  `ruby` directive as a project gap by default unless there is concrete evidence
-  that the current workflow no longer supplies the expected runtime, or that this
-  repository has explicitly decided to own Ruby version selection locally for the
-  test harness.
-- The Ruby code under `test/` is a local feature-test harness, not production
-  service code. Fixed localhost endpoints in `test/lib/**`, `test/nonnative.yml`,
-  and related feature helpers are intentional local harness assumptions unless
-  there is concrete evidence of current workflow breakage. Do not flag the lack
-  of environment-configurable HTTP or observability endpoints as a feature gap by
-  default.
-- Feature and benchmark Cucumber runs intentionally share the configured HTML
-  report path in `test/.config/cucumber.yml`. Treat the JUnit XML reports and
-  coverage files as the durable CI artifacts; do not flag the lack of separate
-  feature and benchmark HTML report paths as a project workflow gap by default.
 
 ## Gotchas
 
