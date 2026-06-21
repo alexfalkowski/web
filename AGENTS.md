@@ -108,9 +108,6 @@ CircleCI is the source of truth for required checks. The main service build job 
 - `make coverage`
 - `make codecov-upload`
 
-`make codecov-upload` is CI upload behavior, not a read-only local validation
-step.
-
 The non-`master` workflow also runs:
 
 - `make platform=amd64 test-docker`
