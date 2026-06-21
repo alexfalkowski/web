@@ -1,13 +1,8 @@
 package robots
 
-import "github.com/alexfalkowski/go-service/v2/net/http/mvc"
+import "github.com/alexfalkowski/web/internal/site/static"
 
 // Register installs the static robots.txt route on the global MVC router.
 func Register() {
-	mvc.StaticFile(
-		"/robots.txt",
-		"robots/robots.txt",
-		mvc.WithCacheControl("public, max-age=3600"),
-		mvc.WithCacheValidators(),
-	)
+	static.File("/robots.txt", "robots/robots.txt")
 }
