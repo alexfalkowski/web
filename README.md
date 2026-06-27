@@ -99,16 +99,17 @@ See:
 
 ### 🫀 Health and observability
 
-The service registers health checks and exposes standard probe endpoints:
+The HTTP transport registers service-prefixed health and observability routes.
+With the local service name `web`, the endpoints are:
 
-- `/healthz` (overall health / online)
-- `/livez` (liveness)
-- `/readyz` (readiness)
-- `/metrics` (Prometheus metrics)
+- `/web/healthz` (overall health / online)
+- `/web/livez` (liveness)
+- `/web/readyz` (readiness)
+- `/web/metrics` (Prometheus metrics)
 
 Health timings are configured via the service config under the `health` section.
 
-`/healthz` uses the default `go-health/v2` online registration, so it can depend on public connectivity. `/livez` and `/readyz` use noop checks.
+`/web/healthz` uses the default `go-health/v2` online registration, so it can depend on public connectivity. `/web/livez` and `/web/readyz` use noop checks.
 
 ### 🛡️ Response headers
 
@@ -252,10 +253,10 @@ curl -i -X PUT http://localhost:11000/books
 Health:
 
 ```sh
-curl -i http://localhost:11000/healthz
-curl -i http://localhost:11000/livez
-curl -i http://localhost:11000/readyz
-curl -i http://localhost:11000/metrics
+curl -i http://localhost:11000/web/healthz
+curl -i http://localhost:11000/web/livez
+curl -i http://localhost:11000/web/readyz
+curl -i http://localhost:11000/web/metrics
 ```
 
 Not found:

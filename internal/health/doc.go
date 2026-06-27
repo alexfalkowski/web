@@ -1,13 +1,14 @@
 // Package health configures and exposes health and liveness/readiness endpoints.
 //
 // This package registers health checks and HTTP observers against the service's
-// server, enabling standard Kubernetes-style probes:
+// server. The HTTP transport exposes those observers on service-prefixed
+// operation routes; for this service's local name, the routes are:
 //
-//   - /healthz   overall health (default online connectivity check)
-//   - /livez     liveness (noop)
-//   - /readyz    readiness (noop)
+//   - /web/healthz   overall health (default online connectivity check)
+//   - /web/livez     liveness (noop)
+//   - /web/readyz    readiness (noop)
 //
-// The /healthz observer is backed by go-health/v2's default online
+// The /web/healthz observer is backed by go-health/v2's default online
 // registration, so restricted public connectivity can affect the overall health
 // response. The liveness and readiness observers use noop registrations.
 //
