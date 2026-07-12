@@ -11,14 +11,15 @@ module Web
     # and forwards an optional options hash to the base client.
     #
     # @example Fetch the root page
-    #   client = Web::V1::HTTP.new("http://localhost:11000")
-    #   response = client.get_root
+    #   client = Web::V1::HTTP.new('http://localhost:11000')
+    #   response = client.get_root(Web.http_options)
     #
     # @example Request the partial version of a page (PUT)
-    #   response = client.put_books
+    #   response = client.put_books(Web.http_options)
     #
     # @example Pass options through to the underlying client (headers, query, etc.)
-    #   response = client.get_books(headers: { "Accept" => "text/html" })
+    #   opts = Web.http_options(headers: { accept: 'text/html' })
+    #   response = client.get_books(opts)
     #
     # @see Web::V1.http Convenience constructor for a memoized instance
     class HTTP < Nonnative::HTTPClient

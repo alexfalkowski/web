@@ -109,18 +109,31 @@ With the local service name `web`, the endpoints are:
 
 Health timings are configured via the service config under the `health` section.
 
-`/web/healthz` uses the default `go-health/v2` online registration, so it can depend on public connectivity. `/web/livez` and `/web/readyz` use noop checks.
+`/web/metrics` is registered only when metrics are enabled with
+`telemetry.metrics.kind: prometheus`, as in the local config. Disabled or OTLP
+metrics do not expose that route.
+
+`/web/healthz` uses the default `go-health/v2` online registration. It checks
+`https://google.com/generate_204`, `https://cp.cloudflare.com/generate_204`, and
+`https://connectivity-check.ubuntu.com` concurrently, and reports healthy when
+any one responds with `200 OK` or `204 No Content`. Restricted public
+connectivity can therefore affect overall health. `/web/livez` and
+`/web/readyz` use noop checks.
 
 ### 🛡️ Response headers
 
 Site responses include browser security headers such as `Content-Security-Policy`, `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`, and `Strict-Transport-Security`.
 
-The CSP intentionally permits jsDelivr for HTMX and Pico CSS, plus Cloudflare Insights script and beacon origins (`static.cloudflareinsights.com` and `cloudflareinsights.com`) for production browser analytics.
+The CSP intentionally permits jsDelivr for HTMX and Pico CSS, plus Cloudflare Insights script and beacon origins (`static.cloudflareinsights.com` and `cloudflareinsights.com`) for production browser analytics. Its `style-src` also contains the explicit security exception `'unsafe-inline'`.
 
-Embedded static assets also include `Cache-Control` and `ETag` headers, and matching `If-None-Match` requests return `304 Not Modified`.
+The static routes `/robots.txt`, `/sitemap.xml`, and `/favicon.ico` return
+`Cache-Control: public, max-age=3600` and weak `ETag` validators. Matching
+`If-None-Match` requests return `304 Not Modified`.
 
 > [!NOTE]
-> The acceptance suite verifies these headers for the page, robots, sitemap, favicon, and not-found responses.
+> The acceptance suite verifies security headers across page, static-asset, and
+> not-found responses. It verifies the cache policy separately for the three
+> static routes.
 
 ## 🧰 Development
 
@@ -131,8 +144,13 @@ Install:
 - [Go](https://go.dev/) (see `go.mod`; check locally with `go version`)
 - [Ruby](https://www.ruby-lang.org/en/)
 - Bundler for the Ruby test harness
+- GNU Make 4 or newer (`gmake` on macOS when `/usr/bin/make` is incompatible)
 
 If you are cloning the repo, initialize submodules before relying on Make targets:
+
+> [!IMPORTANT]
+> The required `bin` submodule uses a GitHub SSH URL. Configure GitHub SSH
+> access before running the recursive clone or submodule update commands.
 
 ```sh
 git clone --recurse-submodules https://github.com/alexfalkowski/web.git
@@ -280,6 +298,16 @@ The canonical local example is:
 
 - `test/.config/server.yml`
 
+The `-config` flag (short form `-c`) accepts these source routes:
+
+- `file:<path>` loads a file and selects its decoder from the extension.
+- `env:<ENV_VAR>` loads an environment variable whose value has the form
+  `<extension>:<base64-content>` (for example, `yaml:...`).
+- Omitting the flag uses default lookup for
+  `web.{yaml,yml,hjson,toml,json}` in the executable directory, the user config
+  directory under `web/`, and `/etc/web/`. This lookup requires `HOME` or
+  `XDG_CONFIG_HOME`; use an explicit source when neither is available.
+
 The local development config in `test/.config/server.yml` includes this
 first-use excerpt:
 
@@ -295,7 +323,7 @@ transport:
 The service-specific `health` section is required. `health.duration` must be a
 positive Go duration and controls how often health registrations are evaluated;
 `health.timeout` may be zero or greater and controls the online health check
-timeout.
+timeout. A zero timeout selects the `go-health/v2` default of 30 seconds.
 
 > [!NOTE]
 > The full local config also sets the environment, UUID generation, tint logging, Prometheus metrics, an OTLP tracer endpoint, HTTP limiter tokens/interval, and HTTP timeout. The wider configuration shape comes from shared `go-service` sections such as environment, telemetry, transport, and version metadata.

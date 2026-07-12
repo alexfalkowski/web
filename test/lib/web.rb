@@ -47,10 +47,11 @@ module Web
   #
   # @example Get a client and fetch the root page
   #   client = Web::V1.http
-  #   response = client.get_root
+  #   response = client.get_root(Web.http_options)
   #
   # @example Pass request options through to the underlying HTTP client
-  #   Web::V1.http.get_books(headers: { 'Accept' => 'text/html' })
+  #   opts = Web.http_options(headers: { accept: 'text/html' })
+  #   Web::V1.http.get_books(opts)
   #
   # @see Web::V1::HTTP
   module V1
