@@ -9,7 +9,9 @@
 //   - /web/readyz    readiness (noop)
 //
 // The /web/healthz observer is backed by go-health/v2's default online
-// registration, so restricted public connectivity can affect the overall health
+// registration. It checks the Google, Cloudflare, and Ubuntu connectivity URLs
+// concurrently and reports healthy when any one returns 200 OK or 204 No
+// Content, so restricted public connectivity can affect the overall health
 // response. The liveness and readiness observers use noop registrations.
 //
 // The configuration for probe timing is provided via Config and is expected to
