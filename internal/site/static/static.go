@@ -19,6 +19,5 @@ func File(pattern, name string) bool {
 		pattern,
 		name,
 		mvc.WithCacheControl(cacheControl),
-		mvc.WithCacheValidators(),
 	)
 }
