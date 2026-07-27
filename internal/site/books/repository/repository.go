@@ -1,12 +1,11 @@
 package repository
 
 import (
-	"bytes"
 	"cmp"
 	"io/fs"
 	"slices"
 
-	"github.com/alexfalkowski/go-service/v2/encoding/yaml"
+	"github.com/alexfalkowski/go-service/v2/encoding"
 	"github.com/alexfalkowski/go-service/v2/ptr"
 	"github.com/alexfalkowski/go-service/v2/runtime"
 	"github.com/alexfalkowski/web/internal/site/books/model"
@@ -30,20 +29,15 @@ type Repository interface {
 // The default implementation reads books data from a YAML file in the provided
 // filesystem, decodes it with the provided YAML encoder, and annotates the
 // resulting model with the provided meta Info.
-func NewRepository(info *meta.Info, filesystem fs.FS, enc *yaml.Encoder) Repository {
-	return &FileSystemRepository{info: info, filesystem: filesystem, enc: enc}
+func NewRepository(info *meta.Info, fs fs.FS, m *encoding.Map) Repository {
+	return &FileSystemRepository{info: info, fs: fs, m: m}
 }
 
 // FileSystemRepository is a Repository backed by an `fs.FS` containing a YAML file.
 type FileSystemRepository struct {
-	// info is injected meta information that is attached to the returned model.
 	info *meta.Info
-
-	// filesystem is expected to contain `books/repository/books.yaml`.
-	filesystem fs.FS
-
-	// enc decodes the YAML payload into the books model.
-	enc *yaml.Encoder
+	fs   fs.FS
+	m    *encoding.Map
 }
 
 // GetBooks loads, decodes, and returns the books view model.
@@ -54,12 +48,13 @@ type FileSystemRepository struct {
 // This method panics if the YAML file cannot be read or decoded (via
 // `runtime.Must`).
 func (r *FileSystemRepository) GetBooks() *model.Books {
-	db, err := fs.ReadFile(r.filesystem, "books/repository/books.yaml")
+	file, err := r.fs.Open("books/repository/books.yaml")
 	runtime.Must(err)
+	defer file.Close()
 
 	books := ptr.Zero[model.Books]()
 
-	err = r.enc.Decode(bytes.NewBuffer(db), books)
+	err = r.m.Get("yaml").Decode(file, books)
 	runtime.Must(err)
 
 	slices.SortFunc(books.Books, func(a, b *model.Book) int {
