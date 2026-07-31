@@ -35,7 +35,7 @@ make help
 - `make dep` installs Go deps and Ruby gems.
 - `make lint` runs Go lint plus Ruby lint.
 - `make build` builds the binary as `./web`.
-- `make dev` runs the service with `file:test/.config/server.yml`.
+- `make dev` runs the service with `file:test/.config/server.yaml`.
 - `make features` runs the primary Cucumber acceptance suite.
 - `make benchmarks` runs the `@benchmark` Cucumber scenarios.
 - `make sec` runs security checks.
@@ -85,14 +85,14 @@ Embedded assets live in `internal/site/site.go` and include:
 
 ## Config and local runtime
 
-- Dev config: `test/.config/server.yml`
+- Dev config: `test/.config/server.yaml`
 - Dev/test HTTP address: `tcp://:11000`
-- `make dev` runs with `-config file:test/.config/server.yml`
+- `make dev` runs with `-config file:test/.config/server.yaml`
 
 The acceptance harness uses `test/nonnative.yml` and starts:
 
 - command: `server`
-- parameters: `-config file:.config/server.yml`
+- parameters: `-config file:.config/server.yaml`
 - base URL: `http://localhost:11000`
 
 ## CI truth
