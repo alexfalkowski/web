@@ -225,7 +225,7 @@ Use the dev target (recommended while iterating):
 make dev
 ```
 
-This runs the service with `test/.config/server.yml`.
+This runs the service with `test/.config/server.yaml`.
 
 #### 🧱 2) Build and run the binary
 
@@ -238,7 +238,7 @@ make build
 Then run it:
 
 ```sh
-./web server -config file:test/.config/server.yml
+./web server -config file:test/.config/server.yaml
 ```
 
 > [!IMPORTANT]
@@ -248,7 +248,7 @@ Then run it:
 
 Once the server is running, you can verify key endpoints.
 
-If you started the service with `make dev` or with `-config file:test/.config/server.yml`,
+If you started the service with `make dev` or with `-config file:test/.config/server.yaml`,
 the HTTP server listens on `localhost:11000`.
 
 Pages:
@@ -284,7 +284,7 @@ curl -i http://localhost:11000/not-a-real-page
 ```
 
 > [!CAUTION]
-> Ports, TLS, telemetry, and other server settings come from configuration. Do not treat `test/.config/server.yml` as a production configuration.
+> Ports, TLS, telemetry, and other server settings come from configuration. Do not treat `test/.config/server.yaml` as a production configuration.
 
 ## ⚙️ Configuration
 
@@ -296,7 +296,7 @@ It embeds the shared base config from `go-service` and adds a `health` section.
 
 The canonical local example is:
 
-- `test/.config/server.yml`
+- `test/.config/server.yaml`
 
 The `-config` flag (short form `-c`) accepts these source routes:
 
@@ -308,7 +308,7 @@ The `-config` flag (short form `-c`) accepts these source routes:
   directory under `web/`, and `/etc/web/`. This lookup requires `HOME` or
   `XDG_CONFIG_HOME`; use an explicit source when neither is available.
 
-The local development config in `test/.config/server.yml` includes this
+The local development config in `test/.config/server.yaml` includes this
 first-use excerpt:
 
 ```yaml
@@ -338,7 +338,7 @@ make benchmarks
 ```
 
 These targets run the acceptance harness from `test/`. Nonnative loads
-`test/nonnative.yml`, starts `../web server -config file:.config/server.yml` on
+`test/nonnative.yml`, starts `../web server -config file:.config/server.yaml` on
 `localhost:11000`, and writes Nonnative, server, and Cucumber output under
 `test/reports/`. Stop any local service already using `11000` before running the
 acceptance suites.
