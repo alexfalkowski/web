@@ -11,6 +11,6 @@ import (
 func Register(repo repository.Repository) {
 	view, partialView := view.NewBooks()
 
-	mvc.Get("/books", controller.NewBooks(repo, view))
-	mvc.Put("/books", controller.NewBooks(repo, partialView))
+	mvc.Get("/books", controller.NewBooks(repo, view), mvc.WithRouteUnauthenticated())
+	mvc.Put("/books", controller.NewBooks(repo, partialView), mvc.WithRouteUnauthenticated())
 }
