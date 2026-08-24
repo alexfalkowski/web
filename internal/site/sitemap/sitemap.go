@@ -1,8 +1,11 @@
 package sitemap
 
-import "github.com/alexfalkowski/web/internal/site/static"
+import (
+	"github.com/alexfalkowski/go-service/v2/net/http/mvc"
+	"github.com/alexfalkowski/web/internal/site/static"
+)
 
 // Register installs the static sitemap.xml route on the global MVC router.
-func Register() {
-	static.File("/sitemap.xml", "sitemap/sitemap.xml")
+func Register(server *mvc.Server) {
+	static.File(server, "/sitemap.xml", "sitemap/sitemap.xml")
 }

@@ -8,9 +8,9 @@ import (
 )
 
 // Register installs the GET and PUT root routes on the global MVC router.
-func Register(info *meta.Info) {
-	view, partialView := view.NewRoot()
+func Register(server *mvc.Server, info *meta.Info) {
+	view, partialView := view.NewRoot(server)
 
-	mvc.Get("/{$}", controller.NewRoot(info, view), mvc.WithRouteUnauthenticated())
-	mvc.Put("/{$}", controller.NewRoot(info, partialView), mvc.WithRouteUnauthenticated())
+	server.Get("/{$}", controller.NewRoot(info, view), mvc.WithRouteUnauthenticated())
+	server.Put("/{$}", controller.NewRoot(info, partialView), mvc.WithRouteUnauthenticated())
 }

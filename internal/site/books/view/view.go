@@ -4,6 +4,6 @@ import "github.com/alexfalkowski/go-service/v2/net/http/mvc"
 
 // NewBooks returns the full-page and partial views bound to the books
 // templates.
-func NewBooks() (*mvc.View, *mvc.View) {
-	return mvc.NewViewPair("books/view/books.tmpl")
+func NewBooks(server *mvc.Server) (*mvc.View, *mvc.View) {
+	return server.NewViewPair("books/view/books.tmpl")
 }
