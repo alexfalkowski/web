@@ -8,9 +8,9 @@ import (
 )
 
 // Register installs the GET and PUT /books routes on the global MVC router.
-func Register(repo repository.Repository) {
-	view, partialView := view.NewBooks()
+func Register(server *mvc.Server, repo repository.Repository) {
+	view, partialView := view.NewBooks(server)
 
-	mvc.Get("/books", controller.NewBooks(repo, view), mvc.WithRouteUnauthenticated())
-	mvc.Put("/books", controller.NewBooks(repo, partialView), mvc.WithRouteUnauthenticated())
+	server.Get("/books", controller.NewBooks(repo, view), mvc.WithRouteUnauthenticated())
+	server.Put("/books", controller.NewBooks(repo, partialView), mvc.WithRouteUnauthenticated())
 }

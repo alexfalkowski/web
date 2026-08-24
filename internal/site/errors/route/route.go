@@ -8,8 +8,8 @@ import (
 )
 
 // Register installs the global not-found handler on the MVC router.
-func Register(info *meta.Info) {
-	view, partialView := view.NewNotFound()
+func Register(server *mvc.Server, info *meta.Info) {
+	view, partialView := view.NewNotFound(server)
 
-	mvc.NotFound(controller.NewNotFound(info, view, partialView))
+	server.NotFound(controller.NewNotFound(info, view, partialView))
 }

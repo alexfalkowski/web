@@ -14,8 +14,8 @@ const cacheControl = "public, max-age=3600"
 // Keep the shared MVC weak metadata validator intentionally. The embedded
 // assets are stable for the lifetime of a running binary, and this avoids
 // repo-local hashing or buffering.
-func File(pattern, name string) bool {
-	return mvc.StaticFile(
+func File(server *mvc.Server, pattern, name string) bool {
+	return server.StaticFile(
 		pattern,
 		name,
 		mvc.WithCacheControl(cacheControl),
