@@ -1,0 +1,31 @@
+site.name: Lean Thoughts
+site.copyright: "Copyright © {{.Year}} Lean Thoughts (v{{.Version}}). Alle Rechte vorbehalten."
+nav.home: Startseite
+nav.books: Bücher
+nav.code: Quellcode
+root.title: Lean Thoughts
+root.description: Lean Thoughts teilt Ideen zu Lean Thinking und kontinuierlicher Verbesserung.
+root.heading: Willkommen
+root.quote: „Perfektion ist unerreichbar, aber wenn wir nach Perfektion streben, können wir Spitzenleistungen erzielen.“
+root.introduction: Lean Thinking ist letztlich eine Denkweise, eine Art, die Welt durch kontinuierliche Verbesserung zu betrachten.
+root.contact: Kontakt aufnehmen
+books.title: Bücher | Lean Thoughts
+books.description: Empfohlene Bücher über Lean Thinking, Softwarebereitstellung und den Arbeitsfluss in Teams.
+books.heading: Bücher
+books.quote: „Wer heute liest, führt morgen.“
+books.introduction: Lesen ist wichtig, weil es den Geist entwickelt und wertvolles Wissen und Lektionen fürs Leben vermittelt.
+books.column.title: Titel
+books.column.author: Autor
+books.column.topics: Themen
+books.column.note: Warum
+books.column.link: Link
+books.kanban.topics: Kanban, evolutionäre Veränderung, Arbeitsfluss
+books.kanban.note: Eine praktische Einführung in bessere Softwarebereitstellung durch visuelles Arbeitsmanagement und evolutionäre Veränderung.
+books.team_topologies.topics: Teamgestaltung, kognitive Belastung, Arbeitsfluss
+books.team_topologies.note: Erklärt, wie Teamstrukturen und Interaktionsmuster die Ergebnisse der Softwarebereitstellung prägen.
+books.modern_software_engineering.topics: Softwareentwicklung, Continuous Delivery, Qualität
+books.modern_software_engineering.note: Verbindet technische Disziplin mit schnellem Feedback, Lernen und zuverlässiger Softwarebereitstellung.
+not_found.title: Seite nicht gefunden | Lean Thoughts
+not_found.description: Die angeforderte Seite von Lean Thoughts konnte nicht gefunden werden.
+not_found.heading: Seite nicht gefunden
+not_found.message: Die angeforderte Seite konnte nicht gefunden werden.

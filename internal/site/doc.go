@@ -12,6 +12,7 @@
 // # Public API
 //
 //   - Module assembles and registers all site submodules and shared constructors.
-//   - NewFileSystem returns an fs.FS backed by embedded site assets.
+//   - NewFileSystem returns an io.FS backed by embedded site assets.
 //   - NewLayout returns the MVC layout used by the site templates.
+//   - NewCatalog loads embedded English, German, and Spanish messages for MVC.
 package site

@@ -1,0 +1,31 @@
+site.name: Lean Thoughts
+site.copyright: "Copyright © {{.Year}} Lean Thoughts (v{{.Version}}). Todos los derechos reservados."
+nav.home: Inicio
+nav.books: Libros
+nav.code: Código
+root.title: Lean Thoughts
+root.description: Lean Thoughts comparte ideas sobre pensamiento lean y mejora continua.
+root.heading: Bienvenido
+root.quote: «La perfección no se puede alcanzar, pero si la perseguimos podemos lograr la excelencia».
+root.introduction: El pensamiento lean es, en esencia, una mentalidad, una forma de ver el mundo a través de la mejora continua.
+root.contact: Contactar
+books.title: Libros | Lean Thoughts
+books.description: Libros recomendados sobre pensamiento lean, entrega de software y flujo de trabajo en equipo.
+books.heading: Libros
+books.quote: «Hoy un lector, mañana un líder».
+books.introduction: Leer es importante porque desarrolla la mente y aporta conocimientos y lecciones valiosas para la vida.
+books.column.title: Título
+books.column.author: Autor
+books.column.topics: Temas
+books.column.note: Por qué
+books.column.link: Enlace
+books.kanban.topics: Kanban, cambio evolutivo, flujo
+books.kanban.note: Una introducción práctica a la mejora de la entrega mediante la gestión visual del trabajo y el cambio evolutivo.
+books.team_topologies.topics: diseño de equipos, carga cognitiva, flujo
+books.team_topologies.note: Explica cómo las estructuras de los equipos y sus formas de interacción influyen en la entrega de software.
+books.modern_software_engineering.topics: ingeniería de software, entrega continua, calidad
+books.modern_software_engineering.note: Conecta la disciplina de ingeniería con la retroalimentación rápida, el aprendizaje y la entrega fiable de software.
+not_found.title: Página no encontrada | Lean Thoughts
+not_found.description: No se ha podido encontrar la página solicitada de Lean Thoughts.
+not_found.heading: Página no encontrada
+not_found.message: No se ha podido encontrar la página solicitada.

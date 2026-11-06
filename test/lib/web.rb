@@ -14,6 +14,10 @@ module Web
   require 'nokogiri'
 
   require 'web/v1/http'
+  require 'web/site'
+  require 'web/locale'
+  require 'web/site/assertions'
+  require 'web/locale/assertions'
 
   class << self
     ##

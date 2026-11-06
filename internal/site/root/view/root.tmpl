@@ -1,18 +1,18 @@
 {{ define "content" }}
   <article>
-    <h2>Welcome</h2>
+    <h2>{{.Localizer.Text "root.heading"}}</h2>
     <blockquote>
-      “Perfection is not attainable, but if we chase perfection we can catch excellence.”
+      {{.Localizer.Text "root.quote"}}
       <footer>
         <cite>— Vince Lombardi</cite>
       </footer>
     </blockquote>
     <p>
-      Lean Thinking is ultimately a mindset, a way of viewing the world through continuous improvement.
+      {{.Localizer.Text "root.introduction"}}
     </p>
     <footer>
       <small>
-        <a href="mailto:af@lean-thoughts.com" target="_blank" rel="noopener noreferrer">Reach out</a>
+        <a href="mailto:af@lean-thoughts.com" target="_blank" rel="noopener noreferrer">{{.Localizer.Text "root.contact"}}</a>
       </small>
     </footer>
   </article>

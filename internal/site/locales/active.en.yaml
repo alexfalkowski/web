@@ -1,0 +1,31 @@
+site.name: Lean Thoughts
+site.copyright: "Copyright © {{.Year}} Lean Thoughts (v{{.Version}}). All Rights Reserved."
+nav.home: Home
+nav.books: Books
+nav.code: Code
+root.title: Lean Thoughts
+root.description: Lean Thoughts shares ideas about lean thinking and continuous improvement.
+root.heading: Welcome
+root.quote: “Perfection is not attainable, but if we chase perfection we can catch excellence.”
+root.introduction: Lean Thinking is ultimately a mindset, a way of viewing the world through continuous improvement.
+root.contact: Reach out
+books.title: Books | Lean Thoughts
+books.description: Recommended books about lean thinking, software delivery, and team flow.
+books.heading: Books
+books.quote: “Today a reader, tomorrow a leader.”
+books.introduction: Reading is important because it develops your mind and gives you excessive knowledge and lessons of life.
+books.column.title: Title
+books.column.author: Author
+books.column.topics: Topics
+books.column.note: Why
+books.column.link: Link
+books.kanban.topics: Kanban, evolutionary change, flow
+books.kanban.note: A practical introduction to improving delivery with visual work management and evolutionary change.
+books.team_topologies.topics: team design, cognitive load, flow
+books.team_topologies.note: Explains how team structures and interaction modes shape software delivery outcomes.
+books.modern_software_engineering.topics: software engineering, continuous delivery, quality
+books.modern_software_engineering.note: Connects engineering discipline with fast feedback, learning, and reliable software delivery.
+not_found.title: Page not found | Lean Thoughts
+not_found.description: The requested Lean Thoughts page could not be found.
+not_found.heading: Page not found
+not_found.message: The page you requested could not be found.

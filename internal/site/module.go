@@ -23,5 +23,6 @@ var Module = di.Module(
 	security.Module,
 	sitemap.Module,
 	di.Constructor(NewFileSystem),
+	di.Constructor(NewCatalog),
 	di.Constructor(NewLayout),
 )

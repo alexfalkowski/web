@@ -20,12 +20,13 @@ func NewYear() Year {
 // It is used as display metadata in templates (for example in a footer).
 type Year int
 
-// Page contains document metadata for a specific rendered page.
+// Page contains catalog message IDs for a page's document metadata.
+// Templates resolve them with the request's MVC localizer.
 type Page struct {
-	// Title is rendered as the page's HTML document title.
+	// Title identifies the message rendered as the HTML document title.
 	Title string
 
-	// Description is rendered as the page's HTML meta description.
+	// Description identifies the message rendered as the HTML meta description.
 	Description string
 }
 

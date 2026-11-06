@@ -14,8 +14,8 @@ func NewRoot(info *meta.Info, view *mvc.View) mvc.Controller[model.Root] {
 		root := &model.Root{
 			Info: info,
 			Page: meta.Page{
-				Title:       "Lean Thoughts",
-				Description: "Lean Thoughts shares ideas about lean thinking and continuous improvement.",
+				Title:       "root.title",
+				Description: "root.description",
 			},
 		}
 

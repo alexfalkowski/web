@@ -64,11 +64,38 @@ Routing and rendering are handled using:
 
 Feature modules (e.g. books/root/robots/sitemap) register their routes during DI wiring.
 
+### 🌍 Localization
+
+Full pages, partial renders, and not-found pages select English, German, or
+Spanish from the request's `Accept-Language` header. English is the default when
+the header is absent, invalid, or unsupported. Regional preferences such as
+`de-CH` and `es-MX` match the corresponding supported language.
+
+```sh
+curl -i -H 'Accept-Language: de' http://localhost:11000/books
+curl -i -X PUT -H 'Accept-Language: es' http://localhost:11000/books
+```
+
+Localized HTML responses include `Content-Language` and `Vary: Accept-Language`;
+full pages also set `<html lang>` to the selected language. Page metadata,
+navigation, page text, book topics and recommendation notes, and the footer are
+translated. Book titles, author names, links, and static assets retain their
+original values.
+
+Messages live in `internal/site/locales/active.{en,de,es}.yaml` and are embedded
+in the binary. `site.NewCatalog` loads them during startup, so invalid catalogs
+or message template syntax prevent startup. MVC supplies `.Localizer` to each
+template; `.Localizer.Text` resolves message IDs, and `.Localizer.Message`
+supplies variables such as the footer year and version. Missing translations
+fall back to English. Missing message IDs or invalid message variables fail
+rendering. Templates escape localized text as HTML.
+
 ### 📦 Embedded assets
 
 The site package embeds:
 
 - templates for layout, pages, and not-found errors
+- English, German, and Spanish message catalogs
 - the books YAML file used to render the books page
 - the favicon PNG
 - `robots.txt`

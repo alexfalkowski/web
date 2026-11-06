@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{.Localizer.Tag}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{.Model.Page.Title}}</title>
-    <meta id="description" name="description" content="{{.Model.Page.Description}}">
+    <title>{{.Localizer.Text .Model.Page.Title}}</title>
+    <meta id="description" name="description" content="{{.Localizer.Text .Model.Page.Description}}">
     <link rel="icon" href="/favicon.ico" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@4.0.0/dist/htmx.min.js" integrity="sha384-BvJpBiO8Kh31EqtJe5DRIeWrHWnCGkwytKs9NKFi86Hhw96dEqdEMzZDeK9iEGTc" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.classless.min.css" />
@@ -13,12 +13,12 @@
     <header>
       <nav>
         <ul>
-          <li><strong>Lean Thoughts</strong></li>
+          <li><strong>{{.Localizer.Text "site.name"}}</strong></li>
         </ul>
         <ul>
-          <li><a href="/" hx-put="/" hx-target="#main" hx-push-url="true">Home</a></li>
-          <li><a href="/books" hx-put="/books" hx-target="#main" hx-push-url="true">Books</a></li>
-          <li><a href="https://github.com/Lean-Thoughts" target="_blank" rel="noopener noreferrer">Code</a></li>
+          <li><a href="/" hx-put="/" hx-target="#main" hx-push-url="true">{{.Localizer.Text "nav.home"}}</a></li>
+          <li><a href="/books" hx-put="/books" hx-target="#main" hx-push-url="true">{{.Localizer.Text "nav.books"}}</a></li>
+          <li><a href="https://github.com/Lean-Thoughts" target="_blank" rel="noopener noreferrer">{{.Localizer.Text "nav.code"}}</a></li>
         </ul>
       </nav>
     </header>
@@ -27,7 +27,7 @@
     </main>
     <footer>
       <small>
-        Copyright © {{.Model.Info.Year}} Lean Thoughts (v{{.Model.Info.Version}}). All Rights Reserved.
+        {{.Localizer.Message "site.copyright" .Model.Info}}
       </small>
     </footer>
   </body>

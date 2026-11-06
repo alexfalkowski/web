@@ -16,8 +16,8 @@ func NewNotFound(info *site.Info, view *mvc.View, partialView *mvc.View) mvc.Not
 		notFound := &model.NotFound{
 			Info: info,
 			Page: site.Page{
-				Title:       "Page not found | Lean Thoughts",
-				Description: "The requested Lean Thoughts page could not be found.",
+				Title:       "not_found.title",
+				Description: "not_found.description",
 			},
 		}
 		req := meta.Request(ctx)
