@@ -2,10 +2,10 @@ package repository
 
 import (
 	"cmp"
-	"io/fs"
 	"slices"
 
 	"github.com/alexfalkowski/go-service/v2/encoding"
+	"github.com/alexfalkowski/go-service/v2/io"
 	"github.com/alexfalkowski/go-service/v2/ptr"
 	"github.com/alexfalkowski/go-service/v2/runtime"
 	"github.com/alexfalkowski/web/internal/site/books/model"
@@ -29,14 +29,14 @@ type Repository interface {
 // The default implementation reads books data from a YAML file in the provided
 // filesystem, decodes it with the provided YAML encoder, and annotates the
 // resulting model with the provided meta Info.
-func NewRepository(info *meta.Info, fs fs.FS, m *encoding.Map) Repository {
+func NewRepository(info *meta.Info, fs io.FS, m *encoding.Map) Repository {
 	return &FileSystemRepository{info: info, fs: fs, m: m}
 }
 
-// FileSystemRepository is a Repository backed by an `fs.FS` containing a YAML file.
+// FileSystemRepository is a Repository backed by an `io.FS` containing a YAML file.
 type FileSystemRepository struct {
 	info *meta.Info
-	fs   fs.FS
+	fs   io.FS
 	m    *encoding.Map
 }
 
@@ -63,8 +63,8 @@ func (r *FileSystemRepository) GetBooks() *model.Books {
 
 	books.Info = r.info
 	books.Page = meta.Page{
-		Title:       "Books | Lean Thoughts",
-		Description: "Recommended books about lean thinking, software delivery, and team flow.",
+		Title:       "books.title",
+		Description: "books.description",
 	}
 
 	return books

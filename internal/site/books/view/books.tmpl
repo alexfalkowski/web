@@ -1,23 +1,23 @@
 {{ define "content" }}
   <article>
-    <h2>Books</h2>
+    <h2>{{.Localizer.Text "books.heading"}}</h2>
     <blockquote>
-      “Today a reader, tomorrow a leader.”
+      {{.Localizer.Text "books.quote"}}
       <footer>
         <cite>— Margaret Fuller</cite>
       </footer>
     </blockquote>
     <p>
-      Reading is important because it develops your mind and gives you excessive knowledge and lessons of life.
+      {{.Localizer.Text "books.introduction"}}
     </p>
     <table>
       <thead>
         <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Author</th>
-          <th scope="col">Topics</th>
-          <th scope="col">Why</th>
-          <th scope="col">Link</th>
+          <th scope="col">{{.Localizer.Text "books.column.title"}}</th>
+          <th scope="col">{{.Localizer.Text "books.column.author"}}</th>
+          <th scope="col">{{.Localizer.Text "books.column.topics"}}</th>
+          <th scope="col">{{.Localizer.Text "books.column.note"}}</th>
+          <th scope="col">{{.Localizer.Text "books.column.link"}}</th>
         </tr>
       </thead>
       <tbody>
@@ -25,8 +25,8 @@
           <tr>
             <td>{{.Title}}</td>
             <td>{{.Author}}</td>
-            <td>{{.Topics}}</td>
-            <td>{{.Note}}</td>
+            <td>{{$.Localizer.Text .Topics}}</td>
+            <td>{{$.Localizer.Text .Note}}</td>
             <td><a href="{{.Link}}" target="_blank" rel="noopener noreferrer">{{.Link}}</a></td>
           </tr>
         {{end}}

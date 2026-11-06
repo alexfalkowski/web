@@ -10,6 +10,8 @@ type Books struct {
 }
 
 // Book describes one book recommendation loaded from the embedded YAML content.
+// Topics and Note are catalog message IDs resolved by the request's MVC localizer;
+// titles, authors, and links retain their original values in every language.
 type Book struct {
 	Title  string `yaml:"title,omitempty"`
 	Author string `yaml:"author,omitempty"`
