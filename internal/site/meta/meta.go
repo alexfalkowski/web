@@ -3,7 +3,7 @@ package meta
 import (
 	"time"
 
-	"github.com/alexfalkowski/go-service/v2/env"
+	"github.com/alexfalkowski/go-service/v3/env"
 )
 
 // NewYear returns the current calendar year.

@@ -4,10 +4,10 @@ import (
 	"cmp"
 	"slices"
 
-	"github.com/alexfalkowski/go-service/v2/encoding"
-	"github.com/alexfalkowski/go-service/v2/io"
-	"github.com/alexfalkowski/go-service/v2/ptr"
-	"github.com/alexfalkowski/go-service/v2/runtime"
+	"github.com/alexfalkowski/go-service/v3/encoding"
+	"github.com/alexfalkowski/go-service/v3/io"
+	"github.com/alexfalkowski/go-service/v3/ptr"
+	"github.com/alexfalkowski/go-service/v3/runtime"
 	"github.com/alexfalkowski/web/internal/site/books/model"
 	"github.com/alexfalkowski/web/internal/site/meta"
 )

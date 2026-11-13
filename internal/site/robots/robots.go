@@ -1,7 +1,7 @@
 package robots
 
 import (
-	"github.com/alexfalkowski/go-service/v2/net/http/mvc"
+	"github.com/alexfalkowski/go-service/v3/net/http/mvc"
 	"github.com/alexfalkowski/web/internal/site/static"
 )
 

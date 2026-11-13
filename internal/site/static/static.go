@@ -1,6 +1,6 @@
 package static
 
-import "github.com/alexfalkowski/go-service/v2/net/http/mvc"
+import "github.com/alexfalkowski/go-service/v3/net/http/mvc"
 
 const cacheControl = "public, max-age=3600"
 

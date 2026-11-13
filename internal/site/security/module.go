@@ -1,8 +1,8 @@
 package security
 
-import "github.com/alexfalkowski/go-service/v2/di"
+import "github.com/alexfalkowski/go-signal/v2"
 
 // Module wires this package into the dependency graph.
-var Module = di.Module(
-	di.Constructor(NewHandlers),
+var Module = signal.Module(
+	signal.Constructor(NewHandlers),
 )

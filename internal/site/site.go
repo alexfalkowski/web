@@ -3,9 +3,9 @@ package site
 import (
 	"embed"
 
-	"github.com/alexfalkowski/go-service/v2/i18n"
-	"github.com/alexfalkowski/go-service/v2/io"
-	"github.com/alexfalkowski/go-service/v2/net/http/mvc"
+	"github.com/alexfalkowski/go-service/v3/i18n"
+	"github.com/alexfalkowski/go-service/v3/io"
+	"github.com/alexfalkowski/go-service/v3/net/http/mvc"
 	"golang.org/x/text/language"
 )
 

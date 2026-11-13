@@ -1,8 +1,8 @@
 package robots
 
-import "github.com/alexfalkowski/go-service/v2/di"
+import "github.com/alexfalkowski/go-signal/v2"
 
 // Module wires this package into the dependency graph.
-var Module = di.Module(
-	di.Register(Register),
+var Module = signal.Module(
+	signal.Register(Register),
 )
