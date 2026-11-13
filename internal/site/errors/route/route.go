@@ -2,9 +2,9 @@ package route
 
 import (
 	"github.com/alexfalkowski/go-service/v3/net/http/mvc"
-	"github.com/alexfalkowski/web/internal/site/errors/controller"
-	"github.com/alexfalkowski/web/internal/site/errors/view"
-	"github.com/alexfalkowski/web/internal/site/meta"
+	"github.com/alexfalkowski/web/v2/internal/site/errors/controller"
+	"github.com/alexfalkowski/web/v2/internal/site/errors/view"
+	"github.com/alexfalkowski/web/v2/internal/site/meta"
 )
 
 // Register installs the global not-found handler on the MVC router.

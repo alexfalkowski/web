@@ -1,6 +1,6 @@
 package model
 
-import "github.com/alexfalkowski/web/internal/site/meta"
+import "github.com/alexfalkowski/web/v2/internal/site/meta"
 
 // NotFound is the view model rendered by the not-found page and fragment.
 type NotFound struct {

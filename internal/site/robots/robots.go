@@ -2,7 +2,7 @@ package robots
 
 import (
 	"github.com/alexfalkowski/go-service/v3/net/http/mvc"
-	"github.com/alexfalkowski/web/internal/site/static"
+	"github.com/alexfalkowski/web/v2/internal/site/static"
 )
 
 // Register installs the static robots.txt route on the global MVC router.

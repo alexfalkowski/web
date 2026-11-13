@@ -5,8 +5,8 @@ import (
 	"github.com/alexfalkowski/go-service/v3/net/http"
 	"github.com/alexfalkowski/go-service/v3/net/http/meta"
 	"github.com/alexfalkowski/go-service/v3/net/http/mvc"
-	"github.com/alexfalkowski/web/internal/site/errors/model"
-	site "github.com/alexfalkowski/web/internal/site/meta"
+	"github.com/alexfalkowski/web/v2/internal/site/errors/model"
+	site "github.com/alexfalkowski/web/v2/internal/site/meta"
 )
 
 // NewNotFound returns an MVC not-found controller that renders the full page for

@@ -2,7 +2,7 @@ package config
 
 import (
 	"github.com/alexfalkowski/go-service/v3/config"
-	"github.com/alexfalkowski/web/internal/health"
+	"github.com/alexfalkowski/web/v2/internal/health"
 )
 
 // Config is the root configuration for the web service.

@@ -2,14 +2,14 @@ package site
 
 import (
 	"github.com/alexfalkowski/go-signal/v2"
-	"github.com/alexfalkowski/web/internal/site/books"
-	"github.com/alexfalkowski/web/internal/site/errors"
-	"github.com/alexfalkowski/web/internal/site/favicon"
-	"github.com/alexfalkowski/web/internal/site/meta"
-	"github.com/alexfalkowski/web/internal/site/robots"
-	"github.com/alexfalkowski/web/internal/site/root"
-	"github.com/alexfalkowski/web/internal/site/security"
-	"github.com/alexfalkowski/web/internal/site/sitemap"
+	"github.com/alexfalkowski/web/v2/internal/site/books"
+	"github.com/alexfalkowski/web/v2/internal/site/errors"
+	"github.com/alexfalkowski/web/v2/internal/site/favicon"
+	"github.com/alexfalkowski/web/v2/internal/site/meta"
+	"github.com/alexfalkowski/web/v2/internal/site/robots"
+	"github.com/alexfalkowski/web/v2/internal/site/root"
+	"github.com/alexfalkowski/web/v2/internal/site/security"
+	"github.com/alexfalkowski/web/v2/internal/site/sitemap"
 )
 
 // Module wires this package into the dependency graph.

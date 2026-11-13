@@ -2,9 +2,9 @@ package route
 
 import (
 	"github.com/alexfalkowski/go-service/v3/net/http/mvc"
-	"github.com/alexfalkowski/web/internal/site/books/controller"
-	"github.com/alexfalkowski/web/internal/site/books/repository"
-	"github.com/alexfalkowski/web/internal/site/books/view"
+	"github.com/alexfalkowski/web/v2/internal/site/books/controller"
+	"github.com/alexfalkowski/web/v2/internal/site/books/repository"
+	"github.com/alexfalkowski/web/v2/internal/site/books/view"
 )
 
 // Register installs the GET and PUT /books routes on the global MVC router.
