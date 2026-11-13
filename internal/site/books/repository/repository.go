@@ -8,8 +8,8 @@ import (
 	"github.com/alexfalkowski/go-service/v3/io"
 	"github.com/alexfalkowski/go-service/v3/ptr"
 	"github.com/alexfalkowski/go-service/v3/runtime"
-	"github.com/alexfalkowski/web/internal/site/books/model"
-	"github.com/alexfalkowski/web/internal/site/meta"
+	"github.com/alexfalkowski/web/v2/internal/site/books/model"
+	"github.com/alexfalkowski/web/v2/internal/site/meta"
 )
 
 // Repository provides access to the books data used by the site.

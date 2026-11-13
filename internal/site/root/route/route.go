@@ -2,9 +2,9 @@ package route
 
 import (
 	"github.com/alexfalkowski/go-service/v3/net/http/mvc"
-	"github.com/alexfalkowski/web/internal/site/meta"
-	"github.com/alexfalkowski/web/internal/site/root/controller"
-	"github.com/alexfalkowski/web/internal/site/root/view"
+	"github.com/alexfalkowski/web/v2/internal/site/meta"
+	"github.com/alexfalkowski/web/v2/internal/site/root/controller"
+	"github.com/alexfalkowski/web/v2/internal/site/root/view"
 )
 
 // Register installs the GET and PUT root routes on the global MVC router.

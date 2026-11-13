@@ -3,8 +3,8 @@ package controller
 import (
 	"github.com/alexfalkowski/go-service/v3/context"
 	"github.com/alexfalkowski/go-service/v3/net/http/mvc"
-	"github.com/alexfalkowski/web/internal/site/books/model"
-	"github.com/alexfalkowski/web/internal/site/books/repository"
+	"github.com/alexfalkowski/web/v2/internal/site/books/model"
+	"github.com/alexfalkowski/web/v2/internal/site/books/repository"
 )
 
 // NewBooks returns an MVC controller that loads the books model from the

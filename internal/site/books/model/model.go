@@ -1,6 +1,6 @@
 package model
 
-import "github.com/alexfalkowski/web/internal/site/meta"
+import "github.com/alexfalkowski/web/v2/internal/site/meta"
 
 // Books is the view model rendered by the books page.
 type Books struct {

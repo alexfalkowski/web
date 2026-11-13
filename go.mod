@@ -1,4 +1,4 @@
-module github.com/alexfalkowski/web
+module github.com/alexfalkowski/web/v2
 
 go 1.27.0
 
