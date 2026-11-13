@@ -1,6 +1,6 @@
 package security
 
-import "github.com/alexfalkowski/go-service/v2/net/http"
+import "github.com/alexfalkowski/go-service/v3/net/http"
 
 const contentSecurityPolicy = "default-src 'self'; " +
 	"script-src 'self' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; " +

@@ -50,7 +50,7 @@ Key directories:
 
 ### 🧩 Dependency injection and modules
 
-The service is wired with dependency injection using `go-service/v2/di`. The top-level module that assembles the server is:
+The service is wired with dependency injection using `go-signal/v2`. The top-level module that assembles the server is:
 
 - `internal/cmd.Module`
 
@@ -60,7 +60,7 @@ It pulls in configuration, health, and site modules.
 
 Routing and rendering are handled using:
 
-- `go-service/v2/net/http/mvc`
+- `go-service/v3/net/http/mvc`
 
 Feature modules (e.g. books/root/robots/sitemap) register their routes during DI wiring.
 

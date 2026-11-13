@@ -1,7 +1,7 @@
 package site
 
 import (
-	"github.com/alexfalkowski/go-service/v2/di"
+	"github.com/alexfalkowski/go-signal/v2"
 	"github.com/alexfalkowski/web/internal/site/books"
 	"github.com/alexfalkowski/web/internal/site/errors"
 	"github.com/alexfalkowski/web/internal/site/favicon"
@@ -13,7 +13,7 @@ import (
 )
 
 // Module wires this package into the dependency graph.
-var Module = di.Module(
+var Module = signal.Module(
 	meta.Module,
 	books.Module,
 	errors.Module,
@@ -22,7 +22,7 @@ var Module = di.Module(
 	root.Module,
 	security.Module,
 	sitemap.Module,
-	di.Constructor(NewFileSystem),
-	di.Constructor(NewCatalog),
-	di.Constructor(NewLayout),
+	signal.Constructor(NewFileSystem),
+	signal.Constructor(NewCatalog),
+	signal.Constructor(NewLayout),
 )

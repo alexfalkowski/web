@@ -60,15 +60,15 @@ Use `make dev` for local runtime work through the repository command surface.
 - Health registrations and observers: `internal/health`
 - Site feature composition: `internal/site`
 
-The service is assembled with `go-service/v2/di`.
+The service is assembled with `go-signal/v2`.
 
 Common pattern:
 
-- Each feature exposes `var Module = di.Module(...)`.
-- Constructors use `di.Constructor(...)`.
-- Route registration usually uses `di.Register(Register)`.
+- Each feature exposes `var Module = signal.Module(...)`.
+- Constructors use `signal.Constructor(...)`.
+- Route registration usually uses `signal.Register(Register)`.
 
-Routing uses `go-service/v2/net/http/mvc`.
+Routing uses `go-service/v3/net/http/mvc`.
 
 Common route pattern:
 
