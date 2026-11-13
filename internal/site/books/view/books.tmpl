@@ -1,36 +1,31 @@
 {{ define "content" }}
-  <article>
-    <h2>{{.Localizer.Text "books.heading"}}</h2>
-    <blockquote>
-      {{.Localizer.Text "books.quote"}}
-      <footer>
-        <cite>— Margaret Fuller</cite>
-      </footer>
-    </blockquote>
-    <p>
-      {{.Localizer.Text "books.introduction"}}
-    </p>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">{{.Localizer.Text "books.column.title"}}</th>
-          <th scope="col">{{.Localizer.Text "books.column.author"}}</th>
-          <th scope="col">{{.Localizer.Text "books.column.topics"}}</th>
-          <th scope="col">{{.Localizer.Text "books.column.note"}}</th>
-          <th scope="col">{{.Localizer.Text "books.column.link"}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{range .Model.Books}}
-          <tr>
-            <td>{{.Title}}</td>
-            <td>{{.Author}}</td>
-            <td>{{$.Localizer.Text .Topics}}</td>
-            <td>{{$.Localizer.Text .Note}}</td>
-            <td><a href="{{.Link}}" target="_blank" rel="noopener noreferrer">{{.Link}}</a></td>
-          </tr>
-        {{end}}
-      </tbody>
-    </table>
-  </article>
+  <section class="books-page">
+    <header class="page-header">
+      <div>
+        <h1>{{.Localizer.Text "books.heading"}}</h1>
+        <p class="introduction">{{.Localizer.Text "books.introduction"}}</p>
+      </div>
+      <blockquote class="quote">
+        <p>{{.Localizer.Text "books.quote"}}</p>
+        <footer>
+          <cite>— Margaret Fuller</cite>
+        </footer>
+      </blockquote>
+    </header>
+    <div class="book-grid">
+      {{range .Model.Books}}
+        <article class="card book-card">
+          <div class="card-body">
+            <div class="book-topics">{{$.Localizer.Text .Topics}}</div>
+            <h2 class="card-title">{{.Title}}</h2>
+            <div class="book-author">{{.Author}}</div>
+            <p class="book-note">{{$.Localizer.Text .Note}}</p>
+            <div class="card-actions">
+              <a class="btn btn-outline" href="{{.Link}}" target="_blank" rel="noopener noreferrer"><span>{{$.Localizer.Text "books.view"}}</span> <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+      {{end}}
+    </div>
+  </section>
 {{ end }}

@@ -16,6 +16,7 @@ module Web
 
       def expect_page_text(section, html)
         expect(html.text).to include(Web::Site::EXPECTED_PAGE_TEXT.fetch(section))
+        expect(html.at_css('h1').text).to eq(Web::Site::EXPECTED_PAGE_HEADINGS.fetch(section))
       end
 
       def expect_page_metadata(section, html, layout)
@@ -41,28 +42,29 @@ module Web
       end
 
       def expect_books(html)
-        expect(book_headers(html)).to eq(Web::Site::EXPECTED_BOOK_HEADERS)
-        expect(book_rows(html)).to eq(Web::Site::EXPECTED_BOOKS)
+        expect(book_cards(html)).to eq(Web::Site::EXPECTED_BOOKS)
+        expect_book_links(html, 'View book')
       end
 
-      def book_headers(html)
-        html.css('thead th').map(&:text)
+      def expect_book_links(html, text)
+        html.css('.book-grid a').each do |link|
+          expect(link.at_css('span').text).to eq(text)
+          expect(link[:target]).to eq('_blank')
+          expect(link[:rel].split).to include('noopener', 'noreferrer')
+        end
       end
 
-      def book_rows(html)
-        html.css('tbody tr').map { |row| book_row(row) }
+      def book_cards(html)
+        html.css('.book-grid article').map { |card| book_card(card) }
       end
 
-      def book_row(row)
-        cells = row.css('td')
-        link = cells[4].at_css('a')
-
+      def book_card(card)
         {
-          title: cells[0].text,
-          author: cells[1].text,
-          topics: cells[2].text,
-          note: cells[3].text,
-          link: link[:href]
+          title: card.at_css('h2').text,
+          author: card.at_css('.book-author').text,
+          topics: card.at_css('.book-topics').text,
+          note: card.at_css('.book-note').text,
+          link: card.at_css('a')[:href]
         }
       end
 

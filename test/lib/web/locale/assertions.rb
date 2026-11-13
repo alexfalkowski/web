@@ -7,8 +7,8 @@ module Web
       def expect_localized_books(html, language)
         expected = Web::Site::EXPECTED_BOOKS.zip(Web::Locale::BOOK_DETAILS.fetch(language)).map { |book, details| book.merge(details) }
 
-        expect(book_headers(html)).to eq(Web::Locale::BOOK_HEADERS.fetch(language))
-        expect(book_rows(html)).to eq(expected)
+        expect(book_cards(html)).to eq(expected)
+        expect_book_links(html, Web::Locale::BOOK_LINK_TEXT.fetch(language))
       end
 
       def expect_localized_layout(html, language)
@@ -17,8 +17,8 @@ module Web
         layout = Web::Locale::LAYOUTS.fetch(language)
 
         {
-          'a[href="/"][hx-put="/"]' => layout.fetch(:home),
-          'a[href="/books"][hx-put="/books"]' => layout.fetch(:books),
+          'nav li a[href="/"][hx-put="/"]' => layout.fetch(:home),
+          'nav li a[href="/books"][hx-put="/books"]' => layout.fetch(:books),
           'a[href="https://github.com/Lean-Thoughts"]' => layout.fetch(:code)
         }.each do |selector, text|
           expect(html.at_css(selector).text).to eq(text)

@@ -1,4 +1,5 @@
 site.name: Lean Thoughts
+site.skip: Skip to content
 site.copyright: "Copyright © {{.Year}} Lean Thoughts (v{{.Version}}). All Rights Reserved."
 nav.home: Home
 nav.books: Books
@@ -6,6 +7,8 @@ nav.code: Code
 root.title: Lean Thoughts
 root.description: Lean Thoughts shares ideas about lean thinking and continuous improvement.
 root.heading: Welcome
+root.statement: Small steps. Lasting change.
+root.books: Explore the bookshelf
 root.quote: “Perfection is not attainable, but if we chase perfection we can catch excellence.”
 root.introduction: Lean Thinking is ultimately a mindset, a way of viewing the world through continuous improvement.
 root.contact: Reach out
@@ -14,11 +17,7 @@ books.description: Recommended books about lean thinking, software delivery, and
 books.heading: Books
 books.quote: “Today a reader, tomorrow a leader.”
 books.introduction: Reading is important because it develops your mind and gives you excessive knowledge and lessons of life.
-books.column.title: Title
-books.column.author: Author
-books.column.topics: Topics
-books.column.note: Why
-books.column.link: Link
+books.view: View book
 books.kanban.topics: Kanban, evolutionary change, flow
 books.kanban.note: A practical introduction to improving delivery with visual work management and evolutionary change.
 books.team_topologies.topics: team design, cognitive load, flow

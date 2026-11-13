@@ -40,7 +40,10 @@ module Web
       }
     ].freeze
 
-    EXPECTED_BOOK_HEADERS = %w[Title Author Topics Why Link].freeze
+    EXPECTED_PAGE_HEADINGS = {
+      'root' => 'Small steps. Lasting change.',
+      'books' => 'Books'
+    }.freeze
 
     EXPECTED_PAGE_TEXT = {
       'root' => 'Vince Lombardi',
@@ -70,8 +73,8 @@ module Web
     SITEMAP_URL = 'https://web.lean-thoughts.com/sitemap.xml'
 
     EXPECTED_NAV_LINKS = [
-      { selector: 'a[href="/"][hx-put="/"]', text: 'Home' },
-      { selector: 'a[href="/books"][hx-put="/books"]', text: 'Books' }
+      { selector: 'nav li a[href="/"][hx-put="/"]', text: 'Home' },
+      { selector: 'nav li a[href="/books"][hx-put="/books"]', text: 'Books' }
     ].freeze
 
     FULL_LAYOUT_MARKERS = [

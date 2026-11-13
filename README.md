@@ -30,7 +30,9 @@ At a high level the service:
 - adds browser security headers to site responses
 - exposes health, liveness/readiness, and metrics endpoints
 
-The HTML templates, error templates, books YAML data, favicon image, robots file, and sitemap are embedded into the binary using `go:embed`. Full-page browser rendering also loads HTMX and Pico CSS from jsDelivr, with those origins allowed by the response CSP.
+The HTML templates, error templates, books YAML data, favicon image, robots file, and sitemap are embedded into the binary using `go:embed`. Full-page browser rendering loads HTMX and selected daisyUI 5.8.0 CSS components with the Silk theme from jsDelivr. All CDN resources are pinned with integrity hashes. Stylesheets are loaded individually to avoid combined CDN CSS source maps that DevTools would fetch outside the CSP's `connect-src` allowlist. The full layout includes the site's responsive styles; no frontend build step or additional JavaScript runtime is required.
+
+The home page uses an editorial layout with system fonts, and the books page presents recommendations as responsive cards with localized “View book” links.
 
 ## 🏗️ Architecture overview
 
@@ -150,7 +152,7 @@ connectivity can therefore affect overall health. `/web/livez` and
 
 Site responses include browser security headers such as `Content-Security-Policy`, `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`, and `Strict-Transport-Security`.
 
-The CSP intentionally permits jsDelivr for HTMX and Pico CSS, plus Cloudflare Insights script and beacon origins (`static.cloudflareinsights.com` and `cloudflareinsights.com`) for production browser analytics. Its `style-src` also contains the explicit security exception `'unsafe-inline'`.
+The CSP intentionally permits jsDelivr for HTMX and daisyUI CSS, plus Cloudflare Insights script and beacon origins (`static.cloudflareinsights.com` and `cloudflareinsights.com`) for production browser analytics. Its `style-src` also contains the explicit security exception `'unsafe-inline'`, used by the layout's embedded stylesheet.
 
 The static routes `/robots.txt`, `/sitemap.xml`, and `/favicon.ico` return
 `Cache-Control: public, max-age=3600` and weak `ETag` validators. Matching

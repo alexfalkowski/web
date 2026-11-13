@@ -1,31 +1,129 @@
 <!doctype html>
-<html lang="{{.Localizer.Tag}}">
+<html lang="{{.Localizer.Tag}}" data-theme="silk">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{.Localizer.Text .Model.Page.Title}}</title>
     <meta id="description" name="description" content="{{.Localizer.Text .Model.Page.Description}}">
     <link rel="icon" href="/favicon.ico" type="image/png">
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@4.0.0/dist/htmx.min.js" integrity="sha384-BvJpBiO8Kh31EqtJe5DRIeWrHWnCGkwytKs9NKFi86Hhw96dEqdEMzZDeK9iEGTc" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.classless.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@4.0.1/dist/htmx.min.js" integrity="sha384-Qp9rdC8H7EqOoX+nR0P3RPG2Noji+qdwJlGpfzwQJsfOpp3sGwIdSP9xO3+UlEhn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.8.0/base/properties.css" integrity="sha384-CdH6s2EL3/j4OkQRTasBPvHwe8ySgizvfUTBzDhxnixxfxoh+qctLlFWYQk9bpDI" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.8.0/base/reset.css" integrity="sha384-h6aAKjGW0sK1rcH2y13fZ5lre1UYBBVMYRtbJizacSj1u028ssVDuj1lBSKlRW6A" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.8.0/base/rootcolor.css" integrity="sha384-znySTjPAV52k3d56gaORJWoKDK0STnTx6x/R4nL0NDyxBBtzIqjmSX7PLWrSc0yY" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.8.0/components/button.css" integrity="sha384-4SwXSmMfQmW3CRgIEgwHfigqhGzhLeeUw5N50mzY6rT5b73TjB0LvQTwZaZ/ugOC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.8.0/components/card.css" integrity="sha384-rRaQcU9JgXGFk+Rf6tVil82lMPThFuhtPwqkEy/qaQ8D6YHmbEXx94KnHD6CTE7x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.8.0/theme/silk.css" integrity="sha384-+F7z4zgoAEziBZJH4ShyueXHvZdZb+Y7qaFiV9/PaouJ1KqEK+NTMrhJ1RZp49jL" crossorigin="anonymous">
+    <style>
+      :root {
+        --site-ink: #292725;
+        --site-muted: #69635e;
+        --site-accent: #73543c;
+        --site-line: #ded8d1;
+        --site-serif: Georgia, "Times New Roman", serif;
+      }
+
+      html { scroll-behavior: smooth; }
+      body { min-height: 100svh; display: flex; flex-direction: column; }
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      a { text-underline-offset: .25em; }
+      a:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 5px; }
+      .site-header, main, .site-footer { width: min(1120px, calc(100% - 4rem)); margin-inline: auto; }
+      .site-header { padding-block: 1.6rem; border-bottom: 1px solid var(--site-line); }
+      .site-nav, .nav-links, .brand { display: flex; align-items: center; }
+      .site-nav { justify-content: space-between; gap: 1.5rem; }
+      .brand { gap: .75rem; font-family: var(--site-serif); font-size: 1.45rem; color: var(--site-ink); }
+      .brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; }
+      .brand-mark { background: var(--site-ink); color: #faf7f2; border-radius: .5rem; font-size: 1.35rem; }
+      .nav-links { gap: .4rem; flex-wrap: wrap; }
+      .nav-links a { display: block; padding: .65rem .9rem; border-radius: .5rem; font-size: .875rem; }
+      .nav-links a:hover { background: var(--color-base-200); color: var(--site-ink); }
+      body:has(.home-page) .nav-home, body:has(.books-page) .nav-books { color: var(--site-ink); text-decoration: underline; }
+      main { flex: 1; padding-block: clamp(3rem, 8vw, 7rem); }
+      .eyebrow { color: var(--site-accent); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+      h1, .card-title { font-family: var(--site-serif); color: var(--site-ink); font-weight: 400; }
+      h1 { margin-block: 1.2rem 1.5rem; font-size: clamp(3rem, 6vw, 5.7rem); line-height: 1.07; letter-spacing: -.055em; text-wrap: balance; hyphens: auto; }
+      .introduction { max-width: 36rem; font-size: 1.1rem; line-height: 1.8; color: var(--site-muted); }
+      .home-page { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: clamp(2rem, 6vw, 5rem); }
+      .home-page h1 { max-width: 11ch; }
+      .home-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 2rem; }
+      .home-actions .btn { min-height: 3rem; padding-inline: 1.2rem; }
+      .text-link { display: inline-flex; gap: .75rem; align-items: center; font-size: .875rem; padding-block: .75rem; }
+      .text-link:hover { text-decoration: underline; }
+      .quote { margin: 0; }
+      .quote p { font-family: var(--site-serif); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.5; color: var(--site-ink); }
+      .quote footer { margin-top: 1.5rem; color: var(--site-muted); font-size: .8rem; }
+      .quote cite { font-style: normal; }
+      .home-quote { position: relative; padding: 3rem 2.5rem; background: var(--color-base-200); border-radius: 1rem; }
+      .home-quote::before { content: "“"; display: block; height: 3.5rem; font: 6rem/1 var(--site-serif); color: var(--site-accent); }
+      .page-header { display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 3rem; margin-bottom: 3rem; }
+      .page-header h1 { margin-top: 0; }
+      .page-header .quote { padding-left: 2rem; border-left: 1px solid var(--site-line); }
+      .page-header .quote p { font-size: 1.6rem; }
+      .book-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; counter-reset: book; }
+      .book-card { min-width: 0; border: 1px solid var(--site-line); background: #fdfbf8; counter-increment: book; }
+      .book-card::before { content: counter(book, decimal-leading-zero); padding: 1.4rem 1.5rem; border-bottom: 1px solid var(--site-line); }
+      .book-card::before { font: 2.5rem/1 var(--site-serif); color: var(--site-accent); background: #eae3d9; border-radius: 1rem 1rem 0 0; }
+      .book-card:nth-child(2)::before { background: #e2e6df; }
+      .book-card:nth-child(3)::before { background: #e3e5e9; }
+      .book-card .card-body { gap: 1rem; padding: 1.5rem; }
+      .book-card .card-title { font-size: 1.6rem; line-height: 1.3; letter-spacing: -.025em; }
+      .book-author { font-size: .85rem; color: var(--site-muted); }
+      .book-topics { font-size: .7rem; font-weight: 600; letter-spacing: .055em; color: var(--site-accent); }
+      .book-card .book-note { flex-grow: 1; font-size: .9rem; line-height: 1.75; color: var(--site-muted); }
+      .book-card .card-actions { padding-top: .5rem; }
+      .book-card .btn { width: 100%; }
+      .site-footer { padding-block: 1.5rem; border-top: 1px solid var(--site-line); color: var(--site-muted); font-size: .75rem; }
+      .error-page { max-width: 42rem; padding-block: 2rem; }
+      .error-page .text-link { margin-top: 1.5rem; }
+      .skip-link { position: absolute; top: -6rem; left: 1rem; z-index: 1; padding: 1rem; background: var(--color-base-100); }
+      .skip-link:focus { top: 1rem; }
+
+      @media (max-width: 900px) {
+        .home-page, .page-header { grid-template-columns: 1fr; }
+        .home-page h1 { max-width: 14ch; }
+        .book-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 600px) {
+        .site-header, main, .site-footer { width: calc(100% - 2.5rem); }
+        .site-header { padding-block: 1.2rem; }
+        .site-nav { flex-wrap: wrap; gap: .8rem; }
+        .nav-links { width: 100%; gap: .25rem; }
+        .nav-links a { padding: .5rem .75rem; }
+        .nav-links li:first-child a { padding-left: 0; }
+        .home-page { gap: 2.5rem; }
+        .home-quote { padding: 2rem; }
+        .home-actions { align-items: flex-start; flex-direction: column; gap: .5rem; }
+        .page-header { gap: 2rem; }
+        .book-grid { grid-template-columns: 1fr; }
+        .site-footer { line-height: 1.8; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .btn { transition: none; }
+      }
+    </style>
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><strong>{{.Localizer.Text "site.name"}}</strong></li>
-        </ul>
-        <ul>
-          <li><a href="/" hx-put="/" hx-target="#main" hx-push-url="true">{{.Localizer.Text "nav.home"}}</a></li>
-          <li><a href="/books" hx-put="/books" hx-target="#main" hx-push-url="true">{{.Localizer.Text "nav.books"}}</a></li>
+    <a class="skip-link" href="#main">{{.Localizer.Text "site.skip"}}</a>
+    <header class="site-header">
+      <nav class="site-nav">
+        <a class="brand" href="/" hx-put="/" hx-target="#main" hx-push-url="true">
+          <span class="brand-mark" aria-hidden="true">L</span>
+          <span>{{.Localizer.Text "site.name"}}</span>
+        </a>
+        <ul class="nav-links">
+          <li><a class="nav-home" href="/" hx-put="/" hx-target="#main" hx-push-url="true">{{.Localizer.Text "nav.home"}}</a></li>
+          <li><a class="nav-books" href="/books" hx-put="/books" hx-target="#main" hx-push-url="true">{{.Localizer.Text "nav.books"}}</a></li>
           <li><a href="https://github.com/Lean-Thoughts" target="_blank" rel="noopener noreferrer">{{.Localizer.Text "nav.code"}}</a></li>
         </ul>
       </nav>
     </header>
-    <main id="main">
+    <main id="main" tabindex="-1">
       {{ block "content" . }}{{ end }}
     </main>
-    <footer>
+    <footer class="site-footer">
       <small>
         {{.Localizer.Message "site.copyright" .Model.Info}}
       </small>
