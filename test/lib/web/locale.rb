@@ -8,7 +8,7 @@ module Web
         'root' => {
           title: 'Lean Thoughts',
           description: 'Lean Thoughts teilt Ideen zu Lean Thinking und kontinuierlicher Verbesserung.',
-          heading: 'Willkommen',
+          heading: 'Kleine Schritte. Bleibende Veränderung.',
           quote: '„Perfektion ist unerreichbar, aber wenn wir nach Perfektion streben, können wir Spitzenleistungen erzielen.“',
           introduction: 'Lean Thinking ist letztlich eine Denkweise, eine Art, die Welt durch kontinuierliche Verbesserung zu betrachten.'
         },
@@ -30,7 +30,7 @@ module Web
         'root' => {
           title: 'Lean Thoughts',
           description: 'Lean Thoughts comparte ideas sobre pensamiento lean y mejora continua.',
-          heading: 'Bienvenido',
+          heading: 'Pequeños pasos. Cambios duraderos.',
           quote: '«La perfección no se puede alcanzar, pero si la perseguimos podemos lograr la excelencia».',
           introduction: 'El pensamiento lean es, en esencia, una mentalidad, una forma de ver el mundo a través de la mejora continua.'
         },
@@ -55,9 +55,9 @@ module Web
       'es' => { home: 'Inicio', books: 'Libros', code: 'Código', contact: 'Contactar', rights: 'Todos los derechos reservados.' }
     }.freeze
 
-    BOOK_HEADERS = {
-      'de' => %w[Titel Autor Themen Warum Link],
-      'es' => ['Título', 'Autor', 'Temas', 'Por qué', 'Enlace']
+    BOOK_LINK_TEXT = {
+      'de' => 'Buch ansehen',
+      'es' => 'Ver libro'
     }.freeze
 
     BOOK_DETAILS = {

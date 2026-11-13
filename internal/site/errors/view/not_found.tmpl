@@ -1,8 +1,10 @@
 {{ define "content" }}
-  <article>
-    <h2>{{.Localizer.Text "not_found.heading"}}</h2>
-    <p>
+  <article class="error-page">
+    <div class="eyebrow">404</div>
+    <h1>{{.Localizer.Text "not_found.heading"}}</h1>
+    <p class="introduction">
       {{.Localizer.Text "not_found.message"}}
     </p>
+    <a class="text-link" href="/" hx-put="/" hx-target="#main" hx-push-url="true">{{.Localizer.Text "nav.home"}} <span aria-hidden="true">↗</span></a>
   </article>
 {{ end }}

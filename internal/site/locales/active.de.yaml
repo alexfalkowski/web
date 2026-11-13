@@ -1,4 +1,5 @@
 site.name: Lean Thoughts
+site.skip: Zum Inhalt springen
 site.copyright: "Copyright © {{.Year}} Lean Thoughts (v{{.Version}}). Alle Rechte vorbehalten."
 nav.home: Startseite
 nav.books: Bücher
@@ -6,6 +7,8 @@ nav.code: Quellcode
 root.title: Lean Thoughts
 root.description: Lean Thoughts teilt Ideen zu Lean Thinking und kontinuierlicher Verbesserung.
 root.heading: Willkommen
+root.statement: Kleine Schritte. Bleibende Veränderung.
+root.books: Bücher entdecken
 root.quote: „Perfektion ist unerreichbar, aber wenn wir nach Perfektion streben, können wir Spitzenleistungen erzielen.“
 root.introduction: Lean Thinking ist letztlich eine Denkweise, eine Art, die Welt durch kontinuierliche Verbesserung zu betrachten.
 root.contact: Kontakt aufnehmen
@@ -14,11 +17,7 @@ books.description: Empfohlene Bücher über Lean Thinking, Softwarebereitstellun
 books.heading: Bücher
 books.quote: „Wer heute liest, führt morgen.“
 books.introduction: Lesen ist wichtig, weil es den Geist entwickelt und wertvolles Wissen und Lektionen fürs Leben vermittelt.
-books.column.title: Titel
-books.column.author: Autor
-books.column.topics: Themen
-books.column.note: Warum
-books.column.link: Link
+books.view: Buch ansehen
 books.kanban.topics: Kanban, evolutionäre Veränderung, Arbeitsfluss
 books.kanban.note: Eine praktische Einführung in bessere Softwarebereitstellung durch visuelles Arbeitsmanagement und evolutionäre Veränderung.
 books.team_topologies.topics: Teamgestaltung, kognitive Belastung, Arbeitsfluss

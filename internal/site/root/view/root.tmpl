@@ -1,19 +1,19 @@
 {{ define "content" }}
-  <article>
-    <h2>{{.Localizer.Text "root.heading"}}</h2>
-    <blockquote>
-      {{.Localizer.Text "root.quote"}}
+  <article class="home-page">
+    <div>
+      <p class="eyebrow">{{.Localizer.Text "root.heading"}}</p>
+      <h1>{{.Localizer.Text "root.statement"}}</h1>
+      <p class="introduction">{{.Localizer.Text "root.introduction"}}</p>
+      <div class="home-actions">
+        <a class="btn btn-neutral" href="/books" hx-put="/books" hx-target="#main" hx-push-url="true">{{.Localizer.Text "root.books"}} <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="mailto:af@lean-thoughts.com" target="_blank" rel="noopener noreferrer">{{.Localizer.Text "root.contact"}}</a>
+      </div>
+    </div>
+    <blockquote class="quote home-quote">
+      <p>{{.Localizer.Text "root.quote"}}</p>
       <footer>
         <cite>— Vince Lombardi</cite>
       </footer>
     </blockquote>
-    <p>
-      {{.Localizer.Text "root.introduction"}}
-    </p>
-    <footer>
-      <small>
-        <a href="mailto:af@lean-thoughts.com" target="_blank" rel="noopener noreferrer">{{.Localizer.Text "root.contact"}}</a>
-      </small>
-    </footer>
   </article>
 {{ end }}

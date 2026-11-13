@@ -4,6 +4,6 @@
 // X-Content-Type-Options, Referrer-Policy, X-Frame-Options, Permissions-Policy,
 // and Strict-Transport-Security headers. The CSP allowlist is coupled to the
 // external assets used by the full-page templates, including jsDelivr-hosted
-// HTMX/Pico CSS assets and Cloudflare Insights browser analytics endpoints.
+// HTMX/daisyUI CSS assets and Cloudflare Insights browser analytics endpoints.
 // Its style-src also includes the explicit security exception 'unsafe-inline'.
 package security

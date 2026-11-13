@@ -23,8 +23,8 @@ Then('I should see {string} in {string}') do |section, language|
 
   expect_page_title(html, page)
   expect_page_description(html, page, @layout)
-  expect(html.at_css('h2').text).to eq(page.fetch(:heading))
-  expect(html.at_css('article p').text.strip).to eq(page.fetch(:introduction))
+  expect(html.at_css('h1').text).to eq(page.fetch(:heading))
+  expect(html.at_css('.introduction').text.strip).to eq(page.fetch(:introduction))
   expect(html.at_css('blockquote').text).to include(page.fetch(:quote)) if page.key?(:quote)
   expect(html.at_css('a[href^="mailto:"]').text).to eq(Web::Locale::LAYOUTS.fetch(language).fetch(:contact)) if section == 'root'
   expect_localized_books(html, language) if section == 'books'
