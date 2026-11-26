@@ -6,6 +6,12 @@ Repo-specific guidance for this repository.
 
 Use `bin/AGENTS.md` for shared skills and cross-repository defaults.
 
+## Accepted design
+
+Read the [accepted-design index](docs/agents/accepted-design.md) and the relevant
+area files before proposing a change or recording a finding. Apply each decision
+to its documented scope and record owner-agreed choices in the owning area file.
+
 ## What this repo is
 
 - Small Go HTTP service serving a website from embedded templates and content.
@@ -42,15 +48,6 @@ make help
 - `make coverage` generates coverage artifacts under `test/reports/`.
 
 Use `make dev` for local runtime work through the repository command surface.
-
-## Testing policy
-
-- The intentional product test strategy is the Ruby/Cucumber suite in
-  `test/features/`.
-- Treat `make features` and `make benchmarks` as the authoritative behavioral
-  checks.
-- `make specs` exists for tooling/build support, but it is not the primary
-  product test signal in this repo.
 
 ## Architecture
 
@@ -116,12 +113,6 @@ The non-`master` workflow also runs:
 
 The `master` workflow also runs versioning, Docker release/manifest, and deploy
 jobs.
-
-## Intentional design choices
-
-- Site metadata such as the footer year is intentionally computed at startup
-  and shared through DI. Do not flag year rollover staleness unless the task is
-  explicitly about changing metadata freshness.
 
 ## Gotchas
 

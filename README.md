@@ -155,8 +155,8 @@ Site responses include browser security headers such as `Content-Security-Policy
 The CSP intentionally permits jsDelivr for HTMX and daisyUI CSS, plus Cloudflare Insights script and beacon origins (`static.cloudflareinsights.com` and `cloudflareinsights.com`) for production browser analytics. Its `style-src` also contains the explicit security exception `'unsafe-inline'`, used by the layout's embedded stylesheet.
 
 The static routes `/robots.txt`, `/sitemap.xml`, and `/favicon.ico` return
-`Cache-Control: public, max-age=3600` and weak `ETag` validators. Matching
-`If-None-Match` requests return `304 Not Modified`.
+`Cache-Control: public, max-age=3600`. Clients can reuse the response for one
+hour. The MVC handler serves the full asset on each successful GET request.
 
 > [!NOTE]
 > The acceptance suite verifies security headers across page, static-asset, and
