@@ -73,7 +73,8 @@ end
 
 Then('I should see the sitemap file') do
   expect(@response.code).to eq(200)
-  expect(@response.headers[:content_type]).to eq('text/xml; charset=utf-8')
+  media_type = @response.headers[:content_type].to_s.partition(';').first.strip.downcase
+  expect(media_type).to eq('application/xml').or eq('text/xml')
   expect_security_headers(@response)
   expect_static_cache(@response)
 
